@@ -1,12 +1,18 @@
 "use client";
 
+import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useBirdStore } from '@/store/useBirdStore';
 
 export default function BirdMap() {
+  const [mounted, setMounted] = useState(false);
   const birdRecords = useBirdStore((state) => state.birdRecords);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // 过滤出真正带有经纬度记录的小鸟
   const mapPins = Object.entries(birdRecords).filter(
@@ -52,30 +58,36 @@ export default function BirdMap() {
 
   return (
     <div className="w-full h-[650px] rounded-[2.5rem] overflow-hidden border-4 border-emerald-100 shadow-2xl relative z-0">
-      <MapContainer center={center} zoom={12} className="w-full h-full">
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        
-        {mapPins.map(([name, record]) => (
-          <Marker
-            key={name}
-            position={[record.lat!, record.lng!]}
-            icon={createCustomIcon(name, record.photos[0])}
-          >
-            <Popup className="rounded-2xl">
-              <div className="text-center p-2 min-w-[120px]">
-                <h3 className="font-black text-emerald-900 text-base">{name}</h3>
-                <p className="text-xs text-zinc-500 mt-1.5 font-bold flex items-center justify-center gap-1">
-                  📍 {record.firstLocation}
-                </p>
-                <p className="text-[10px] text-zinc-400 mt-1 bg-zinc-50 py-1 rounded-md">初次邂逅: {record.firstDate}</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+      {mounted && (
+        <MapContainer
+          center={center}
+          zoom={12}
+          style={{ height: '100%', width: '100%' }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+
+          {mapPins.map(([name, record]) => (
+            <Marker
+              key={name}
+              position={[record.lat!, record.lng!]}
+              icon={createCustomIcon(name, record.photos?.[0] ?? '')}
+            >
+              <Popup className="rounded-2xl">
+                <div className="text-center p-2 min-w-[120px]">
+                  <h3 className="font-black text-emerald-900 text-base">{name}</h3>
+                  <p className="text-xs text-zinc-500 mt-1.5 font-bold flex items-center justify-center gap-1">
+                    📍 {record.firstLocation}
+                  </p>
+                  <p className="text-[10px] text-zinc-400 mt-1 bg-zinc-50 py-1 rounded-md">初次邂逅: {record.firstDate}</p>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      )}
     </div>
   );
 }

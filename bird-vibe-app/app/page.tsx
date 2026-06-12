@@ -11,7 +11,7 @@ export default function Dashboard() {
   const [isDownloading, setIsDownloading] = useState(false);
   const posterRef = useRef<HTMLDivElement>(null);
 
-  const todayDate = "2026年06月06日";
+  const todayDate = "2026年06月12日";
 
   // 🚀 核心海报生成魔法：完美兼容现代 CSS 颜色格式
   const handleDownloadPoster = async () => {
@@ -26,7 +26,7 @@ export default function Dashboard() {
 
       const link = document.createElement("a");
       link.href = dataUrl;
-      link.download = `BirdVibe-冒险成就海报-${new Date().toISOString().slice(0, 10)}.png`;
+      link.download = `BirdVibe-成就海报-${new Date().toISOString().slice(0, 10)}.png`;
       link.click();
       
       setIsPosterOpen(false);
@@ -75,7 +75,7 @@ export default function Dashboard() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-4xl font-black text-emerald-900 drop-shadow-sm">
-              🪵 冒险小账本
+              🪵 小鸟观察手札
             </h1>
             <p className="mt-2 text-emerald-700 font-bold tracking-wide">
               欢迎回来！这里珍藏着你所有的数据里程碑。
@@ -150,7 +150,7 @@ export default function Dashboard() {
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-emerald-600 flex items-center justify-center font-black text-emerald-950 text-lg shadow-md border-2 border-white">Me</div>
                   <div>
                     <h4 className="text-base font-black text-emerald-900">高级情报员</h4>
-                    <p className="text-[10px] font-bold text-emerald-600 bg-lime-200/60 px-2 py-0.5 rounded mt-1 inline-block whitespace-nowrap">🏷️ LV.1 大自然死党</p>
+                    <p className="text-[10px] font-bold text-emerald-600 bg-lime-200/60 px-2 py-0.5 rounded mt-1 inline-block whitespace-nowrap">🏷️ LV.1 初识</p>
                   </div>
                 </div>
 

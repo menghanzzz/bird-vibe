@@ -7,7 +7,7 @@ import { Home, Camera, Map, BookOpen, Users } from "lucide-react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BirdVibe 自然探索图鉴",
+  title: "BirdVibe 观鸟探索图鉴",
   description: "AI驱动的多模态观鸟图鉴与社区",
 };
 
@@ -33,32 +33,32 @@ export default function RootLayout({
           {/* 萌化版导航菜单 */}
           <nav className="flex-1 py-6 px-4 space-y-2">
             <p className="px-2 text-xs font-bold text-emerald-600 uppercase tracking-widest mb-4">
-              自然探索指南
+              探索指南
             </p>
             
             <Link href="/" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-emerald-900 transition-colors group">
               <Home className="w-5 h-5 text-emerald-400 group-hover:text-lime-300 transition-colors" />
-              <span className="font-bold tracking-wide group-hover:text-lime-50">🪵 冒险小账本</span>
+              <span className="font-bold tracking-wide group-hover:text-lime-50">🪵 小鸟观察手札</span>
             </Link>
 
             <Link href="/recognize" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-emerald-900 transition-colors group">
               <Camera className="w-5 h-5 text-emerald-400 group-hover:text-lime-300 transition-colors" />
-              <span className="font-bold tracking-wide group-hover:text-lime-50">📸 邂逅新朋友</span>
+              <span className="font-bold tracking-wide group-hover:text-lime-50">📸 小鸟智能识别</span>
             </Link>
 
             <Link href="/map" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-emerald-900 transition-colors group">
               <Map className="w-5 h-5 text-emerald-400 group-hover:text-lime-300 transition-colors" />
-              <span className="font-bold tracking-wide group-hover:text-lime-50">📍 秘密足迹地图</span>
+              <span className="font-bold tracking-wide group-hover:text-lime-50">📍 小鸟足迹地图</span>
             </Link>
 
             <Link href="/pokedex" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-emerald-900 transition-colors group">
               <BookOpen className="w-5 h-5 text-emerald-400 group-hover:text-lime-300 transition-colors" />
-              <span className="font-bold tracking-wide group-hover:text-lime-50">📖 好朋友通讯录</span>
+              <span className="font-bold tracking-wide group-hover:text-lime-50">📖 小鸟图鉴</span>
             </Link>
 
             <Link href="/community" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-emerald-900 transition-colors group">
               <Users className="w-5 h-5 text-emerald-400 group-hover:text-lime-300 transition-colors" />
-              <span className="font-bold tracking-wide group-hover:text-lime-50">🍃 树洞情报局</span>
+              <span className="font-bold tracking-wide group-hover:text-lime-50">🍃 鸟友情报局</span>
             </Link>
           </nav>
 
@@ -70,7 +70,7 @@ export default function RootLayout({
               </div>
               <div>
                 <p className="text-sm font-bold text-lime-50">超级情报员</p>
-                <p className="text-xs text-emerald-400 font-medium">LV.1 大自然死党</p>
+                <p className="text-xs text-emerald-400 font-medium">LV.1 初识</p>
               </div>
             </div>
           </div>
