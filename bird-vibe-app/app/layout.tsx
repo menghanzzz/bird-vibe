@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { Home, Camera, Map, BookOpen, Users } from "lucide-react";
+import BirdChat from "@/components/BirdChat";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -80,7 +81,7 @@ export default function RootLayout({
         <main className="flex-1 h-full overflow-y-auto bg-zinc-50 relative">
           {children}
         </main>
-
+        <BirdChat />
       </body>
     </html>
   );
