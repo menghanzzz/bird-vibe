@@ -24,7 +24,7 @@ export default function BirdMap() {
 
   // 🌟 核心魔法：用原生 HTML + Tailwind 渲染带有小鸟照片的大头针！
   const createCustomIcon = (name: string, photo: string) => {
-    const fallbackImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Aves_silhouette.svg/200px-Aves_silhouette.svg.png";
+    const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2'%3E%3Cpath d='M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E";
     const imgSrc = photo || fallbackImage;
 
     return L.divIcon({
@@ -65,8 +65,8 @@ export default function BirdMap() {
           style={{ height: '100%', width: '100%' }}
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
+            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           />
 
           {mapPins.map(([name, record]) => (

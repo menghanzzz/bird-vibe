@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Bird, Lock, RotateCcw, Camera, MapPin, Calendar, X } from "lucide-react";
-import { useBirdStore, baseBirds } from "@/store/useBirdStore";
+import { useBirdStore } from "@/store/useBirdStore";
 
 // 根据经纬度反查地名
 function LocationDisplay({ lat, lng, fallback }: { lat?: number; lng?: number; fallback: string }) {
@@ -33,6 +33,19 @@ function BirdImage({ name, englishName, latinName, isUnlocked }: { name?: string
   useEffect(() => {
     let active = true;
     const fetchBirdImage = async () => {
+      // 1. 优先尝试本地图片（public/birds/ 目录，国内访问无障碍）
+      if (name) {
+        const localUrl = `/birds/${encodeURIComponent(name)}.jpg`;
+        try {
+          const localRes = await fetch(localUrl, { method: 'HEAD' });
+          if (localRes.ok) {
+            if (active) setImgSrc(localUrl);
+            return;
+          }
+        } catch { /* 本地不存在，继续 fallback */ }
+      }
+
+      // 2. Fallback 到 Wikipedia API（需要翻墙）
       const queries = [name, englishName, latinName];
       for (const query of queries) {
         if (!query) continue;
@@ -63,16 +76,40 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState("全部");
   const [flippedId, setFlippedId] = useState<number | null>(null);
   const [detailBird, setDetailBird] = useState<any | null>(null);
+  const [birdRagDetails, setBirdRagDetails] = useState<Record<string, any>>({});
+  const [apiBirds, setApiBirds] = useState<any[]>([]);
+
+  // 🆕 从后端动态拉取所有鸟种元数据（包含自动新增的）
+  useEffect(() => {
+    fetch("http://localhost:8000/api/v1/birds")
+      .then(r => r.json())
+      .then(data => setApiBirds(data))
+      .catch(e => console.error("拉取图鉴列表失败:", e));
+  }, []);
 
   const unlockedIds = useBirdStore((state) => state.unlockedIds);
   const customBirds = useBirdStore((state) => state.customBirds);
   const birdRecords = useBirdStore((state) => state.birdRecords);
 
-  const allBirds = [...baseBirds, ...customBirds];
+  const allBirds = [...apiBirds, ...customBirds];
   const filteredBirds = allBirds.filter((b) => activeCategory === "全部" || b.category === activeCategory);
 
-  const handleCardClick = (id: number, isUnlocked: boolean) => {
+  const handleCardClick = async (id: number, isUnlocked: boolean) => {
     if (!isUnlocked) return;
+
+    const bird = allBirds.find(b => b.id === id);
+    if (bird && !birdRagDetails[bird.name]) {
+      try {
+        const res = await fetch(`http://localhost:8000/api/v1/birds/${encodeURIComponent(bird.name)}/details`);
+        if (res.ok) {
+          const data = await res.json();
+          setBirdRagDetails(prev => ({ ...prev, [bird.name]: data }));
+        }
+      } catch (e) {
+        console.error("拉取鸟类详情失败:", e);
+      }
+    }
+
     setFlippedId(flippedId === id ? null : id);
   };
 
@@ -212,19 +249,19 @@ export default function App() {
             <div className="space-y-5 leading-relaxed text-sm font-medium">
               <div className="bg-white/60 p-4 rounded-2xl border border-[#e6dcd0]/80 shadow-sm">
                 <h4 className="font-black text-base text-[#2c221a] mb-2">🔍 外貌特征</h4>
-                <p className="text-[#5c5044] text-[13px]">{detailBird.details?.appearance || `${detailBird.name}的羽色和体态独特，拥有极具辨识度的外形特征。`}</p>
+                <p className="text-[#5c5044] text-[13px]">{(() => { const rag = birdRagDetails[detailBird.name]; if (!rag) return "🍃 正在从自然文库检索资料..."; return rag.details?.appearance || `${detailBird.name}的羽色和体态独特，拥有极具辨识度的外形特征。`; })()}</p>
               </div>
               <div className="bg-white/60 p-4 rounded-2xl border border-[#e6dcd0]/80 shadow-sm">
                 <h4 className="font-black text-base text-[#2c221a] mb-2">🏡 生活习性</h4>
-                <p className="text-[#5c5044] text-[13px]">{detailBird.details?.habitatAndHabits || `主要在${detailBird.location || "特定生态区域"}活动。`}</p>
+                <p className="text-[#5c5044] text-[13px]">{(() => { const rag = birdRagDetails[detailBird.name]; if (!rag) return "🍃 正在从自然文库检索资料..."; return rag.details?.habitatAndHabits || `主要在${detailBird.location || "特定生态区域"}活动。`; })()}</p>
               </div>
               <div className="bg-white/60 p-4 rounded-2xl border border-[#e6dcd0]/80 shadow-sm">
                 <h4 className="font-black text-base text-[#2c221a] mb-2">🎵 鸣叫特点</h4>
-                <p className="text-[#5c5044] text-[13px]">{detailBird.details?.callCharacteristics || `鸣声多用于宣示领地或同伴联络。`}</p>
+                <p className="text-[#5c5044] text-[13px]">{(() => { const rag = birdRagDetails[detailBird.name]; if (!rag) return "🍃 正在从自然文库检索资料..."; return rag.details?.callCharacteristics || `鸣声多用于宣示领地或同伴联络。`; })()}</p>
               </div>
               <div className="bg-white/60 p-4 rounded-2xl border border-[#e6dcd0]/80 shadow-sm">
                 <h4 className="font-black text-base text-[#2c221a] mb-2">🗺️ 分布区域</h4>
-                <p className="text-[#5c5044] text-[13px]">{detailBird.details?.distribution || `广泛分布于适宜其生存的特定海拔或气候带中。`}</p>
+                <p className="text-[#5c5044] text-[13px]">{(() => { const rag = birdRagDetails[detailBird.name]; if (!rag) return "🍃 正在从自然文库检索资料..."; return rag.details?.distribution || `广泛分布于适宜其生存的特定海拔或气候带中。`; })()}</p>
               </div>
             </div>
 

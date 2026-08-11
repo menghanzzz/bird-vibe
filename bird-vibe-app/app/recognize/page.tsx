@@ -16,8 +16,19 @@ function WikiBirdImage({ name, englishName, latinName }: { name: string; english
 
   useEffect(() => {
     let active = true;
-    const queries = [englishName, latinName, name].filter(Boolean) as string[];
-    (async () => {
+    const fetchImage = async () => {
+      // 1. 优先尝试本地图片（public/birds/ 目录，国内访问无障碍）
+      const localUrl = `/birds/${encodeURIComponent(name)}.jpg`;
+      try {
+        const localRes = await fetch(localUrl, { method: 'HEAD' });
+        if (localRes.ok) {
+          if (active) setImgSrc(localUrl);
+          return;
+        }
+      } catch { /* 本地不存在，继续 fallback */ }
+
+      // 2. Fallback 到 Wikipedia API（需要翻墙）
+      const queries = [englishName, latinName, name].filter(Boolean) as string[];
       for (const query of queries) {
         try {
           const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
@@ -25,7 +36,8 @@ function WikiBirdImage({ name, englishName, latinName }: { name: string; english
           if (data.thumbnail?.source) { if (active) setImgSrc(data.thumbnail.source); return; }
         } catch { continue; }
       }
-    })();
+    };
+    fetchImage();
     return () => { active = false; };
   }, [name, englishName, latinName]);
 
@@ -159,6 +171,12 @@ export default function Home() {
           lat: finalCoords?.lat,
           lng: finalCoords?.lng
         });
+
+        // 🆕 如果识别到新鸟种，刷新页面让图鉴列表自动更新
+        if (data.is_new_bird) {
+          setTimeout(() => window.location.reload(), 2000);
+        }
+
         triggerConfetti();
       }
     } catch (err: any) {
