@@ -213,9 +213,20 @@ export const useBirdStore = create<BirdStore>()(
         } else {
           const exists = state.customBirds.find(b => b.name === aiResultName);
           if (!exists) {
-            set({ customBirds: [...state.customBirds, { id: Date.now(), ...aiResultData, name: aiResultName }], birdRecords: newRecords });
-          } else {
-            set({ birdRecords: newRecords });
+            set({ 
+              customBirds: [...state.customBirds, { 
+                id: Date.now(), 
+                name: cleanName,
+                englishName: aiResultData.englishName || "",
+                latinName: aiResultData.latinName || "",
+                category: aiResultData.category || "林鸟",
+                rarity: aiResultData.rarity || "常见",
+                location: aiResultData.location || "公园绿地",
+                funFact: aiResultData.reason?.substring(0, 50) || "等待一次自然相遇",
+                ...aiResultData
+              }], 
+              birdRecords: newRecords 
+            }) 
           }
         }
       }

@@ -27,8 +27,23 @@ function WikiBirdImage({ name, englishName, latinName }: { name: string; english
         }
       } catch { /* 本地不存在，继续 fallback */ }
 
-      // 2. Fallback 到 Wikipedia API（需要翻墙）
-      const queries = [englishName, latinName, name].filter(Boolean) as string[];
+      // 2. iNaturalist API（国内可访问，专业观鸟图库）
+      const queries = [latinName, englishName, name].filter(Boolean) as string[];
+      for (const query of queries) {
+        try {
+          const res = await fetch(`https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(query)}&per_page=1`);
+          const data = await res.json();
+          if (data.results?.[0]?.default_photo?.medium_url) {
+            const url = data.results[0].default_photo.medium_url;
+            if (url.includes('inaturalist')) {
+              if (active) setImgSrc(url);
+              return;
+            }
+          }
+        } catch { continue; }
+      }
+
+      // 3. Fallback 到 Wikipedia API（需要翻墙）
       for (const query of queries) {
         try {
           const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
@@ -63,6 +78,7 @@ export default function Home() {
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [selectedBird, setSelectedBird] = useState<any>(null);
+  const [birdMetaCache, setBirdMetaCache] = useState<Record<string, any>>({});
   const unlockBird = useBirdStore((state) => state.unlockBird);
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -164,12 +180,38 @@ export default function Home() {
       const certainty = data.certainty_level;
       if ((certainty === "高" || certainty === "中") && data.top5_candidates?.length > 0) {
         const topBird = data.top5_candidates[0];
-        unlockBird(topBird.name, {
+        const cleanName = topBird.name.replace(/\s*\(.*?\)\s*/g, '').trim();
+
+        // 🆕 获取完整鸟种信息（包括英文名、拉丁名，用于图片搜索）
+        let birdMeta = { englishName: "", latinName: "", category: "林鸟", rarity: "常见", location: "公园绿地" };
+        try {
+          const detailRes = await fetch(`http://localhost:8000/api/v1/birds/${encodeURIComponent(cleanName)}/details`);
+          if (detailRes.ok) {
+            const detailData = await detailRes.json();
+            birdMeta = {
+              englishName: detailData.englishName || "",
+              latinName: detailData.latinName || "",
+              category: detailData.category || "林鸟",
+              rarity: detailData.rarity || "常见",
+              location: detailData.location || "公园绿地"
+            };
+            setBirdMetaCache(prev => ({ ...prev, [cleanName]: birdMeta }));
+          }
+        } catch (e) {
+          console.error("获取鸟种详情失败:", e);
+        }
+
+        unlockBird(cleanName, {
           reason: topBird.reason,
           imageUrl: imagePreview,
           location: location || (usingIpLocation ? "城市定位（IP粗定位）" : "探索中发现"),
           lat: finalCoords?.lat,
-          lng: finalCoords?.lng
+          lng: finalCoords?.lng,
+          englishName: birdMeta.englishName,
+          latinName: birdMeta.latinName,
+          category: birdMeta.category,
+          rarity: birdMeta.rarity,
+          location: birdMeta.location
         });
 
         // 🆕 如果识别到新鸟种，刷新页面让图鉴列表自动更新
@@ -188,16 +230,18 @@ export default function Home() {
 
   const getBirdDetails = (birdName: string, userImageUrl: string | null) => {
     const baseBird = baseBirds.find(b => b.name === birdName);
+    const cachedMeta = birdMetaCache[birdName];
+
     return {
       name: birdName,
-      englishName: baseBird?.englishName ?? "",
-      latinName: baseBird?.latinName ?? "",
+      englishName: baseBird?.englishName ?? cachedMeta?.englishName ?? "",
+      latinName: baseBird?.latinName ?? cachedMeta?.latinName ?? "",
       userImageUrl,
       appearance: baseBird?.details?.appearance ?? "羽色极具环境适应性，拥有与其生活习性相符的体型特征。",
       distribution: baseBird?.details?.distribution ?? "广泛分布于适宜其生存的地区，在城市公园、林地或湿地均可见到。",
       habits: baseBird?.details?.habitatAndHabits ?? "性格活泼且机警，主食植物浆果与小型昆虫，具有较强的领地意识。",
       voice: baseBird?.details?.callCharacteristics ?? "鸣声多变，多用于宣示领地或同伴联络。",
-      funFact: baseBird?.funFact ?? "这种鸟类拥有独特的生存技巧和行为特征，是大自然中的奇妙存在。"
+      funFact: baseBird?.funFact ?? cachedMeta?.funFact ?? "这种鸟类拥有独特的生存技巧和行为特征，是大自然中的奇妙存在。"
     };
   };
 

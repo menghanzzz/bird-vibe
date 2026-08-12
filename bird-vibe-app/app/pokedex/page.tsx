@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Bird, Lock, RotateCcw, Camera, MapPin, Calendar, X } from "lucide-react";
-import { useBirdStore } from "@/store/useBirdStore";
+import { baseBirds, useBirdStore } from "@/store/useBirdStore";
 
 // 根据经纬度反查地名
 function LocationDisplay({ lat, lng, fallback }: { lat?: number; lng?: number; fallback: string }) {
@@ -77,21 +77,12 @@ export default function App() {
   const [flippedId, setFlippedId] = useState<number | null>(null);
   const [detailBird, setDetailBird] = useState<any | null>(null);
   const [birdRagDetails, setBirdRagDetails] = useState<Record<string, any>>({});
-  const [apiBirds, setApiBirds] = useState<any[]>([]);
-
-  // 🆕 从后端动态拉取所有鸟种元数据（包含自动新增的）
-  useEffect(() => {
-    fetch("http://localhost:8000/api/v1/birds")
-      .then(r => r.json())
-      .then(data => setApiBirds(data))
-      .catch(e => console.error("拉取图鉴列表失败:", e));
-  }, []);
 
   const unlockedIds = useBirdStore((state) => state.unlockedIds);
   const customBirds = useBirdStore((state) => state.customBirds);
   const birdRecords = useBirdStore((state) => state.birdRecords);
 
-  const allBirds = [...apiBirds, ...customBirds];
+  const allBirds = [...baseBirds,...customBirds];
   const filteredBirds = allBirds.filter((b) => activeCategory === "全部" || b.category === activeCategory);
 
   const handleCardClick = async (id: number, isUnlocked: boolean) => {
