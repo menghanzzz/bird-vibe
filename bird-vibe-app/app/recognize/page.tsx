@@ -11,39 +11,164 @@ import {
 } from "@/components/ui/dialog";
 import { useBirdStore, baseBirds } from "@/store/useBirdStore";
 
-function WikiBirdImage({ name, englishName, latinName }: { name: string; englishName?: string; latinName?: string }) {
+// 🔧 辅助函数：模糊匹配 baseBirds（处理括号、空格等格式差异）
+function findBaseBird(name: string) {
+  if (!name) return undefined;
+  let bird = baseBirds.find((b) => b.name === name);
+  if (bird) return bird;
+
+  const cleanName = name.replace(/\s*\(.*?\)\s*/g, "").trim();
+  bird = baseBirds.find((b) => b.name === cleanName);
+  if (bird) return bird;
+
+  bird = baseBirds.find(
+    (b) =>
+      b.name.includes(cleanName) ||
+      cleanName.includes(b.name) ||
+      (b.englishName && b.englishName.toLowerCase() === name.toLowerCase())
+  );
+  return bird;
+}
+
+// 🆕 关键修复：从 iNaturalist API 获取鸟种的官方元数据
+// 必须用 autocomplete + locale=zh-CN 才能正确识别中文鸟名
+async function fetchBirdMetaFromAPI(name: string): Promise<{
+  englishName: string;
+  latinName: string;
+  officialImageUrl: string | null;
+}> {
+  try {
+    // 1. 用 autocomplete + zh-CN locale 查中文名（普通 taxa?q= 对中文支持极差，会返回蚂蚁/植物）
+    const autoRes = await fetch(
+      `https://api.inaturalist.org/v1/taxa/autocomplete?q=${encodeURIComponent(
+        name
+      )}&per_page=1&locale=zh-CN`
+    );
+    const autoData = await autoRes.json();
+    if (!autoData.results?.[0]) {
+      return { englishName: "", latinName: "", officialImageUrl: null };
+    }
+
+    const taxon = autoData.results[0];
+    const latinName = taxon.name || "";
+    const officialImageUrl = taxon.default_photo?.medium_url || null;
+
+    // 2. 用拉丁名再查一次（不带 locale），获取英文名
+    let englishName = "";
+    if (latinName) {
+      try {
+        const enRes = await fetch(
+          `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(
+            latinName
+          )}&per_page=1`
+        );
+        const enData = await enRes.json();
+        if (enData.results?.[0]) {
+          const enCommonName = enData.results[0].preferred_common_name;
+          // 确保是英文名（不含中文字符）
+          if (enCommonName && !/[\u4e00-\u9fa5]/.test(enCommonName)) {
+            englishName = enCommonName;
+          }
+        }
+      } catch {}
+    }
+
+    return { englishName, latinName, officialImageUrl };
+  } catch (e) {
+    console.error("从 iNaturalist 获取鸟种元数据失败:", e);
+    return { englishName: "", latinName: "", officialImageUrl: null };
+  }
+}
+
+// 🔧 修复：WikiBirdImage 也改用正确的查询逻辑
+function WikiBirdImage({
+  name,
+  englishName,
+  latinName,
+}: {
+  name: string;
+  englishName?: string;
+  latinName?: string;
+}) {
   const [imgSrc, setImgSrc] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
     const fetchImage = async () => {
-      // 1. iNaturalist API（优先根据拉丁文名抓取）
-      const queries = [latinName, englishName, name].filter(Boolean) as string[];
+      // 1. 优先用拉丁名查 iNaturalist（最准）
+      const queries = [latinName, englishName, name].filter(
+        Boolean
+      ) as string[];
       for (const query of queries) {
+        if (!query) continue;
         try {
-          const res = await fetch(`https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(query)}&per_page=1`);
+          const res = await fetch(
+            `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(
+              query
+            )}&per_page=1`
+          );
           const data = await res.json();
           if (data.results?.[0]?.default_photo?.medium_url) {
             const url = data.results[0].default_photo.medium_url;
-            if (url.includes('inaturalist')) {
+            if (url.includes("inaturalist")) {
               if (active) setImgSrc(url);
               return;
             }
           }
-        } catch { continue; }
+        } catch {
+          continue;
+        }
       }
 
-      // 2. Wikipedia fallback
-      for (const query of queries) {
+      // 2. 如果拉丁名/英文名都查不到，用中文名走 autocomplete（兜底）
+      if (!latinName && !englishName) {
         try {
-          const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
+          const res = await fetch(
+            `https://api.inaturalist.org/v1/taxa/autocomplete?q=${encodeURIComponent(
+              name
+            )}&per_page=1&locale=zh-CN`
+          );
           const data = await res.json();
-          if (data.thumbnail?.source) { if (active) setImgSrc(data.thumbnail.source); return; }
-        } catch { continue; }
+          if (data.results?.[0]?.default_photo?.medium_url) {
+            const url = data.results[0].default_photo.medium_url;
+            if (active) setImgSrc(url);
+            return;
+          }
+        } catch {}
+      }
+
+      // 3. Wikipedia fallback（只用英文名查，且校验标题相关性）
+      for (const query of [englishName].filter(Boolean)) {
+        if (!query) continue;
+        try {
+          const res = await fetch(
+            `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
+              query
+            )}`
+          );
+          const data = await res.json();
+          if (
+            data.thumbnail?.source &&
+            data.title &&
+            (data.title
+              .toLowerCase()
+              .includes(query.toLowerCase().slice(0, 6)) ||
+              query
+                .toLowerCase()
+                .includes(data.title.toLowerCase().slice(0, 6)))
+          ) {
+            if (active) setImgSrc(data.thumbnail.source);
+            return;
+          }
+        } catch {
+          continue;
+        }
       }
     };
     fetchImage();
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [name, englishName, latinName]);
 
   if (!imgSrc) {
@@ -77,13 +202,24 @@ export default function Home() {
 
     let processedFile = file;
 
-    const isHeic = file.type === "image/heic" || file.type === "image/heif" ||
-      file.name.toLowerCase().endsWith(".heic") || file.name.toLowerCase().endsWith(".heif");
+    const isHeic =
+      file.type === "image/heic" ||
+      file.type === "image/heif" ||
+      file.name.toLowerCase().endsWith(".heic") ||
+      file.name.toLowerCase().endsWith(".heif");
     if (isHeic) {
       try {
         const heic2any = (await import("heic2any")).default;
-        const blob = await heic2any({ blob: file, toType: "image/jpeg", quality: 0.85 }) as Blob;
-        processedFile = new File([blob], file.name.replace(/\.(heic|heif)$/i, ".jpg"), { type: "image/jpeg" });
+        const blob = (await heic2any({
+          blob: file,
+          toType: "image/jpeg",
+          quality: 0.85,
+        })) as Blob;
+        processedFile = new File(
+          [blob],
+          file.name.replace(/\.(heic|heif)$/i, ".jpg"),
+          { type: "image/jpeg" }
+        );
       } catch {
         setError("HEIC 图片转换失败，请尝试在相册里导出为 JPG 后再上传。");
         return;
@@ -97,12 +233,18 @@ export default function Home() {
   };
 
   const handleGetLocation = () => {
-    if (!navigator.geolocation) { setError("哎呀，您的设备好像不支持定位功能。"); return; }
+    if (!navigator.geolocation) {
+      setError("哎呀，您的设备好像不支持定位功能。");
+      return;
+    }
     setIsLocating(true);
     setUsingIpLocation(false);
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        setCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
+        setCoords({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
         setLocationWarning(false);
         setIsLocating(false);
       },
@@ -115,9 +257,14 @@ export default function Home() {
   };
 
   // IP 粗定位兜底
-  const getIpFallbackLocation = async (): Promise<{ lat: number; lng: number } | null> => {
+  const getIpFallbackLocation = async (): Promise<{
+    lat: number;
+    lng: number;
+  } | null> => {
     try {
-      const res = await fetch("http://ip-api.com/json/?fields=lat,lon,city,status");
+      const res = await fetch(
+        "http://ip-api.com/json/?fields=lat,lon,city,status"
+      );
       const data = await res.json();
       if (data.status === "success") return { lat: data.lat, lng: data.lon };
     } catch {}
@@ -128,16 +275,34 @@ export default function Home() {
     const duration = 3000;
     const end = Date.now() + duration;
     const frame = () => {
-      confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#10B981', '#F59E0B', '#84CC16', '#FCD34D'] });
-      confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#10B981', '#F59E0B', '#84CC16', '#FCD34D'] });
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: ["#10B981", "#F59E0B", "#84CC16", "#FCD34D"],
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: ["#10B981", "#F59E0B", "#84CC16", "#FCD34D"],
+      });
       if (Date.now() < end) requestAnimationFrame(frame);
     };
     frame();
   };
 
   const handleRecognize = async () => {
-    if (!image) { setError("哎呀，背包里好像还没有装入照片哦！📸"); return; }
-    setLoading(true); setError(null); setResult(null); setLocationWarning(false);
+    if (!image) {
+      setError("哎呀，背包里好像还没有装入照片哦！📸");
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    setResult(null);
+    setLocationWarning(false);
 
     // 没有精确坐标也没有文字地点，尝试 IP 粗定位
     let finalCoords = coords;
@@ -162,48 +327,82 @@ export default function Home() {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/v1/recognize", { method: "POST", body: formData });
-      if (!response.ok) throw new Error("自然电波好像有点弱，请检查后端魔法是否开启📡");
+      const response = await fetch("http://localhost:8000/api/v1/recognize", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok)
+        throw new Error("自然电波好像有点弱，请检查后端魔法是否开启📡");
       const data = await response.json();
       setResult(data);
 
       const certainty = data.certainty_level;
-      if ((certainty === "高" || certainty === "中") && data.top5_candidates?.length > 0) {
+      if (
+        (certainty === "高" || certainty === "中") &&
+        data.top5_candidates?.length > 0
+      ) {
         const topBird = data.top5_candidates[0];
-        const cleanName = topBird.name.replace(/\s*\(.*?\)\s*/g, '').trim();
+        const cleanName = topBird.name.replace(/\s*\(.*?\)\s*/g, "").trim();
 
-        // 🆕 获取完整鸟种信息（包括英文名、拉丁名，用于图片搜索）
-        let birdMeta = { englishName: "", latinName: "", category: "林鸟", rarity: "常见", location: "公园绿地" };
+        // 先从 baseBirds 里模糊匹配（兜底）
+        const baseMatch = findBaseBird(cleanName);
+
+        let birdMeta = {
+          englishName: baseMatch?.englishName || "",
+          latinName: baseMatch?.latinName || "",
+          category: baseMatch?.category || "林鸟",
+          rarity: baseMatch?.rarity || "常见",
+          location: baseMatch?.location || "公园绿地",
+          funFact: baseMatch?.funFact || "",
+          officialImageUrl: null as string | null,
+        };
+
+        // 🆕🆕 关键修复：如果 baseBirds 里没有这只鸟（新鸟，如红尾水鸲），
+        // 用 autocomplete API 获取正确的拉丁名、英文名、官方图片
+        if (!baseMatch) {
+          const apiMeta = await fetchBirdMetaFromAPI(cleanName);
+          birdMeta.englishName = apiMeta.englishName || birdMeta.englishName;
+          birdMeta.latinName = apiMeta.latinName || birdMeta.latinName;
+          birdMeta.officialImageUrl = apiMeta.officialImageUrl;
+        }
+
+        // 再尝试从后端详情接口补全（如果后端有数据就覆盖）
         try {
-          const detailRes = await fetch(`http://localhost:8000/api/v1/birds/${encodeURIComponent(cleanName)}/details`);
+          const detailRes = await fetch(
+            `http://localhost:8000/api/v1/birds/${encodeURIComponent(
+              cleanName
+            )}/details`
+          );
           if (detailRes.ok) {
             const detailData = await detailRes.json();
-            birdMeta = {
-              englishName: detailData.englishName || "",
-              latinName: detailData.latinName || "",
-              category: detailData.category || "林鸟",
-              rarity: detailData.rarity || "常见",
-              location: detailData.location || "公园绿地"
-            };
-            setBirdMetaCache(prev => ({ ...prev, [cleanName]: birdMeta }));
+            birdMeta.englishName =
+              detailData.englishName || birdMeta.englishName;
+            birdMeta.latinName = detailData.latinName || birdMeta.latinName;
+            birdMeta.category = detailData.category || birdMeta.category;
+            birdMeta.rarity = detailData.rarity || birdMeta.rarity;
+            birdMeta.location = detailData.location || birdMeta.location;
+            birdMeta.funFact = detailData.funFact || birdMeta.funFact;
+            setBirdMetaCache((prev) => ({ ...prev, [cleanName]: birdMeta }));
           }
         } catch (e) {
           console.error("获取鸟种详情失败:", e);
         }
 
+        // 🔧 确保 unlockBird 传入完整的英文/拉丁名和官方图片
         unlockBird(cleanName, {
           reason: topBird.reason,
-          imageUrl: imagePreview,
+          imageUrl: imagePreview, // 用户实拍
+          officialImageUrl: birdMeta.officialImageUrl, // 官方图片
           location: location || birdMeta.location || "探索中发现",
           lat: finalCoords?.lat,
           lng: finalCoords?.lng,
           englishName: birdMeta.englishName,
           latinName: birdMeta.latinName,
           category: birdMeta.category,
-          rarity: birdMeta.rarity
+          rarity: birdMeta.rarity,
         });
 
-        // 🆕 如果识别到新鸟种，刷新页面让图鉴列表自动更新
+        // 如果识别到新鸟种，刷新页面让图鉴列表自动更新
         if (data.is_new_bird) {
           setTimeout(() => window.location.reload(), 2000);
         }
@@ -218,7 +417,7 @@ export default function Home() {
   };
 
   const getBirdDetails = (birdName: string, userImageUrl: string | null) => {
-    const baseBird = baseBirds.find(b => b.name === birdName);
+    const baseBird = findBaseBird(birdName);
     const cachedMeta = birdMetaCache[birdName];
 
     return {
@@ -226,63 +425,123 @@ export default function Home() {
       englishName: baseBird?.englishName ?? cachedMeta?.englishName ?? "",
       latinName: baseBird?.latinName ?? cachedMeta?.latinName ?? "",
       userImageUrl,
-      appearance: baseBird?.details?.appearance ?? "羽色极具环境适应性，拥有与其生活习性相符的体型特征。",
-      distribution: baseBird?.details?.distribution ?? "广泛分布于适宜其生存的地区，在城市公园、林地或湿地均可见到。",
-      habits: baseBird?.details?.habitatAndHabits ?? "性格活泼且机警，主食植物浆果与小型昆虫，具有较强的领地意识。",
-      voice: baseBird?.details?.callCharacteristics ?? "鸣声多变，多用于宣示领地或同伴联络。",
-      funFact: baseBird?.funFact ?? cachedMeta?.funFact ?? "这种鸟类拥有独特的生存技巧和行为特征，是大自然中的奇妙存在。"
+      appearance:
+        baseBird?.details?.appearance ??
+        "羽色极具环境适应性，拥有与其生活习性相符的体型特征。",
+      distribution:
+        baseBird?.details?.distribution ??
+        "广泛分布于适宜其生存的地区，在城市公园、林地或湿地均可见到。",
+      habits:
+        baseBird?.details?.habitatAndHabits ??
+        "性格活泼且机警，主食植物浆果与小型昆虫，具有较强的领地意识。",
+      voice:
+        baseBird?.details?.callCharacteristics ??
+        "鸣声多变，多用于宣示领地或同伴联络。",
+      funFact:
+        baseBird?.funFact ??
+        cachedMeta?.funFact ??
+        "这种鸟类拥有独特的生存技巧和行为特征，是大自然中的奇妙存在。",
     };
   };
 
   const certaintyBadge = (level: string) => {
-    if (level === "高") return <span className="px-2 py-0.5 rounded-full text-xs font-black bg-emerald-100 text-emerald-700 border border-emerald-200">识别度：高 ✓</span>;
-    if (level === "中") return <span className="px-2 py-0.5 rounded-full text-xs font-black bg-yellow-100 text-yellow-700 border border-yellow-200">识别度：中 ~</span>;
-    return <span className="px-2 py-0.5 rounded-full text-xs font-black bg-red-100 text-red-600 border border-red-200">识别度：低 ✗</span>;
+    if (level === "高")
+      return (
+        <span className="px-2 py-0.5 rounded-full text-xs font-black bg-emerald-100 text-emerald-700 border border-emerald-200">
+          识别度：高 ✓
+        </span>
+      );
+    if (level === "中")
+      return (
+        <span className="px-2 py-0.5 rounded-full text-xs font-black bg-yellow-100 text-yellow-700 border border-yellow-200">
+          识别度：中 ~
+        </span>
+      );
+    return (
+      <span className="px-2 py-0.5 rounded-full text-xs font-black bg-red-100 text-red-600 border border-red-200">
+        识别度：低 ✗
+      </span>
+    );
   };
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-yellow-50 via-lime-100 to-emerald-100 p-4 md:p-8 font-sans">
       <div className="max-w-5xl mx-auto space-y-10">
-
         <div className="text-center space-y-4 pt-8">
           <div className="inline-block bg-white/70 backdrop-blur-md px-8 py-4 rounded-full border-4 border-emerald-100 shadow-xl transform rotate-1 hover:rotate-0 transition-transform duration-300">
             <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-yellow-500 tracking-wide">
               🌿 自然小鸟探索识别 🌻
             </h1>
           </div>
-          <p className="text-lg text-emerald-700/80 font-bold tracking-widest drop-shadow-sm">带上相机，走向户外，去大自然中结交新伙伴吧！🍃</p>
+          <p className="text-lg text-emerald-700/80 font-bold tracking-widest drop-shadow-sm">
+            带上相机，走向户外，去大自然中结交新伙伴吧！🍃
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 relative">
           {/* 左侧：上传区 */}
           <div className="bg-white/80 backdrop-blur-sm rounded-[2rem] border-4 border-emerald-200 p-6 md:p-8 shadow-2xl relative">
-            <div className="absolute -top-6 -left-6 text-5xl animate-bounce drop-shadow-md">🏕️</div>
+            <div className="absolute -top-6 -left-6 text-5xl animate-bounce drop-shadow-md">
+              🏕️
+            </div>
             <div className="space-y-2 mb-8">
-              <h2 className="text-2xl font-black text-emerald-600">记录小鸟足迹</h2>
-              <p className="text-zinc-500 font-medium text-sm">上传你在户外拍到的照片，AI向导帮你辨认！</p>
+              <h2 className="text-2xl font-black text-emerald-600">
+                记录小鸟足迹
+              </h2>
+              <p className="text-zinc-500 font-medium text-sm">
+                上传你在户外拍到的照片，AI向导帮你辨认！
+              </p>
             </div>
 
             <div className="space-y-6">
               <div className="bg-yellow-50/80 rounded-2xl p-4 border-2 border-yellow-200 hover:shadow-md transition-shadow">
-                <label className="block text-yellow-700 font-bold mb-3 flex items-center gap-2"><span className="text-xl">📸</span> 捕捉到的掠影 (照片)</label>
-                <input type="file" accept="image/*,.heic,.heif" onChange={handleImageChange} className="w-full text-sm text-yellow-700 file:mr-4 file:py-2.5 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-yellow-200 file:text-yellow-800 hover:file:bg-yellow-300 transition-colors cursor-pointer" />
+                <label className="block text-yellow-700 font-bold mb-3 flex items-center gap-2">
+                  <span className="text-xl">📸</span> 捕捉到的掠影 (照片)
+                </label>
+                <input
+                  type="file"
+                  accept="image/*,.heic,.heif"
+                  onChange={handleImageChange}
+                  className="w-full text-sm text-yellow-700 file:mr-4 file:py-2.5 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-yellow-200 file:text-yellow-800 hover:file:bg-yellow-300 transition-colors cursor-pointer"
+                />
                 {imagePreview && (
                   <div className="mt-4 p-2 bg-white rounded-xl transform -rotate-1 border-2 border-yellow-100 shadow-sm">
-                    <img src={imagePreview} alt="Preview" className="w-full h-48 object-cover rounded-lg" />
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="w-full h-48 object-cover rounded-lg"
+                    />
                   </div>
                 )}
               </div>
 
               <div className="bg-blue-50/80 rounded-2xl p-4 border-2 border-blue-200 hover:shadow-md transition-shadow relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-blue-200 text-blue-800 text-[10px] font-black px-2 py-1 rounded-bl-lg">结合生境提升准确率</div>
+                <div className="absolute top-0 right-0 bg-blue-200 text-blue-800 text-[10px] font-black px-2 py-1 rounded-bl-lg">
+                  结合生境提升准确率
+                </div>
                 <div className="flex justify-between items-center mb-3">
-                  <label className="text-blue-800 font-bold flex items-center gap-2"><MapPin className="w-5 h-5" /> 生境与位置描述</label>
-                  <button onClick={handleGetLocation} className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-colors shadow-sm">
-                    {isLocating ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Crosshair className="w-3.5 h-3.5" />}
+                  <label className="text-blue-800 font-bold flex items-center gap-2">
+                    <MapPin className="w-5 h-5" /> 生境与位置描述
+                  </label>
+                  <button
+                    onClick={handleGetLocation}
+                    className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-colors shadow-sm"
+                  >
+                    {isLocating ? (
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    ) : (
+                      <Crosshair className="w-3.5 h-3.5" />
+                    )}
                     {isLocating ? "搜索卫星..." : "获取精准坐标"}
                   </button>
                 </div>
-                <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="例如：NTU Nanyang Lake 旁边的树上..." className="w-full px-4 py-3 rounded-xl border-2 border-white focus:border-blue-400 focus:ring-4 focus:ring-blue-100 outline-none transition-all text-sm font-bold text-blue-950 placeholder:text-blue-300 bg-white/60 backdrop-blur-sm" />
+                <input
+                  type="text"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="例如：NTU Nanyang Lake 旁边的树上..."
+                  className="w-full px-4 py-3 rounded-xl border-2 border-white focus:border-blue-400 focus:ring-4 focus:ring-blue-100 outline-none transition-all text-sm font-bold text-blue-950 placeholder:text-blue-300 bg-white/60 backdrop-blur-sm"
+                />
 
                 {coords && !usingIpLocation && (
                   <div className="mt-3 flex items-center gap-1.5 text-emerald-600 text-xs font-black bg-emerald-100/50 px-2 py-1 rounded-md w-fit border border-emerald-200">
@@ -297,21 +556,34 @@ export default function Home() {
                   </div>
                 )}
 
-                <p className="mt-2 text-[11px] text-blue-600/80 font-medium">💡 填写具体生境或点击获取精准坐标，可提升识别率并点亮观鸟地图。</p>
+                <p className="mt-2 text-[11px] text-blue-600/80 font-medium">
+                  💡 填写具体生境或点击获取精准坐标，可提升识别率并点亮观鸟地图。
+                </p>
               </div>
 
               {locationWarning && !usingIpLocation && (
                 <div className="p-3 bg-blue-50 text-blue-600 rounded-lg text-sm font-bold border border-blue-200 flex items-start gap-2">
                   <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>没有获取到位置信息，这次发现将无法标记到地图上。建议点击「获取精准坐标」！</span>
+                  <span>
+                    没有获取到位置信息，这次发现将无法标记到地图上。建议点击「获取精准坐标」！
+                  </span>
                 </div>
               )}
 
-              {error && <div className="p-3 bg-red-50 text-red-600 rounded-lg text-sm font-bold animate-pulse">{error}</div>}
+              {error && (
+                <div className="p-3 bg-red-50 text-red-600 rounded-lg text-sm font-bold animate-pulse">
+                  {error}
+                </div>
+              )}
 
               <button
-                className={`w-full py-4 rounded-full text-xl font-black text-white shadow-xl transform transition-all duration-300 ${loading ? 'bg-zinc-300 cursor-not-allowed scale-95' : 'bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 hover:-translate-y-2 hover:shadow-emerald-300/50 active:scale-95'}`}
-                onClick={handleRecognize} disabled={loading}
+                className={`w-full py-4 rounded-full text-xl font-black text-white shadow-xl transform transition-all duration-300 ${
+                  loading
+                    ? "bg-zinc-300 cursor-not-allowed scale-95"
+                    : "bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 hover:-translate-y-2 hover:shadow-emerald-300/50 active:scale-95"
+                }`}
+                onClick={handleRecognize}
+                disabled={loading}
               >
                 {loading ? "🔍 结合环境推理中..." : "🍃 呼叫 AI 自然向导 🍃"}
               </button>
@@ -320,23 +592,33 @@ export default function Home() {
 
           {/* 右侧：结果区 */}
           <div className="bg-white/80 backdrop-blur-sm rounded-[2rem] border-4 border-lime-200 p-6 md:p-8 shadow-2xl relative">
-            <div className="absolute -top-6 -right-6 text-5xl transform rotate-12 drop-shadow-md">🗺️</div>
+            <div className="absolute -top-6 -right-6 text-5xl transform rotate-12 drop-shadow-md">
+              🗺️
+            </div>
             <div className="space-y-2 mb-8">
-              <h2 className="text-2xl font-black text-lime-600">小鸟发现报告</h2>
-              <p className="text-zinc-500 font-medium text-sm">来看看是哪位大自然的小精灵被你发现了！</p>
+              <h2 className="text-2xl font-black text-lime-600">
+                小鸟发现报告
+              </h2>
+              <p className="text-zinc-500 font-medium text-sm">
+                来看看是哪位大自然的小精灵被你发现了！
+              </p>
             </div>
 
             <div className="min-h-[400px]">
               {!result && !loading && (
                 <div className="h-full flex flex-col items-center justify-center text-emerald-300 space-y-4 pt-10">
                   <div className="text-6xl animate-bounce">🌱</div>
-                  <p className="font-bold text-lg">图鉴还是空空的，去户外的绿地走走吧！</p>
+                  <p className="font-bold text-lg">
+                    图鉴还是空空的，去户外的绿地走走吧！
+                  </p>
                 </div>
               )}
               {loading && (
                 <div className="h-full flex flex-col items-center justify-center text-emerald-500 space-y-4 pt-10">
                   <div className="text-6xl animate-spin">🍂</div>
-                  <p className="font-bold text-lg animate-pulse">向导正在比对生态特征，请稍候...</p>
+                  <p className="font-bold text-lg animate-pulse">
+                    向导正在比对生态特征，请稍候...
+                  </p>
                 </div>
               )}
 
@@ -346,37 +628,69 @@ export default function Home() {
                     <div className="flex flex-col items-center justify-center space-y-5 pt-6 text-center">
                       <div className="text-5xl">🔍</div>
                       <div className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-5 space-y-3">
-                        <p className="text-amber-700 font-black text-base">识别不确定，换个角度重拍试试？</p>
+                        <p className="text-amber-700 font-black text-base">
+                          识别不确定，换个角度重拍试试？
+                        </p>
                         {result.feature_description && (
                           <p className="text-zinc-600 font-medium text-sm leading-relaxed">
-                            我看到了<span className="text-emerald-700 font-bold">「{result.feature_description}」</span>，但我不确定它的具体种类。
+                            我看到了
+                            <span className="text-emerald-700 font-bold">
+                              「{result.feature_description}」
+                            </span>
+                            ，但我不确定它的具体种类。
                           </p>
                         )}
-                        <p className="text-amber-500 text-xs font-medium">💡 建议：靠近拍摄、保持画面清晰、多角度尝试</p>
+                        <p className="text-amber-500 text-xs font-medium">
+                          💡 建议：靠近拍摄、保持画面清晰、多角度尝试
+                        </p>
                       </div>
                       {certaintyBadge(result.certainty_level)}
                     </div>
                   ) : (
                     result.top5_candidates && (
                       <div className="space-y-5 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-                        <div className="flex justify-end">{certaintyBadge(result.certainty_level)}</div>
-                        {result.top5_candidates.map((bird: any, index: number) => (
-                          <div key={index} className="bg-white p-5 rounded-2xl border-2 border-emerald-100 shadow-sm relative overflow-hidden hover:border-emerald-300 transition-colors flex flex-col">
-                            {index === 0 && <div className="absolute top-0 right-0 bg-gradient-to-bl from-emerald-500 to-lime-400 text-white text-xs px-3 py-1.5 rounded-bl-xl font-bold shadow-sm">🌲 最佳匹配</div>}
-                            <h3 className="font-black text-xl text-zinc-800 flex items-center gap-2">{index === 0 ? '🦉' : '🐦'} {bird.name}</h3>
-                            <div className="w-full bg-zinc-100 rounded-full h-3 mt-3 mb-1 overflow-hidden border border-zinc-200">
-                              <div className="h-full rounded-full bg-gradient-to-r from-yellow-400 to-emerald-500 transition-all duration-1000 ease-out" style={{ width: `${bird.confidence * 100}%` }}></div>
-                            </div>
-                            <p className="text-xs text-zinc-400 font-bold mb-3">相似度: {(bird.confidence * 100).toFixed(1)}%</p>
-                            <div className="bg-emerald-50 text-emerald-800 p-3 rounded-xl text-sm font-medium leading-relaxed border border-emerald-100 mb-4">{bird.reason}</div>
-                            <button
-                              onClick={() => setSelectedBird(getBirdDetails(bird.name, imagePreview))}
-                              className="self-end px-4 py-2 bg-emerald-100 text-emerald-700 hover:bg-emerald-200 hover:text-emerald-800 font-bold rounded-full text-sm transition-colors flex items-center gap-1"
+                        <div className="flex justify-end">
+                          {certaintyBadge(result.certainty_level)}
+                        </div>
+                        {result.top5_candidates.map(
+                          (bird: any, index: number) => (
+                            <div
+                              key={index}
+                              className="bg-white p-5 rounded-2xl border-2 border-emerald-100 shadow-sm relative overflow-hidden hover:border-emerald-300 transition-colors flex flex-col"
                             >
-                              📖 查看物种百科 &rarr;
-                            </button>
-                          </div>
-                        ))}
+                              {index === 0 && (
+                                <div className="absolute top-0 right-0 bg-gradient-to-bl from-emerald-500 to-lime-400 text-white text-xs px-3 py-1.5 rounded-bl-xl font-bold shadow-sm">
+                                  🌲 最佳匹配
+                                </div>
+                              )}
+                              <h3 className="font-black text-xl text-zinc-800 flex items-center gap-2">
+                                {index === 0 ? "🦉" : "🐦"} {bird.name}
+                              </h3>
+                              <div className="w-full bg-zinc-100 rounded-full h-3 mt-3 mb-1 overflow-hidden border border-zinc-200">
+                                <div
+                                  className="h-full rounded-full bg-gradient-to-r from-yellow-400 to-emerald-500 transition-all duration-1000 ease-out"
+                                  style={{ width: `${bird.confidence * 100}%` }}
+                                ></div>
+                              </div>
+                              <p className="text-xs text-zinc-400 font-bold mb-3">
+                                相似度: {(bird.confidence * 100).toFixed(1)}%
+                              </p>
+                              <div className="bg-emerald-50 text-emerald-800 p-3 rounded-xl text-sm font-medium leading-relaxed border border-emerald-100 mb-4">
+                                {bird.reason}
+                              </div>
+                              <button
+                                onClick={() =>
+                                  setSelectedBird(
+                                    getBirdDetails(bird.name, imagePreview)
+                                  )
+                                }
+                                className="self-end px-4 py-2 bg-emerald-100 text-emerald-700 hover:bg-emerald-200 hover:text-emerald-800 font-bold rounded-full text-sm transition-colors flex items-center gap-1"
+                              >
+                                📖 查看物种百科 &rarr;
+                              </button>
+                            </div>
+                          )
+                        )}
                       </div>
                     )
                   )}
@@ -387,20 +701,41 @@ export default function Home() {
         </div>
       </div>
 
-      <Dialog open={!!selectedBird} onOpenChange={() => setSelectedBird(null)}>
+      <Dialog
+        open={!!selectedBird}
+        onOpenChange={() => setSelectedBird(null)}
+      >
         <DialogContent className="w-[95vw] sm:max-w-[90vw] md:max-w-[70vw] lg:max-w-[1400px] p-0 overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-lime-950 border-2 border-lime-800 shadow-[0_0_80px_rgba(20,83,45,0.8)] rounded-[2.5rem]">
-          <DialogTitle className="sr-only">小鸟物种百科：{selectedBird?.name}</DialogTitle>
-          <DialogDescription className="sr-only">为您展示关于该物种的外貌、习性及分布的详细科普信息。</DialogDescription>
+          <DialogTitle className="sr-only">
+            小鸟物种百科：{selectedBird?.name}
+          </DialogTitle>
+          <DialogDescription className="sr-only">
+            为您展示关于该物种的外貌、习性及分布的详细科普信息。
+          </DialogDescription>
 
           {selectedBird && (
             <div className="flex flex-col lg:flex-row max-h-[90vh] overflow-y-auto lg:overflow-hidden custom-scrollbar-dark">
               <div className="relative h-72 lg:h-auto lg:w-2/5 flex-shrink-0">
-                <WikiBirdImage name={selectedBird.name} englishName={selectedBird.englishName} latinName={selectedBird.latinName} />
+                <WikiBirdImage
+                  name={selectedBird.name}
+                  englishName={selectedBird.englishName}
+                  latinName={selectedBird.latinName}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-emerald-950 flex flex-col justify-end p-8 lg:p-10">
                   <div className="space-y-1">
-                    <h2 className="text-5xl lg:text-6xl font-black text-lime-50 drop-shadow-2xl tracking-wide leading-tight">{selectedBird.name}</h2>
-                    {selectedBird.englishName && <p className="text-lime-300 font-bold text-lg drop-shadow-md">{selectedBird.englishName}</p>}
-                    {selectedBird.latinName && <p className="text-emerald-400 font-medium italic text-sm opacity-90">{selectedBird.latinName}</p>}
+                    <h2 className="text-5xl lg:text-6xl font-black text-lime-50 drop-shadow-2xl tracking-wide leading-tight">
+                      {selectedBird.name}
+                    </h2>
+                    {selectedBird.englishName && (
+                      <p className="text-lime-300 font-bold text-lg drop-shadow-md">
+                        {selectedBird.englishName}
+                      </p>
+                    )}
+                    {selectedBird.latinName && (
+                      <p className="text-emerald-400 font-medium italic text-sm opacity-90">
+                        {selectedBird.latinName}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -408,35 +743,63 @@ export default function Home() {
               <div className="p-8 lg:p-10 lg:w-3/5 lg:overflow-y-auto custom-scrollbar-dark space-y-6">
                 {selectedBird.userImageUrl && (
                   <div className="flex items-start gap-4 bg-emerald-900/40 p-4 rounded-2xl border border-emerald-700/50">
-                    <img src={selectedBird.userImageUrl} alt="我的实拍" className="w-28 h-28 object-cover rounded-xl border-2 border-lime-600/50 shadow-lg flex-shrink-0" />
+                    <img
+                      src={selectedBird.userImageUrl}
+                      alt="我的实拍"
+                      className="w-28 h-28 object-cover rounded-xl border-2 border-lime-600/50 shadow-lg flex-shrink-0"
+                    />
                     <div className="flex flex-col justify-center gap-1">
-                      <span className="text-lime-400 text-xs font-black tracking-widest uppercase">📸 我的实拍</span>
-                      <p className="text-emerald-200 text-xs font-medium leading-relaxed">这是你今天在野外拍到的照片，与左侧维基百科官方图对比，看看能找到哪些相同特征？</p>
+                      <span className="text-lime-400 text-xs font-black tracking-widest uppercase">
+                        📸 我的实拍
+                      </span>
+                      <p className="text-emerald-200 text-xs font-medium leading-relaxed">
+                        这是你今天在野外拍到的照片，与左侧维基百科官方图对比，看看能找到哪些相同特征？
+                      </p>
                     </div>
                   </div>
                 )}
 
                 <div className="bg-emerald-900/40 p-6 rounded-3xl shadow-inner border border-emerald-700/50 relative transform hover:scale-[1.01] transition-transform">
-                  <div className="absolute -top-4 left-8 bg-emerald-600 text-lime-50 px-5 py-1.5 rounded-full text-sm font-black shadow-lg flex items-center gap-2"><span>🔍</span> 外貌特征</div>
-                  <p className="text-emerald-100 mt-2 text-base leading-relaxed tracking-wide font-medium">{selectedBird.appearance}</p>
+                  <div className="absolute -top-4 left-8 bg-emerald-600 text-lime-50 px-5 py-1.5 rounded-full text-sm font-black shadow-lg flex items-center gap-2">
+                    <span>🔍</span> 外貌特征
+                  </div>
+                  <p className="text-emerald-100 mt-2 text-base leading-relaxed tracking-wide font-medium">
+                    {selectedBird.appearance}
+                  </p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-lime-950/40 p-6 rounded-3xl shadow-inner border border-lime-800/50 relative hover:bg-lime-900/40 transition-colors">
-                    <div className="absolute -top-4 left-6 bg-lime-600 text-lime-50 px-4 py-1.5 rounded-full text-sm font-black shadow-lg">🏕️ 生活习性</div>
-                    <p className="text-lime-100 mt-2 text-base leading-relaxed tracking-wide">{selectedBird.habits}</p>
+                    <div className="absolute -top-4 left-6 bg-lime-600 text-lime-50 px-4 py-1.5 rounded-full text-sm font-black shadow-lg">
+                      🏕️ 生活习性
+                    </div>
+                    <p className="text-lime-100 mt-2 text-base leading-relaxed tracking-wide">
+                      {selectedBird.habits}
+                    </p>
                   </div>
                   <div className="bg-emerald-900/30 p-6 rounded-3xl shadow-inner border border-emerald-700/50 relative hover:bg-emerald-800/30 transition-colors">
-                    <div className="absolute -top-4 left-6 bg-emerald-500 text-emerald-50 px-4 py-1.5 rounded-full text-sm font-black shadow-lg">🗺️ 分布地区</div>
-                    <p className="text-emerald-100 mt-2 text-base leading-relaxed tracking-wide">{selectedBird.distribution}</p>
+                    <div className="absolute -top-4 left-6 bg-emerald-500 text-emerald-50 px-4 py-1.5 rounded-full text-sm font-black shadow-lg">
+                      🗺️ 分布地区
+                    </div>
+                    <p className="text-emerald-100 mt-2 text-base leading-relaxed tracking-wide">
+                      {selectedBird.distribution}
+                    </p>
                   </div>
                   <div className="bg-teal-950/40 p-6 rounded-3xl shadow-inner border border-teal-800/50 relative hover:bg-teal-900/40 transition-colors">
-                    <div className="absolute -top-4 left-6 bg-teal-600 text-teal-50 px-4 py-1.5 rounded-full text-sm font-black shadow-lg">🎵 叫声特征</div>
-                    <p className="text-teal-100 mt-2 text-base leading-relaxed tracking-wide">{selectedBird.voice}</p>
+                    <div className="absolute -top-4 left-6 bg-teal-600 text-teal-50 px-4 py-1.5 rounded-full text-sm font-black shadow-lg">
+                      🎵 叫声特征
+                    </div>
+                    <p className="text-teal-100 mt-2 text-base leading-relaxed tracking-wide">
+                      {selectedBird.voice}
+                    </p>
                   </div>
                   <div className="bg-gradient-to-br from-yellow-900/40 to-lime-900/40 p-6 rounded-3xl shadow-inner border border-yellow-700/50 relative hover:from-yellow-800/40 transition-colors">
-                    <div className="absolute -top-4 left-6 bg-yellow-600 text-yellow-50 px-4 py-1.5 rounded-full text-sm font-black shadow-lg">✨ 趣味冷知识</div>
-                    <p className="text-yellow-100/90 mt-2 text-base leading-relaxed font-bold tracking-wide">{selectedBird.funFact}</p>
+                    <div className="absolute -top-4 left-6 bg-yellow-600 text-yellow-50 px-4 py-1.5 rounded-full text-sm font-black shadow-lg">
+                      ✨ 趣味冷知识
+                    </div>
+                    <p className="text-yellow-100/90 mt-2 text-base leading-relaxed font-bold tracking-wide">
+                      {selectedBird.funFact}
+                    </p>
                   </div>
                 </div>
               </div>
