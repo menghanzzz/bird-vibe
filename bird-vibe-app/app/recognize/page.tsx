@@ -17,17 +17,7 @@ function WikiBirdImage({ name, englishName, latinName }: { name: string; english
   useEffect(() => {
     let active = true;
     const fetchImage = async () => {
-      // 1. 优先尝试本地图片（public/birds/ 目录，国内访问无障碍）
-      const localUrl = `/birds/${encodeURIComponent(name)}.jpg`;
-      try {
-        const localRes = await fetch(localUrl, { method: 'HEAD' });
-        if (localRes.ok) {
-          if (active) setImgSrc(localUrl);
-          return;
-        }
-      } catch { /* 本地不存在，继续 fallback */ }
-
-      // 2. iNaturalist API（国内可访问，专业观鸟图库）
+      // 1. iNaturalist API（优先根据拉丁文名抓取）
       const queries = [latinName, englishName, name].filter(Boolean) as string[];
       for (const query of queries) {
         try {
@@ -43,7 +33,7 @@ function WikiBirdImage({ name, englishName, latinName }: { name: string; english
         } catch { continue; }
       }
 
-      // 3. Fallback 到 Wikipedia API（需要翻墙）
+      // 2. Wikipedia fallback
       for (const query of queries) {
         try {
           const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
@@ -204,14 +194,13 @@ export default function Home() {
         unlockBird(cleanName, {
           reason: topBird.reason,
           imageUrl: imagePreview,
-          location: location || (usingIpLocation ? "城市定位（IP粗定位）" : "探索中发现"),
+          location: location || birdMeta.location || "探索中发现",
           lat: finalCoords?.lat,
           lng: finalCoords?.lng,
           englishName: birdMeta.englishName,
           latinName: birdMeta.latinName,
           category: birdMeta.category,
-          rarity: birdMeta.rarity,
-          location: birdMeta.location
+          rarity: birdMeta.rarity
         });
 
         // 🆕 如果识别到新鸟种，刷新页面让图鉴列表自动更新
