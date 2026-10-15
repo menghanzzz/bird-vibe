@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无法识别",
+      "confidence": 0.01,
+      "reason": "图像为高度模糊的彩色噪点纹理，无任何可辨识的鸟类形态特征（如轮廓、羽毛结构、喙、眼等）；不确定点：图像可能非真实鸟类照片，或严重失真/压缩损坏。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.005,
+      "reason": "图像中无清晰解剖结构；不确定点：无法确认是否为鸟类图像，甚至无法排除为抽象图案或故障画面。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.002,
+      "reason": "未观察到体型、羽色、姿态等基本视觉线索；不确定点：图像分辨率趋近于零，所有特征均不可提取。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.001,
+      "reason": "无头、颈、翅、腿等部位可见；不确定点：该图像不符合鸟类摄影或图鉴的常规呈现方式。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.0005,
+      "reason": "全图呈均匀颗粒状伪彩噪声，无生物体迹象；不确定点：可能为数字生成错误、屏幕坏点或测试图，非真实鸟类影像。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "低",
+  "feature_description": "图像为无结构的彩色像素噪点，无任何可辨识的生物形态或细节。",
+  "is_rare": false,
+  "uncertainty_explanation": "图像完全缺乏鸟类应有的形态学特征，极可能不是鸟类照片，而是失真/伪影图像。",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

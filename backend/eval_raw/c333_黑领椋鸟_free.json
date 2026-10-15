@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.92,
+      "reason": "体型中等（约20–23 cm），头颈灰白，喉部具显著黑色领环，上背及翅覆羽黑褐色带白色翼斑，下体浅灰白，尾羽黑而端白；喙粗壮、尖端略弯、灰黑色；腿灰褐色；两鸟并立于水泥柱顶，姿态警觉。此组合特征（尤其清晰黑领+白翼斑+灰白头）高度匹配黑领椋鸟（Gracupica nigricollis）成鸟。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰背椋鸟",
+      "confidence": 0.68,
+      "reason": "灰背椋鸟（Sturnia sinensis）雄鸟亦有灰头、黑喉、白翼斑，但其背部为纯灰色而非黑褐，且黑喉带较窄、常不连贯；图中鸟背色偏深褐，黑领完整宽厚，更倾向黑领椋鸟。不确定点：图像分辨率有限，背部羽色细节难精确判断；若为雌鸟或亚成鸟，黑领可能模糊，但图中黑领清晰，故可能性较低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "丝光椋鸟",
+      "confidence": 0.45,
+      "reason": "丝光椋鸟（Spodiopsar sericeus）成鸟头颈具金属光泽紫绿，无黑领，喉胸灰白渐变，翼斑小而不显；图中鸟无金属光泽、黑领明显，基本可排除。不确定点：若为亚成鸟或褪色个体，金属光泽可能不显，但黑领结构仍不符；此候选仅为谨慎覆盖近缘种。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "八哥",
+      "confidence": 0.3,
+      "reason": "八哥（Acridotheres cristatellus）通体黑亮，仅翼下及尾下覆羽具白斑，无灰头、无黑领；图中鸟头灰白、黑领显著，明显不符。不确定点：极罕见白化或部分白化个体？但整体羽色模式完全不匹配，属低概率误判项。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "斑椋鸟",
+      "confidence": 0.25,
+      "reason": "斑椋鸟（Gracupica contra）雄鸟具黑头、白颈环（非黑领）、棕背、白翼斑；图中为灰头+黑领，与斑椋鸟典型‘黑头白环’相反。不确定点：若为雌鸟或幼鸟，羽色可能过渡，但黑领结构仍与斑椋鸟的‘白环’矛盾；此为最远缘候选，仅因同属Gracupica属而列入。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "两只中等体型鸟类并立于混凝土柱顶，头颈灰白色，喉部具完整宽阔黑色领环，上背及翅膀黑褐并带明显白色翼斑，下体浅灰白，喙粗壮灰黑，腿灰褐。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "红耳鹎",
+      "confidence": 0.96,
+      "reason": "鸟体中等偏小，具显著黑色羽冠耸立；头侧有鲜红色耳斑（位于眼后下方），白色喉部与灰白胸腹形成清晰分界；上背及翅覆羽灰褐色，尾下覆羽亮红色，尾羽暗褐；喙短而尖、黑色；腿灰黑；栖于细枝上呈警觉姿态。上述特征组合高度特异，与红耳鹎（Pycnonotus jocosus）典型形态完全吻合。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白耳鹎",
+      "confidence": 0.12,
+      "reason": "白耳鹎（Pycnonotus leucotis）亦具羽冠与红尾下覆羽，但耳斑为白色而非红色，且喉部常带淡黄或灰，本图耳斑明确为鲜红，故极不可能。不确定点：若图像色偏严重导致红→白误判则可能混淆，但当前色彩饱和度高、红斑边界锐利，此可能性极低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑冠黄鹎",
+      "confidence": 0.08,
+      "reason": "黑冠黄鹎（Pycnonotus melanicterus）有黑色羽冠与红尾下覆羽，但喉至胸为鲜黄色而非灰白，且无红色耳斑；本图胸腹为灰白，耳斑鲜红，明显不符。不确定点：幼鸟或非繁殖羽个体颜色可能淡化，但耳斑缺失是关键排除依据。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "凤头雀嘴鹎",
+      "confidence": 0.04,
+      "reason": "凤头雀嘴鹎（Spizixos canifrons）具羽冠，但冠羽较短钝、不耸立如本图；耳区无红斑，喉部灰白但胸侧常具橄榄色晕染；尾下覆羽淡黄或浅橙，非鲜红。不确定点：部分亚种羽色变异较大，但红耳斑+红尾下覆羽组合在该种中未见记录。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红臀鹎",
+      "confidence": 0.02,
+      "reason": "红臀鹎（Pycnonotus xanthorrhous）尾下覆羽红色，但无羽冠，头侧无红斑，喉胸灰白过渡平缓；本图具显著羽冠与红耳斑，形态差异大。不确定点：若仅见尾部局部可能误判，但全貌显示冠与耳斑俱全，基本可排除。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鹎科鸟类，具高耸黑色羽冠、鲜红色耳斑、白色喉部、灰白胸腹、灰褐色上体及亮红色尾下覆羽，喙短黑，栖于细树枝上。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

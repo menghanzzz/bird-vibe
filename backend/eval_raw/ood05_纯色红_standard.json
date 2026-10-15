@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像为纯色背景（均匀暗红色），未观察到任何鸟类形态特征，包括轮廓、羽毛、喙、眼或足等；无法识别任何物种。不确定点：图像中不存在可辨识的生物对象。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "同上；无任何视觉信息支持鸟类存在。不确定点：图像内容为空白纯色，非鸟类照片。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像无任何鸟类解剖结构线索；所有识别前提不成立。不确定点：可能为误传图像或占位符。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "缺乏基本视觉证据（如形状、对比度、纹理），无法启动物种推断流程。不确定点：是否为图像加载失败或故意留白。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "严格依据图像内容：仅见单一均匀红褐色平面，无鸟体征；所有候选均无效。不确定点：用户可能上传错误文件。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像为均匀的暗红色纯色背景，无任何可辨识的物体、轮廓或纹理。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

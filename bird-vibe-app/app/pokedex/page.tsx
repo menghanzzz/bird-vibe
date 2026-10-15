@@ -2,7 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import { Bird, Lock, RotateCcw, Camera, MapPin, Calendar, X } from "lucide-react";
-import { baseBirds, useBirdStore } from "@/store/useBirdStore";
+import { baseBirds, useBirdStore, type BirdMeta } from "@/store/useBirdStore";
+import { API_BASE_URL } from "@/lib/api";
+
+// 后端 RAG 详情接口返回结构（字段缺失时由 UI 兜底文案补全）
+interface BirdRagDetails {
+  details?: {
+    appearance?: string;
+    habitatAndHabits?: string;
+    callCharacteristics?: string;
+    distribution?: string;
+  };
+}
 
 // 地点显示组件
 function LocationDisplay({
@@ -57,16 +68,24 @@ function BirdImage({
   isUnlocked: boolean;
   officialImageUrl?: string | null;
 }) {
-  const [imgSrc, setImgSrc] = useState<string | null>(null);
+  const [imgSrc, setImgSrc] = useState<string | null>(officialImageUrl ?? null);
   const [isError, setIsError] = useState(false);
+  // 🆕 官方图片 URL 变化时在渲染期间同步调整状态（React 推荐模式），
+  // 避免在 effect 里同步 setState 触发级联渲染
+  const [prevOfficialUrl, setPrevOfficialUrl] = useState<string | null>(
+    officialImageUrl ?? null
+  );
+  if (prevOfficialUrl !== (officialImageUrl ?? null)) {
+    setPrevOfficialUrl(officialImageUrl ?? null);
+    setImgSrc(officialImageUrl ?? null);
+    setIsError(false);
+  }
 
   useEffect(() => {
     let active = true;
 
-    // 🆕 优先使用已存入的官方图片 URL（识别时从 iNaturalist 获取的）
+    // 已有官方图片时无需联网抓取
     if (officialImageUrl) {
-      setImgSrc(officialImageUrl);
-      setIsError(false);
       return;
     }
 
@@ -165,12 +184,12 @@ function BirdImage({
 export default function App() {
   const [activeCategory, setActiveCategory] = useState("全部");
   const [flippedId, setFlippedId] = useState<number | null>(null);
-  const [detailBird, setDetailBird] = useState<any | null>(null);
-  const [birdRagDetails, setBirdRagDetails] = useState<Record<string, any>>({});
+  const [detailBird, setDetailBird] = useState<BirdMeta | null>(null);
+  const [birdRagDetails, setBirdRagDetails] = useState<Record<string, BirdRagDetails>>({});
 
-  const unlockedIds = useBirdStore((state) => state.unlockedIds);
   const customBirds = useBirdStore((state) => state.customBirds);
   const birdRecords = useBirdStore((state) => state.birdRecords);
+  const hasUnlockRecord = useBirdStore((state) => state.hasUnlockRecord);
 
   // 合并 baseBirds 和 customBirds，去重并补全字段
   const customMap = new Map(customBirds.map((c) => [c.id, c]));
@@ -206,10 +225,9 @@ export default function App() {
     if (bird && !birdRagDetails[bird.name]) {
       try {
         const res = await fetch(
-          `http://localhost:8000/api/v1/birds/${encodeURIComponent(
+          `${API_BASE_URL}/api/v1/birds/${encodeURIComponent(
             bird.name
-          )}/details`
-        );
+          )}/details`        );
         if (res.ok) {
           const data = await res.json();
           setBirdRagDetails((prev) => ({ ...prev, [bird.name]: data }));
@@ -257,11 +275,10 @@ export default function App() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredBirds.map((bird) => {
-            const isUnlocked =
-              unlockedIds.includes(bird.id) ||
-              customBirds.some((b) => b.id === bird.id);
+            // 解锁判定只看识别记录（birdRecords），baseBirds 不再参与
+            const isUnlocked = hasUnlockRecord(bird.name);
             const isFlipped = flippedId === bird.id;
-            const myRecord = birdRecords[bird.id] || birdRecords[bird.name];
+            const myRecord = birdRecords[bird.name];
 
             return (
               <div
@@ -283,7 +300,7 @@ export default function App() {
                         englishName={bird.englishName}
                         latinName={bird.latinName}
                         isUnlocked={isUnlocked}
-                        officialImageUrl={(bird as any).officialImageUrl}
+                        officialImageUrl={bird.officialImageUrl ?? null}
                       />
                       {!isUnlocked && (
                         <div className="absolute inset-0 bg-black/5 flex items-center justify-center">

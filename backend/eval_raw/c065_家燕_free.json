@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "家燕",
+      "confidence": 0.92,
+      "reason": "体型中等偏小，上体深蓝黑色具金属光泽，下体白色，喉部具醒目的橙红色块斑（延伸至耳后），胸带为深蓝色窄带，尾呈深叉状（虽部分被遮挡但可见分叉趋势），喙短而扁宽、黑色，腿短、暗色；栖于人工结构（天线）上，姿态警觉。这些特征高度吻合家燕（Hirundo rustica）的典型外观。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "金腰燕",
+      "confidence": 0.68,
+      "reason": "若为金腰燕（Hirundo daurica），其喉部橙红斑更宽、延伸至颈侧，且腹部有明显栗色腰带——但图中腹部为纯白，未见腰带；尾更长且深叉更显著。当前图像中未观察到腰带及超长尾羽，故可能性较低。不确定点：图像分辨率有限，腹部细节可能被阴影掩盖；尾叉程度判断受限于角度。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "洋燕",
+      "confidence": 0.45,
+      "reason": "洋燕（Hirundo tahitica）喉部橙斑较小或不连续，胸带较浅灰或缺失，上体偏蓝灰而非深蓝黑；本图中胸带清晰深蓝、喉斑大而鲜明，与洋燕不符。不确定点：亚种变异较大，部分东亚个体喉斑较发达，但整体羽色对比度仍偏低；缺乏翼下覆羽与尾下覆羽细节佐证。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "崖沙燕",
+      "confidence": 0.32,
+      "reason": "崖沙燕（Riparia riparia）体型略小，上体灰褐无金属光泽，喉部具深褐色半环而非橙红斑，胸带模糊或缺失；本图鸟具强金属蓝黑上体与鲜明橙红喉斑，明显不符。不确定点：幼鸟或非繁殖羽个体颜色可能变淡，但喉部特征差异过大，基本可排除。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "树燕",
+      "confidence": 0.21,
+      "reason": "树燕属（Tachycineta）如双色树燕（Tachycineta bicolor）具亮蓝背与纯白腹，但喉部无橙红斑，且喙更细长；本图喉部橙红斑突出，与树燕属典型特征矛盾。不确定点：极罕见杂交或异常个体可能性极低，仅作理论备选。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中小型雀形目鸟类，上体深蓝黑色具金属光泽，下体白色，喉部具显著橙红色块斑，胸带深蓝，尾呈深叉状，喙短扁黑，栖于金属天线结构上。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

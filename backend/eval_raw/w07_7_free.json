@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "白头鹎",
+      "confidence": 0.95,
+      "reason": "体型中等偏小，头顶部具显著白色羽冠（前额至枕部白色），眼后及耳羽黑色形成鲜明对比；上体灰绿，翅覆羽与飞羽边缘黄绿色，尾羽暗褐带黄绿色缘；下体灰白，喉部略带浅灰；喙短而尖、黑色；腿灰黑色；站立于路边石沿，姿态警觉。上述特征高度吻合白头鹎（Pycnonotus sinensis）典型外观。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "台湾鹎",
+      "confidence": 0.68,
+      "reason": "外形与白头鹎极相似，但台湾鹎（Pycnonotus taivanus）头部白色区域通常更窄、更局限于前额，枕部常保留灰色或橄榄色，且分布限于台湾本岛。图中个体白色冠区较宽、延伸至枕部，更倾向大陆型白头鹎；不确定点：照片分辨率有限，无法确认枕部是否完全纯白或混有灰调，且无地理信息佐证。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红耳鹎",
+      "confidence": 0.45,
+      "reason": "红耳鹎（Pycnonotus jocosus）亦有白色冠羽，但典型个体具鲜红色耳斑（位于眼后下方），图中未见明显红色斑块；其冠羽常为纯白且范围更大，但本图个体耳区呈深黑而非红；不确定点：若为幼鸟或亚种变异，红耳可能不显，但整体羽色偏灰绿而非红耳鹎常见的暖棕灰，支持度较低。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "黑头鹎",
+      "confidence": 0.32,
+      "reason": "黑头鹎（Pycnonotus atriceps）头全黑，仅眼周及喉部有白纹，与图中大面积白色冠羽不符；不确定点：若为异常白化个体或严重误判，但概率极低；当前图像清晰显示白冠+黑耳羽模式，基本可排除。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "灰短脚鹎",
+      "confidence": 0.25,
+      "reason": "灰短脚鹎（Hypsipetes leucocephalus）成鸟头全白，但无黑色耳羽，且背部更偏灰褐、翅无黄绿色缘；图中个体具明确黑耳羽与黄绿翅缘，不符合；不确定点：幼鸟可能羽色混杂，但体型与姿态仍偏小，与灰短脚鹎中等偏大体型不符。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "两只中小型鸣禽立于沥青路面与路缘石交界处，具显著白色头顶冠羽、黑色眼后耳羽、灰绿上体、黄绿色翅缘及灰白下体，喙短黑，腿暗色。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

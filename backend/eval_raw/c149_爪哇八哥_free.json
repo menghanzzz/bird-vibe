@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "家八哥",
+      "confidence": 0.96,
+      "reason": "通体黑色具金属光泽，头颈羽冠短而蓬松，眼周裸皮白色（形成明显白眼圈），喙粗壮、亮黄色，脚亦为鲜黄色；尾羽末端具显著白色斑块（图中可见尾下覆羽及尾羽尖端白）；站立于草地姿态典型。以上特征高度吻合家八哥（Acridotheres tristis）成鸟形态。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "爪哇八哥",
+      "confidence": 0.78,
+      "reason": "体型与羽色近似家八哥，但爪哇八哥眼周裸皮通常为淡蓝灰色而非纯白，且尾羽白端较窄或不显；本图中眼周呈明显白色环状，尾白端宽大，更倾向家八哥。不确定点：照片分辨率有限，难以确认眼周裸皮确切色调及尾羽白端比例；若为幼鸟或亚种变异则可能混淆。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "林八哥",
+      "confidence": 0.45,
+      "reason": "林八哥（Acridotheres grandis）体型更大，喙基部具明显肉垂，眼周裸皮面积更大且常呈淡蓝色，尾羽白端通常较窄；图中无肉垂、眼周白环清晰、尾白端宽，不符合典型林八哥。不确定点：若为亚成鸟或个体变异，肉垂未发育完全可能导致误判；但整体匹配度低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白领八哥",
+      "confidence": 0.32,
+      "reason": "白领八哥（Acridotheres albocinctus）喉部具明显白色领环，而图中喉胸全黑无白斑；此为关键排除特征。不确定点：若为非繁殖羽或磨损个体，领环可能模糊，但图中未见任何白色喉斑痕迹，可能性极低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.21,
+      "reason": "黑领椋鸟（Sturnus nigricollis）雄鸟具显著白色颈环，背部灰褐，非全黑；图中通体黑、无颈环，明显不符。不确定点：仅因同属椋鸟科而列入备选，实际形态差异显著，基本可排除。",
+      "in_knowledge_base": true
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型、通体黑色具金属光泽的鸟，具短羽冠、醒目的白色眼圈、亮黄色粗喙与黄腿，尾羽末端有明显白色斑块，正站立于绿色草地上。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

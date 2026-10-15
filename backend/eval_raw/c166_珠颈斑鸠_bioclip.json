@@ -1,0 +1,44 @@
+{
+  "top5_candidates": [
+    {
+      "name": "珠颈斑鸠",
+      "confidence": 0.6553,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "爪哇八哥",
+      "confidence": 0.0949,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.0928,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "戴胜",
+      "confidence": 0.0432,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "白头鹎",
+      "confidence": 0.0329,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "bioclip"
+}

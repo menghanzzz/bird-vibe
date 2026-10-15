@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "白鹡鸰",
+      "confidence": 0.95,
+      "reason": "体型中等偏小，头黑（眼后至枕部黑色）、前额及眉纹白色，喉及上胸黑色形成明显‘围脖’，下体灰白，背灰，翅黑具明显白色翼斑（次级飞羽端部白），尾长且外侧尾羽纯白、中央尾羽黑，喙细长黑色，腿黑色；站立于沙石地，姿态警觉抬头；符合Motacilla alba典型特征。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰鹡鸰",
+      "confidence": 0.12,
+      "reason": "灰鹡鸰（Motacilla cinerea）雄鸟亦有灰背、黑喉，但头部为灰色而非黑白分明，无显著白色眉纹与黑顶对比；本图头部黑白强烈分界，更倾向白鹡鸰；不确定点：若为雌性或亚成白鹡鸰，喉部黑色可能较淡，但图中喉黑完整清晰，故排除可能性低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黄鹡鸰",
+      "confidence": 0.08,
+      "reason": "黄鹡鸰（Motacilla flava）雄鸟腹部鲜黄，头多为橄榄灰或黄褐色，无黑顶白眉组合；本图下体灰白、头黑+白眉显著，不符合；不确定点：极少数亚种（如M. f. lutea）雌鸟可能偏灰，但喉部通常不呈完整黑围脖，且无此头型对比。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "山鹡鸰",
+      "confidence": 0.03,
+      "reason": "山鹡鸰（Dendronanthus indicus）具独特黑白条纹胸带、尾较长且外侧尾羽白但中央尾羽亦具白端，头侧灰白无黑顶；本图无胸带，头为典型黑顶白眉，不符；不确定点：仅因同属鹡鸰科而列入，实际形态差异大。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑喉石鵖（雄）",
+      "confidence": 0.02,
+      "reason": "雄性黑喉石鵖（Saxicola torquatus）具黑喉、灰背、白腹，但喙粗短、腿较粗、尾较短且无外侧纯白尾羽；本图喙细长、尾极长、外侧尾羽纯白，明显为鹡鸰科特征；不确定点：远观可能混淆，但尾形与喙形是关键区分点，本图高度支持鹡鸰。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中小型鸣禽，具黑白分明的头部（黑顶+白眉）、黑色喉环、灰背、白腹、黑翅带明显白色翼斑、长尾外侧纯白，站立于沙石地面，喙细长黑色，腿黑色。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像中未呈现任何鸟类实体；仅显示均匀渐变的蓝-白背景，无轮廓、羽色、喙、腿等可识别生物特征。无法进行物种推断。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "同上；图像为空白渐变背景，无任何动物形态线索。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像中不存在可辨识的鸟类视觉信息；所有候选均属无效推断。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "无任何形态学证据支持任何鸟类存在；此为纯色背景图。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像内容为平滑色阶过渡，无纹理、边缘或生物结构；无法识别任何物种。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像为自上而下由深蓝渐变为浅灰白的纯色平滑背景，无任何物体、轮廓或纹理。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "红尾鸲",
+      "confidence": 0.92,
+      "reason": "小型雀形目鸟类，体型纤细；头顶至后颈灰白色，眼周及颊部黑色形成明显‘面罩’；喉部及上胸橙红色，下胸至腹部转为浅橙黄；背、翅暗褐，尾羽基部橙红（部分可见）；喙短而尖、黑褐色；腿细弱、暗灰褐色；栖于金属围栏横杆上，姿态警觉。该羽色组合与雄性红尾鸲（Phoenicurus phoenicurus）典型繁殖羽高度吻合。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "赭红尾鸲",
+      "confidence": 0.78,
+      "reason": "相似的灰头、黑面罩、橙红胸腹特征；但赭红尾鸲（Phoenicurus ochruros）雄鸟通常喉部更偏橘红或带棕调，上胸橙红较浓且延伸至腹侧，尾羽橙红更鲜艳；本图因光照与角度限制，胸腹色调偏暖橙，尾部细节不清，故存疑。不确定点：尾羽颜色与长度无法确认，头部灰色是否带蓝调不明确。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "北红尾鸲",
+      "confidence": 0.65,
+      "reason": "雄性北红尾鸲（Phoenicurus auroreus）亦具灰头、黑脸、橙红胸腹，但其头顶灰色常带蓝调，喉部橙红更鲜亮，且翼上常具明显白色翼斑（图中未见清晰翼斑）；本图翼部暗褐无明显白斑，支持度较低。不确定点：翼斑缺失可能因拍摄角度遮挡，且背景虚化影响细节判断。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白顶溪鸲",
+      "confidence": 0.45,
+      "reason": "白顶溪鸲（Chaimarrornis leucocephalus）雄鸟有显著白色头顶，但其喉胸为深栗红而非橙红，且多栖水边岩石，姿态与生境不符；本图头顶灰白非纯白，胸色偏橙非栗，可能性低。不确定点：远距离拍摄导致头顶色相判断困难，且幼鸟/雌鸟羽色变异难排除。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "赭腹歌鸲",
+      "confidence": 0.3,
+      "reason": "赭腹歌鸲（Luscinia svecica）雄鸟繁殖期具蓝灰色头背、橙红胸腹，但无黑面罩，眼周浅色，且体型略大、喙更粗壮；本图具明显黑颊纹，喙细长，不符合。不确定点：若为雌鸟或亚成鸟，羽色可能趋近，但黑面罩特征仍罕见于该种。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只小型鸣禽栖于蓝绿色金属围栏横杆上，具灰白色头顶、黑色颊纹面罩、橙红色喉胸、暗褐背部与翅膀，喙短尖黑，腿暗灰，姿态直立警觉。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

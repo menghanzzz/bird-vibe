@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "丝光椋鸟",
+      "confidence": 0.92,
+      "reason": "头及喉部纯白色，略蓬松；上体灰褐色，翅具明显黑翼斑（初级飞羽黑色、次级飞羽具白端形成翼斑），尾黑；喙橙红色、较粗短呈圆锥形；脚肉橙色；栖于棕榈叶间，姿态警觉。该组合特征高度吻合丝光椋鸟（Spodiopsar sericeus）成鸟冬羽或非繁殖羽：白色头部为显著鉴别点，区别于灰椋鸟（头灰褐无白）与黑领椋鸟（头黑、颈环白）。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "灰椋鸟",
+      "confidence": 0.38,
+      "reason": "体型与轮廓相似，但图中个体头颈部为纯白色，而灰椋鸟（Spodiopsar cineraceus）成鸟头颈为灰褐色，仅眼周及喉部略浅，绝无如此大面积纯白；不确定点：若为严重白化个体或极罕见变异，则可能误判，但概率极低；故仅作低置信候选。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.25,
+      "reason": "黑领椋鸟（Gracupica nigricollis）具黑色头及宽白领环，与图中纯白头+无黑环特征明显不符；不确定点：若为幼鸟或异常褪色个体，可能失去黑头，但幼鸟通常头背灰褐带纵纹，且喉部无纯白，与图中形态差异大。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白头鹎",
+      "confidence": 0.18,
+      "reason": "白头鹎（Pycnonotus sinensis）有白色枕部，但头侧、眼先、喉均为灰黑或橄榄色，不呈全白；喙细长、暗灰色，非橙红；翅无黑翼斑；体型较小。图中鸟头全白、喙色鲜亮、翼斑清晰，与之不符；不确定点：若为罕见白化白头鹎，可能接近，但白化个体极少保留完整翼斑模式，且脚色通常更淡。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白化八哥",
+      "confidence": 0.12,
+      "reason": "普通八哥（Acridotheres cristatellus）正常为通体黑、翼白斑、黄嘴黄脚；白化个体可能出现部分白色羽毛，但通常残留黑色斑块（尤其翼/尾），且喙常为浅肉色而非鲜明橙红；图中翼斑清晰、头全白、喙色饱和，更符合丝光椋鸟自然羽色而非白化病态表现；不确定点：无法完全排除极端白化个体，但概率极低，且缺乏典型八哥的冠羽与体型比例支持。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸣禽，头及喉部纯白色，上体灰褐，翅具黑底白端翼斑，尾黑，喙橙红粗短，脚肉橙色，栖于棕榈叶丛中。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

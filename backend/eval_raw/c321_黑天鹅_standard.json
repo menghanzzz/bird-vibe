@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑天鹅",
+      "confidence": 0.98,
+      "reason": "通体羽毛为深黑色，具金属光泽；长颈优雅弯曲；喙为鲜红色，前端具显著白色带状斑（即‘鼻孔前白带’），此为黑天鹅（Cygnus atratus）的诊断性特征；腿灰黑色，站立于草地上；体型硕大，符合天鹅属特征。图像中可见喙基部红、尖端红、中间白带清晰，与黑天鹅唯一匹配。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "疣鼻天鹅（黑化个体）",
+      "confidence": 0.015,
+      "reason": "理论上存在极罕见的黑化疣鼻天鹅（Cygnus olor melanistic morph），但该形态无可靠野外记录；且疣鼻天鹅喙基具明显黑色疣状突起（本图无），喙色为橙黄带黑基，非全红+白带；故可能性极低。不确定点：未见疣鼻突起，但若为极端黑化个体可能掩盖部分特征——然概率趋近于零。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑颈天鹅",
+      "confidence": 0.004,
+      "reason": "黑颈天鹅（Cygnus melancoryphus）雄鸟头颈黑、体羽白，雌鸟灰褐，无全黑个体；且喙为蓝灰色带粉红基部，无红喙+白带特征；与图中全黑羽色严重不符。不确定点：仅因同为南美天鹅而列入，实则形态差异巨大。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑雁（Branta bernicla）成鸟",
+      "confidence": 0.0008,
+      "reason": "体型远小于天鹅，喙短而黑，无红喙；头颈虽黑但胸腹灰白，具明显白色颈环；本图通体黑、长颈、红喙，完全不符。不确定点：仅因‘黑’字联想误判风险，实际排除明确。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "人工染色/异常个体（非自然种）",
+      "confidence": 0.0002,
+      "reason": "理论上存在人为染色或罕见基因突变导致全黑水禽，但无证据支持；且喙部红+白带结构高度特化，难以伪造。不确定点：无法100%排除极端人工干预，但生物学上极不可能。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只大型水禽立于绿草地上，通体羽毛呈深黑色具光泽，颈修长，喙鲜红色并具一道清晰白色横带，腿灰黑色。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

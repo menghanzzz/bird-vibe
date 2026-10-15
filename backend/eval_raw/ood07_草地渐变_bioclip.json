@@ -1,0 +1,44 @@
+{
+  "top5_candidates": [
+    {
+      "name": "戴胜",
+      "confidence": 0.3305,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "苍鹭",
+      "confidence": 0.1195,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "小白鹭",
+      "confidence": 0.1118,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "黑卷尾",
+      "confidence": 0.0898,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "红头长尾山雀",
+      "confidence": 0.0776,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    }
+  ],
+  "certainty_level": "中",
+  "feature_description": "",
+  "is_rare": false,
+  "uncertainty_explanation": "BioCLIP 置信度 0.33 不高，建议结合实拍复核",
+  "recognizer": "bioclip"
+}

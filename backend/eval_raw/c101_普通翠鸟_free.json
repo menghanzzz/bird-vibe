@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "普通翠鸟",
+      "confidence": 0.98,
+      "reason": "体型中等偏小，头颈呈金属蓝绿色，具白色颊斑与黑色眼线；喉部白色，胸腹部为橙棕色；喙长而尖、黑色；腿短、红色；栖于水边枯桩上，姿态警觉。上述特征与普通翠鸟（Alcedo atthis）成鸟高度一致，尤其典型蓝绿背+橙腹+白喉+红脚组合。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "蓝耳翠鸟",
+      "confidence": 0.15,
+      "reason": "蓝耳翠鸟（Alcedo meninting）亦具蓝背橙腹，但分布限于东南亚热带，国内仅极少数记录（如云南南部），且通常体型略大、耳羽蓝色更显著、喉部常带淡蓝调；本图无明显耳羽蓝斑，且背景水域环境更符合普通翠鸟常见生境。不确定点：无法排除亚成鸟或个体变异导致耳羽不显。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "斑头大翠鸟",
+      "confidence": 0.08,
+      "reason": "斑头大翠鸟（Halcyon chelicuti）体型更大、喙更粗壮、头侧具明显黑斑纹，且胸腹为浅棕而非橙红；本图喙细长、无头侧黑斑、胸腹色鲜亮橙红，不符。不确定点：若为幼鸟可能羽色较暗，但整体比例与结构仍差异显著。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白胸翡翠",
+      "confidence": 0.05,
+      "reason": "白胸翡翠（Halcyon smyrnensis）胸腹部纯白或灰白，仅下腹略带淡棕，与本图鲜明橙棕色胸腹严重不符；且其头背蓝绿色较暗、无明显白颊斑。不确定点：极罕见的异常羽色个体？可能性极低。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "蓝顶翠鸟",
+      "confidence": 0.03,
+      "reason": "蓝顶翠鸟（Alcedo hercules）为非洲特有种，国内无分布；体型更大，头顶蓝冠极宽，喉部深蓝而非白；本图特征完全不符。不确定点：仅因同属翠鸟属而列入，实为地理不可能项。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中小型鸟类，头颈金属蓝绿色具白颊斑与黑眼线，喉白，胸腹橙棕色，喙长而尖黑，腿短红，栖于水中枯桩顶端。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

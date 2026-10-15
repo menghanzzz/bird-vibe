@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "图像中未显示任何鸟类；仅呈现蓝白相间的垂直条纹图案，无生物形态特征。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "图像内容为抽象几何条纹，无头、喙、翼、足等鸟类解剖结构；无法提取任何生物学特征。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "全图无动物轮廓或纹理细节；所有区域均为规则重复的色带，不符合任何已知鸟类的视觉表现。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "不存在羽毛、眼斑、腿形等识别依据；图像本质为人工设计的条纹背景，非自然场景。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "图像中无任何候选对象；所有字段均无法对应鸟类特征；不确定点：图像根本不是鸟类照片。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像由等宽的蓝色与浅灰白色垂直条纹交替构成，无任何动物或自然物体形态。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "喜鹊",
+      "confidence": 0.95,
+      "reason": "体型中等，具典型黑白二色羽：头、颈、背、尾上覆羽及初级飞羽黑色具蓝绿色金属光泽；肩、胸、腹及尾下覆羽纯白；喙粗壮、黑色、尖端略下弯；腿灰黑色；站立姿态警觉，尾长且明显。两鸟均符合Pica pica的典型形态特征。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰喜鹊",
+      "confidence": 0.35,
+      "reason": "不确定点：灰喜鹊头部为灰蓝色而非纯黑，喉部常有白色斑块，背部灰蓝，腹部浅灰或灰白，与图中纯黑头+纯白胸腹不符；但若光照导致色差或个体变异，仍需考虑。图中无明显灰蓝色调，故可能性低。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "黑嘴喜鹊（Pica serica）",
+      "confidence": 0.25,
+      "reason": "不确定点：东亚部分学者将中国喜鹊视为独立种Pica serica，但形态与Pica pica极难区分，主要差异在地理分布与微小羽色比例；本图无足够细节支持种级分化判断，仅作亚种/种级争议候选。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白颈鸦",
+      "confidence": 0.15,
+      "reason": "不确定点：白颈鸦全身乌黑，仅颈侧至胸侧有显著白色块状斑（非全白胸腹），喙较细长，腿深灰；图中鸟胸腹全白、头颈全黑，不符合白颈鸦‘黑身白颈侧’特征，排除可能性高。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "秃鼻乌鸦",
+      "confidence": 0.08,
+      "reason": "不确定点：秃鼻乌鸦通体纯黑，无白色部位，喙基裸露灰白色（‘秃鼻’特征），图中鸟有大面积白色胸腹及清晰黑白分界; 明显不符，仅因同属鸦科且栖于屋顶而列入最低可能候选。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "两只中型鸟类立于混凝土屋脊，头、背、翼及尾部呈亮黑色带金属光泽，胸腹及肩部为纯白色，喙粗黑略下弯，腿暗灰色，姿态直立警觉。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

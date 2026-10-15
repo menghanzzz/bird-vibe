@@ -1,0 +1,220 @@
+{
+  "built_at": "2026-10-13T16:51:45.718195+00:00",
+  "seed": 42,
+  "per_class": 7,
+  "leakage_gate": {
+    "observation_id_level": true,
+    "filename_level": true,
+    "global_sha256_dedup": true,
+    "violations": 0
+  },
+  "species": {
+    "中白鹭": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "丹顶鹤": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "乌鸫": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "冠斑犀鸟": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "北红尾鸲": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "夜鹭": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "大山雀": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "大白鹭": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "太平鸟": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "家燕": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "小白鹭": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "戴胜": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "斑文鸟": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "普通喜鹊": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "普通翠鸟": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "树麻雀": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "棕背伯劳": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "欧亚鸲": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "池鹭": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "游隼": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "灰喜鹊": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "爪哇八哥": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "牛背鹭": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "珠颈斑鸠": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "画眉": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "白头鹎": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "白胸翡翠": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "白领翡翠": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "白鹡鸰": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "红原鸡": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "红嘴鸥": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "红头长尾山雀": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "红尾水鸲": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "红耳鹎": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "红腹锦鸡": {
+      "val_total": 7,
+      "selected": 7
+    },
+    "绿头鸭": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "苍鹭": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "蒙古银鸥": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "领雀嘴鹎": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "鸳鸯": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "鹊鸲": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "黄腹花蜜鸟": {
+      "val_total": 8,
+      "selected": 7
+    },
+    "黄鹡鸰": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "黑卷尾": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "黑嘴鸥": {
+      "val_total": 10,
+      "selected": 7
+    },
+    "黑天鹅": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "黑枕黄鹂": {
+      "val_total": 12,
+      "selected": 7
+    },
+    "黑领椋鸟": {
+      "val_total": 12,
+      "selected": 7
+    }
+  },
+  "totals": {
+    "core": 336,
+    "wild": 12,
+    "total": 348,
+    "non_kb_classes": [
+      "中白鹭",
+      "北红尾鸲",
+      "大白鹭",
+      "欧亚鸲",
+      "牛背鹭",
+      "蒙古银鸥",
+      "黑嘴鸥"
+    ]
+  },
+  "source_manifest_sha256": "22a6e6e4188d337b1bb63067fdff972c97eba71cb11e450c13a8efc0dca92a6a"
+}

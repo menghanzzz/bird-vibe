@@ -16,3 +16,11 @@ node_modules/
 # 系统文件
 .DS_Store
 Thumbs.db
+training_data/
+
+# 评测产物：大图、备份、日志、Excel 临时锁文件（评测数据与报告正常入库）
+backend/eval_set/photos/
+backend/eval_set/ood_photos/
+backend/eval_snapshots/
+backend/eval_server*.log
+backend/~$*.xlsx

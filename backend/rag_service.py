@@ -1,11 +1,14 @@
 import os
 import re
+import time
 import yaml
 
 # ═══════════════════════════════════════════════════════
 # 纯文件系统知识库（替代 ChromaDB，零依赖）
+# 可用 BIRD_KB_DIR 环境变量重定向目录（scripts/batch_eval.py 批量评估时
+# 用它指向真实库的临时副本，防止识别测试把新鸟写入真实知识库）
 # ═══════════════════════════════════════════════════════
-KB_DIR = "./knowledge_base"
+KB_DIR = os.environ.get("BIRD_KB_DIR", "./knowledge_base")
 
 
 def _list_kb_files():
@@ -122,27 +125,44 @@ def retrieve_context_for_birds(bird_names: list[str]) -> str:
     return "\n".join(contexts)
 
 
+def _query_tokens(query: str) -> list[str]:
+    """
+    查询分词：空格切词 + 中文滑窗 bigram。
+    中文没有空格，整句作为一个"词"会让关键词计数永远命中不了（冒烟实测）；
+    bigram 让"八哥和乌鸫怎么区分"里的"八哥""乌鸫"都能命中鸟卡。
+    """
+    tokens: list[str] = []
+    for word in query.lower().split():
+        if re.fullmatch(r"[一-鿿]+", word):
+            # 2~4 字的短中文词先整词匹配（鸟名多是 2~4 字），再补 bigram 覆盖长句
+            if 2 <= len(word) <= 4:
+                tokens.append(word)
+            tokens.extend(word[i:i + 2] for i in range(len(word) - 1))
+        elif len(word) > 1:
+            tokens.append(word)
+    # 去重保序，防止长查询靠重复词刷分
+    seen: set[str] = set()
+    return [t for t in tokens if not (t in seen or seen.add(t))]
+
+
 def semantic_search_birds(query: str, n_results: int = 5) -> list[dict]:
     """
     语义搜索：用户用自然语言描述找鸟。
-    使用简单关键词匹配（对于 40-120 种鸟完全够用）。
+    使用简单关键词匹配（对于 40-120 种鸟完全够用）；中文经 bigram 分词。
     """
-    query_lower = query.lower()
+    tokens = _query_tokens(query)
     results = []
-    
+
     for filename in _list_kb_files():
         filepath = os.path.join(KB_DIR, filename)
         meta, body = _parse_md(filepath)
         name = meta.get("name", filename.replace(".md", ""))
-        
+
         full_text = f"{name} {meta.get('englishName', '')} {meta.get('latinName', '')} {body}".lower()
-        
-        # 简单评分：query 中每个词在文档中出现的次数
-        score = 0
-        for word in query_lower.split():
-            if len(word) > 1:
-                score += full_text.count(word)
-        
+
+        # 简单评分：每个 token 在文档中出现的次数
+        score = sum(full_text.count(tok) for tok in tokens)
+
         if score > 0:
             results.append({
                 "name": name,
@@ -160,18 +180,120 @@ def semantic_search_birds(query: str, n_results: int = 5) -> list[dict]:
     return results[:n_results]
 
 
-def add_bird_to_knowledge_base(name: str, english_name: str = "", latin_name: str = "") -> bool:
+# 拉丁学名必须是双名法（属名首字母大写 + 种加词小写），
+# 拒绝目/科/属级分类名（如 Strigiformes）、括号注释和夹带中文的值
+LATIN_NAME_RE = re.compile(r'^[A-Z][a-z]+ [a-z][a-z-]+$')
+CJK_RE = re.compile(r'[一-鿿]')
+MAX_GENERATION_ATTEMPTS = 3
+
+# iNaturalist 权威源校验（官方公开 taxa 接口；礼貌间隔 1s，超时 5s，不轮询不批量）
+INAT_TAXA_URL = "https://api.inaturalist.org/v1/taxa"
+INAT_REQUEST_TIMEOUT = 5
+INAT_REQUEST_INTERVAL = 1.0
+
+
+def _extract_section(text: str, title: str) -> str:
+    match = re.search(rf'---\s*{title}\s*---\s*(.*?)(?=---\s*|$)', text, re.DOTALL)
+    return match.group(1).strip() if match else ""
+
+
+def _valid_english_name(value: str) -> bool:
+    return bool(value) and not CJK_RE.search(value)
+
+
+def _valid_latin_name(value: str) -> bool:
+    value = value.strip()
+    return bool(value) and not CJK_RE.search(value) and bool(LATIN_NAME_RE.match(value))
+
+
+def _verify_with_inaturalist(latin_name: str, chinese_name: str):
     """
-    自动为新发现的鸟类生成知识库资料并入库。
-    使用 DashScope API 生成结构化 Markdown。
+    iNaturalist 权威源事后校验（官方公开 taxa 接口，GET /v1/taxa?q=拉丁名）。
+
+    校验两个维度（对第一个匹配结果）：
+      a. 拉丁名一致：双名法前两词比对，忽略大小写与亚种后缀（iNat 可能返回三名法）；
+      b. 中文名一致或可匹配：preferred_common_name（locale=zh-CN）与生成中文名互相子串。
+
+    返回：
+      {"id": taxon_id}  校验通过（附 taxon id，入库时写入 frontmatter inaturalist_id）
+      False             内容不一致（视为本次生成失败，调用方走重试）
+      None              网络/接口异常（调用方降级：跳过校验照常入库，只打 WARNING）
+                        拉丁名匹配但 iNat 无中文俗名时，中文维度无法核验 → 视为通过并打 WARNING。
+    """
+    try:
+        import requests
+        time.sleep(INAT_REQUEST_INTERVAL)  # 礼貌间隔
+        r = requests.get(
+            INAT_TAXA_URL,
+            params={"q": latin_name, "locale": "zh-CN", "per_page": 1},
+            timeout=INAT_REQUEST_TIMEOUT,
+            headers={"Accept-Language": "zh-CN"},
+        )
+        if r.status_code != 200:
+            return None
+        results = (r.json() or {}).get("results") or []
+        if not results:
+            return False  # 查无此名，视为不一致
+        taxon = results[0]
+    except Exception:
+        return None  # 网络/解析异常 → 降级
+
+    # a. 拉丁名：双名法前两词（忽略大小写/亚种后缀）
+    inat_words = (taxon.get("name") or "").strip().split()
+    gen_words = latin_name.strip().split()
+    if len(inat_words) < 2 or len(gen_words) < 2:
+        return False
+    if inat_words[0].lower() != gen_words[0].lower() or inat_words[1].lower() != gen_words[1].lower():
+        return False
+
+    # b. 中文名：互相子串匹配；iNat 无中文俗名时该维度无法核验 → 放过但提醒
+    inat_cn = (taxon.get("preferred_common_name") or "").strip()
+    gen_cn = chinese_name.strip()
+    if inat_cn and CJK_RE.search(inat_cn):
+        if inat_cn != gen_cn and inat_cn not in gen_cn and gen_cn not in inat_cn:
+            return False
+    else:
+        print(f"⚠️ WARNING: iNaturalist 无「{latin_name}」的中文俗名，中文维度未核验（拉丁名已通过）")
+
+    taxon_id = taxon.get("id")
+    return {"id": taxon_id} if taxon_id else {"id": None}
+
+
+def add_bird_to_knowledge_base(name: str, english_name: str = "", latin_name: str = "") -> str | None:
+    """
+    自动为新发现的鸟类生成知识库资料并入库（LLM 生成 + iNaturalist 权威源校验 + 不一致重试）。
+
+    - prompt 要求物种级名称：输入是「猫头鹰」「麻雀」这类统称时，模型必须细化到
+      具体物种并在「规范中文名」一节返回，函数以规范名作为文件名；
+    - 英文名/拉丁名缺失或不合法（空值、夹中文、非双名法）时自动重试，最多 3 次；
+    - 格式校验通过后调 iNaturalist taxa API 做内容真实性校验（拉丁名+中文名两维度），
+      不一致视为生成失败继续重试；iNat 网络/接口异常则降级跳过该校验（WARNING），照常入库；
+    - 通过校验时 frontmatter 额外写入 inaturalist_id（taxon id，可选字段，解析/展示零影响）。
+
+    返回写入的鸟名（可能不等于输入名）；失败返回 None。
     """
     try:
         import dashscope
-        
-        prompt = f"""
+    except ImportError:
+        print("❌ 自动添加鸟种失败: 未安装 dashscope")
+        return None
+
+    prompt = f"""
 请为观鸟入门者撰写关于「{name}」的简要百科资料。
 
+【物种级要求 — 最高优先级】
+- 如果「{name}」是具体物种（如红尾水鸲、纵纹腹小鸮），直接基于该物种撰写。
+- 如果「{name}」是统称或泛称（如猫头鹰、麻雀、鹰、鸭子），请先判断它最可能指代的常见具体物种，然后基于该具体物种撰写全部内容。
+- 「规范中文名」一节必须填写你最终采用的具体物种标准中文名（若输入已是具体物种则原样填写）。
+
+【名称格式硬性要求】
+- 英文名：该物种的标准英文俗名，只含英文，禁止夹带中文或注释。
+- 拉丁名：必须是双名法物种学名（属名首字母大写 + 种加词小写，如 Pycnonotus jocosus），禁止输出目/科/属级分类名（如 Strigiformes、Corvidae），禁止任何括号注释。
+
 请严格按以下格式输出（不要有任何多余内容）：
+
+--- 规范中文名 ---
+（该物种的标准中文名）
 
 --- 英文名 ---
 （该鸟种的标准英文名）
@@ -203,42 +325,67 @@ def add_bird_to_knowledge_base(name: str, english_name: str = "", latin_name: st
 --- 常见地点 ---
 （一句话描述在哪里最容易见到）
 """
-        response = dashscope.Generation.call(
-            model='qwen-turbo',
-            messages=[{"role": "user", "content": prompt}]
-        )
-        
+
+    for attempt in range(1, MAX_GENERATION_ATTEMPTS + 1):
+        try:
+            response = dashscope.Generation.call(
+                model='qwen-flash',
+                messages=[{"role": "user", "content": prompt}]
+            )
+        except Exception as e:
+            print(f"⚠️ 第 {attempt} 次生成请求异常: {e}")
+            continue
+
         if response.status_code != 200:
-            return False
-            
+            print(f"⚠️ 第 {attempt} 次生成失败（API status {response.status_code}）: {response.message}")
+            continue
+
         generated = response.output.text
-        
-        def extract_section(text: str, title: str) -> str:
-            match = re.search(rf'---\s*{title}\s*---\s*(.*?)(?=---\s*|$)', text, re.DOTALL)
-            return match.group(1).strip() if match else ""
-        
-        english_name = extract_section(generated, "英文名") or english_name
-        latin_name = extract_section(generated, "拉丁名") or latin_name
-        appearance = extract_section(generated, "外貌特征")
-        habitat = extract_section(generated, "生活习性")
-        call = extract_section(generated, "鸣叫特点")
-        distribution = extract_section(generated, "分布区域")
-        fun_fact = extract_section(generated, "趣味冷知识")
-        category = extract_section(generated, "类别") or "林鸟"
-        rarity = extract_section(generated, "稀有度") or "常见"
-        location = extract_section(generated, "常见地点") or "公园绿地"
-        
+
+        canonical_name = _extract_section(generated, "规范中文名") or name
+        final_english = _extract_section(generated, "英文名") or english_name
+        final_latin = _extract_section(generated, "拉丁名") or latin_name
+        appearance = _extract_section(generated, "外貌特征")
+        habitat = _extract_section(generated, "生活习性")
+        call = _extract_section(generated, "鸣叫特点")
+        distribution = _extract_section(generated, "分布区域")
+        fun_fact = _extract_section(generated, "趣味冷知识")
+        category = _extract_section(generated, "类别") or "林鸟"
+        rarity = _extract_section(generated, "稀有度") or "常见"
+        location = _extract_section(generated, "常见地点") or "公园绿地"
+
+        # 物种级名称校验：空值 / 夹中文 / 非双名法 → 重试，绝不写入空字段文件
+        missing = []
+        if not _valid_english_name(final_english):
+            missing.append("英文名")
+        if not _valid_latin_name(final_latin):
+            missing.append("拉丁名")
+        if missing:
+            print(f"⚠️ 第 {attempt} 次生成缺少合规字段（{'、'.join(missing)}），重试...")
+            continue
+
+        # ── 权威源事后校验：iNaturalist taxa API ──
+        # 内容不一致 → 判本次生成失败走重试；网络/接口异常 → 降级跳过（WARNING），校验是增强不是门禁
+        verified = _verify_with_inaturalist(final_latin, canonical_name)
+        if verified is False:
+            print(f"⚠️ 第 {attempt} 次生成未通过 iNaturalist 校验（拉丁名/中文名不一致），重试...")
+            continue
+        if verified is None:
+            print(f"⚠️ WARNING: iNaturalist 校验本次未执行（网络/接口异常），仅格式校验，照常入库: {canonical_name}")
+        inat_id = (verified or {}).get("id")
+
         os.makedirs(KB_DIR, exist_ok=True)
-        
+
+        inat_line = f"inaturalist_id: {inat_id}\n" if inat_id else ""
         md_content = f"""---
-name: {name}
-englishName: {english_name}
-latinName: {latin_name}
+name: {canonical_name}
+englishName: {final_english}
+latinName: {final_latin}
 category: {category}
 rarity: {rarity}
 location: {location}
 funFact: {fun_fact}
----
+{inat_line}---
 
 ## 外貌特征
 {appearance}
@@ -252,14 +399,48 @@ funFact: {fun_fact}
 ## 分布区域
 {distribution}
 """
-        
-        filepath = os.path.join(KB_DIR, f"{name}.md")
+
+        filepath = os.path.join(KB_DIR, f"{canonical_name}.md")
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(md_content)
-        
-        print(f"🆕 自动新增鸟种到知识库: {name}")
-        return True
-        
-    except Exception as e:
-        print(f"❌ 自动添加鸟种失败: {e}")
-        return False
+
+        print(f"🆕 自动新增鸟种到知识库: {canonical_name}")
+        return canonical_name
+
+    print(f"❌ 自动添加鸟种失败（{MAX_GENERATION_ATTEMPTS} 次尝试后仍缺必填字段）: {name}")
+    return None
+
+
+def _normalize_name(name: str) -> str:
+    """鸟名归一化：去全部空格 + 全角转半角 + 小写（与 scripts/batch_eval.py 判定逻辑保持一致）"""
+    s = str(name or "").strip()
+    chars = []
+    for ch in s:
+        code = ord(ch)
+        if code == 0x3000:  # 全角空格
+            chars.append(" ")
+        elif 0xFF01 <= code <= 0xFF5E:  # 全角字符 → 半角
+            chars.append(chr(code - 0xFEE0))
+        else:
+            chars.append(ch)
+    return "".join(chars).replace(" ", "").lower()
+
+
+def find_kb_match(name: str) -> str | None:
+    """
+    候选鸟名与知识库已有鸟名的规范化匹配（后验匹配）：
+    先精确相等，再双向子串（"白鹭"可匹配到"小白鹭"，"珠颈斑鸠 "也能精确命中）。
+    返回匹配到的知识库鸟名；匹配不上返回 None（不硬凑）。
+    """
+    target = _normalize_name(name)
+    if not target:
+        return None
+    kb_names = [m["name"] for m in get_bird_metadata()]
+    for kb_name in kb_names:
+        if _normalize_name(kb_name) == target:
+            return kb_name
+    for kb_name in kb_names:
+        normalized = _normalize_name(kb_name)
+        if normalized and (normalized in target or target in normalized):
+            return kb_name
+    return None

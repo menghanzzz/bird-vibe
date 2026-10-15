@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "喜鹊",
+      "confidence": 0.96,
+      "reason": "体型中等，头、颈、胸及背部为纯黑色具金属光泽，肩部及翅上覆羽呈鲜明亮蓝色（非绿），尾长且中央尾羽蓝黑色带金属光泽，腹部白色，喙粗壮呈黑色，腿灰黑；栖于横木上姿态警觉，符合Pica pica典型特征。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰喜鹊",
+      "confidence": 0.18,
+      "reason": "灰喜鹊头颈灰白、背灰褐、翅蓝但无纯黑头部，与图中全黑头颈不符；仅因同属鸦科且具蓝翅而列为低概率候选。不确定点：图中头部无灰色过渡，基本排除。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "黑嘴喜鹊（东亚亚种）",
+      "confidence": 0.04,
+      "reason": "黑嘴喜鹊（Pica serica）曾被视为喜鹊亚种，现多处理为独立种，但羽色与普通喜鹊极相似；图中未见明显地理差异特征（如尾长比例、喉部白纹宽度），无法区分。不确定点：缺乏高清侧视图确认尾长/白腹比例，且亚种分类尚存争议。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "蓝 Magpie（台湾蓝鹊）",
+      "confidence": 0.02,
+      "reason": "台湾蓝鹊（Urocissa caerulea）具鲜亮宝蓝色全身、红色喙脚、长尾端白，与图中黑头、黑喙、灰腿、白腹特征严重不符；仅因‘蓝+鹊’名称联想列入。不确定点：喙色、腿色、体色分布完全不匹配。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红嘴蓝鹊",
+      "confidence": 0.01,
+      "reason": "红嘴蓝鹊（Urocissa erythroryncha）具鲜红喙、浅灰头、蓝身、长尾端白，图中喙黑、头纯黑、无红喙特征，几乎可排除；仅因常见蓝羽鸦科鸟而勉强列入。不确定点：喙色、头色、胸腹色均不一致。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸟类栖于横木上，头、颈、上胸及背为纯黑色具金属光泽，肩与翅覆羽呈亮蓝色，尾长且蓝黑，下胸至腹为白色，喙粗壮黑色，腿灰黑色。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

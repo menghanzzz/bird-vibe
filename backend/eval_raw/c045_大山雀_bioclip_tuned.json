@@ -1,0 +1,44 @@
+{
+  "top5_candidates": [
+    {
+      "name": "大山雀",
+      "confidence": 0.8379,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "蓝山雀",
+      "confidence": 0.1188,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "普通喜鹊",
+      "confidence": 0.0181,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "家燕",
+      "confidence": 0.0103,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.0057,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "bioclip_tuned"
+}

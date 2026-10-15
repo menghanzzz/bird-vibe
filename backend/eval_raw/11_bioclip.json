@@ -1,0 +1,59 @@
+{
+  "top5_candidates": [
+    {
+      "name": "小白鹭",
+      "confidence": 0.3821,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "池鹭",
+      "confidence": 0.372,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "大白鹭",
+      "confidence": 0.2453,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "苍鹭",
+      "confidence": 0.0005,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "夜鹭",
+      "confidence": 0.0001,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    }
+  ],
+  "certainty_level": "中",
+  "feature_description": "",
+  "is_rare": false,
+  "uncertainty_explanation": "BioCLIP 置信度 0.38 不高，建议结合实拍复核",
+  "recognizer": "bioclip",
+  "clarification": {
+    "group": "鹭科",
+    "question": "观察它的嘴、腿和脚趾（非繁殖期嘴色最准）：",
+    "options": [
+      "嘴黑色，腿黑色但脚趾黄色",
+      "嘴长呈黄色，腿全黑，体型明显最大，嘴裂延伸到眼后",
+      "嘴黄色、尖端发黑，腿全黑，体型中等，嘴裂只到眼睛正下方",
+      "嘴黄色，腿全黑，体型最矮敦实，常站在田地里"
+    ],
+    "candidates": [
+      "小白鹭",
+      "池鹭"
+    ],
+    "reason": "识别器自评不确定且 top1 属易混淆组"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "图像中未识别出任何鸟类",
+      "confidence": 0.99,
+      "reason": "图像为均匀噪点纹理，无任何可辨识的生物形态、轮廓或羽毛结构；不存在头、喙、翅、腿等鸟类解剖特征。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "图像无效/无目标",
+      "confidence": 0.01,
+      "reason": "仅呈现随机彩色像素噪声，无任何动物影像；不确定点：可能为传输错误、传感器故障或故意模糊处理，但无法支持任何物种识别。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "未知鸟类（无法鉴定）",
+      "confidence": 0.001,
+      "reason": "图像中无任何视觉信息可用于分类；不确定点：完全缺乏形态学特征，连是否为鸟类都无法确认。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "背景干扰伪影",
+      "confidence": 0.0005,
+      "reason": "图像表现为数字噪声（类似电视雪花屏），非真实拍摄对象；不确定点：无实体存在，故无物种归属可能。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无候选物种",
+      "confidence": 0.0001,
+      "reason": "图像分辨率与内容均不满足基本识别条件；不确定点：甚至无法排除非生物来源（如屏幕坏点、压缩失真）。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像呈现均匀分布的彩色像素噪点，无清晰轮廓、形态或生物特征。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

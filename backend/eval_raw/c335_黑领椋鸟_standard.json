@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.92,
+      "reason": "体型中等（约23–26 cm），头顶部及后颈为鲜明淡黄白色，眼周及喉部为黑色形成完整‘领环’，上胸黑色，下胸及腹部白色，翅上具明显白色翼斑（静止时可见肩部白块），喙粗壮、灰黑色，腿灰褐色；姿态为直立栖枝，符合该种典型外观。与黑领椋鸟（Gracupica nigricollis）成鸟特征高度一致，尤其头部黄白+黑领+白腹+翼斑组合独特。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白领八哥",
+      "confidence": 0.68,
+      "reason": "体型相似，亦具黑喉与浅色头冠，但白领八哥（Acridotheres albocinctus）通常头冠更偏灰白而非淡黄，且黑领较窄、不包裹整个喉部；本图中黑领宽厚、环绕喉部，更倾向黑领椋鸟；不确定点：图像分辨率有限，无法确认眼先是否具裸皮或虹膜颜色，且部分亚成鸟羽色过渡可能混淆。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "灰背椋鸟",
+      "confidence": 0.45,
+      "reason": "灰背椋鸟（Sturnia sinensis）雄鸟头侧及喉部黑色，但头顶多为灰褐或暗褐，无明显淡黄白色冠区；本图头顶呈清晰淡黄白色，与灰背椋鸟不符；不确定点：若为雌鸟或亚成鸟，羽色可能偏淡，但整体对比仍弱于黑领椋鸟匹配度。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑冠椋鸟",
+      "confidence": 0.32,
+      "reason": "黑冠椋鸟（Gracupica contra）雄鸟头顶全黑，仅眼后有白斑，无淡黄白色冠部；本图头顶大面积淡黄白，明显不符；不确定点：极个别异常羽色个体或换羽期可能混淆，但概率极低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白脸椋鸟",
+      "confidence": 0.21,
+      "reason": "白脸椋鸟（Sturnus albofrontatus）分布限于非洲，头部纯白、无黑领，与图中黑喉+黄顶结构完全不符；列入仅为排除性参考；不确定点：若为严重误鉴的逸鸟（如笼养逃逸），可能性微乎其微，故置底。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸟类栖于枯枝，头顶至后颈为淡黄白色，眼周及喉部为宽阔黑色领环，上胸黑、下胸腹白，翅肩部具显著白色斑块，喙粗短灰黑，腿灰褐。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

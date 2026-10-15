@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "戴胜",
+      "confidence": 0.98,
+      "reason": "具显著的橙褐色冠羽（末端黑色斑点，呈扇形展开）、长而下弯的灰黑色喙、浅棕黄色头颈、黑白相间横斑的翅膀与尾羽、白色腹部、灰黑色腿；站立于碎石地面，姿态警觉——完全符合戴胜（Upupa epops）典型特征。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "非洲戴胜",
+      "confidence": 0.15,
+      "reason": "外形高度相似，但非洲戴胜（Upupa africana）通常分布于撒哈拉以南非洲，冠羽黑斑更密集、翼斑对比稍弱；本图鸟冠羽黑斑清晰且分布符合欧亚种群特征，地理上极不可能为该种。不确定点：若拍摄地在北非边缘地带则需谨慎区分，但无此信息支持。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "马岛戴胜",
+      "confidence": 0.05,
+      "reason": "仅分布于马达加斯加，体型略大、冠羽更蓬松、翼斑较模糊；图中个体翼斑锐利、比例协调，明显不符。不确定点：仅凭照片无法100%排除远距离误认，但概率极低。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "小佛法僧",
+      "confidence": 0.02,
+      "reason": "虽有长喙和冠羽倾向，但小佛法僧（Coracias benghalensis）体色为蓝绿+栗色，无黑白横斑翅尾，喙粗短且直，冠羽不发达；图中鸟羽色与结构均不匹配。不确定点：幼鸟或异常个体可能性近乎为零。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "普通翠鸟",
+      "confidence": 0.01,
+      "reason": "体型小、喙直而尖、蓝绿色背羽、橙色胸腹，与图中鸟差异巨大；仅因‘有长喙’被误列，实为无效候选。不确定点：无任何可靠特征支持。",
+      "in_knowledge_base": true
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中型鸟类立于碎石地面，具醒目的橙褐色可竖起冠羽（末端带黑斑）、细长下弯的深色喙、浅棕黄头颈、黑白横斑的翅与尾、白色下体及灰黑腿。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

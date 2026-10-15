@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.92,
+      "reason": "体型中等（约20–23 cm），头白色，眼周及喉部具显著黑色领环，上体深褐色至黑褐色，下体白色，翅上有明显白色翼斑（飞行时可见，图中侧身姿态隐约可见翅缘白边），尾羽黑而端白；喙粗壮、灰黑色，腿浅灰或肉色；站立于林缘地面。该组合特征高度匹配黑领椋鸟（Gracupica nigricollis）成鸟典型羽色，尤其头白+黑领+白腹的三段式对比极为关键。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白头八哥",
+      "confidence": 0.68,
+      "reason": "头白色、喉黑、体色深褐与白腹组合相似；但白头八哥（Acridotheres leucocephalus）通常体型略小（18–20 cm），黑领更宽且常延伸至颈侧，翼斑更发达（静止时亦较明显），且眼先裸皮常呈淡蓝灰色——图中未见明显裸皮，且翅部白纹不突出。不确定点：图像分辨率较低，无法确认眼周裸皮及翼斑细节，可能误判。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "灰椋鸟",
+      "confidence": 0.45,
+      "reason": "灰椋鸟（Spodiopsar cineraceus）成鸟头灰白、喉黑、胸灰褐、腹白，但整体色调偏灰而非深褐，且无清晰‘白头’效果；本图头部纯白、上体深褐近黑，更倾向黑领椋鸟。不确定点：幼鸟或换羽期个体可能羽色混杂，但图中头部洁净白色不支持灰椋鸟典型特征。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "斑椋鸟",
+      "confidence": 0.32,
+      "reason": "斑椋鸟（Gracupica contra）雄鸟头灰白、喉黑、胸具细密黑斑，但腹部非纯白而是具纵纹，且头侧常有黑斑延伸；本图腹部干净无纹，头纯白无斑，不符。不确定点：若为雌鸟或亚成鸟，羽色可能简化，但缺乏典型斑纹支持此鉴定。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "家八哥",
+      "confidence": 0.25,
+      "reason": "家八哥（Acridotheres tristis）头灰褐、眼先裸皮黄/蓝、喉黑、体棕褐，腹部浅灰带纵纹；本图头纯白、无裸皮、腹纯白，差异显著。不确定点：极罕见白化个体可能呈现类似白头，但概率极低，属排除性候选。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸟类立于林下泥土地面，头纯白色，眼周至喉部具完整黑色领环，上体深褐色，下体白色，翅缘隐约可见白色斑块，喙粗短灰黑，腿浅灰，姿态警觉。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

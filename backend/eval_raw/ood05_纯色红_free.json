@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无可见鸟类",
+      "confidence": 1.0,
+      "reason": "图像为纯色背景（均匀暗红色），未呈现任何鸟类的形态、轮廓、羽毛、喙、眼或足部等可识别特征；不存在任何生物体影像。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "图像错误/缺失",
+      "confidence": 0.0,
+      "reason": "图像中无任何视觉内容可用于鸟类识别；此为占位性候选，仅表示非鸟类情况；不确定点：图像可能上传失败或被裁剪为纯色。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红腹锦鸡",
+      "confidence": 0.0,
+      "reason": "仅因背景为红色而联想，但图中无任何该物种特征（如金色冠羽、黑白条纹尾羽、蓝绿色颈部等）；不确定点：完全无形态证据支持。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "朱雀属某物种",
+      "confidence": 0.0,
+      "reason": "雄性朱雀常具红色羽色，但图中无体型、喙形、翼斑或姿态信息；不确定点：纯色背景无法对应任何真实个体。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红嘴相思鸟",
+      "confidence": 0.0,
+      "reason": "头部与胸部可能呈红色，但图中无喙、眼、翼纹等关键特征；不确定点：零视觉信息支撑识别。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像为均匀暗红色纯色背景，未显示任何动物或物体的形态细节。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

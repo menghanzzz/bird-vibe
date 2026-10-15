@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "戴胜",
+      "confidence": 0.98,
+      "reason": "具显著的橙褐色冠羽（末端黑色、白色斑点，呈扇形展开）、细长而向下弯曲的灰黑色喙、浅棕褐色头颈、黑白相间横斑的翅膀与尾羽、白色腹部、灰褐色腿；站立于碎石地面，姿态典型。所有特征与戴胜（Upupa epops）高度一致，无其他常见鸟种具备此组合特征。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "非洲戴胜",
+      "confidence": 0.12,
+      "reason": "非洲戴胜（Upupa africana）与戴胜外形极相似，但通常冠羽黑斑更少、整体色调偏暖；本图中冠羽黑斑清晰且数量较多，更符合指名亚种Upupa epops epops特征；不确定点：仅凭静态图像难以排除亚种级差异，且非洲戴胜在东亚为迷鸟极罕见，地理可能性极低。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "马岛戴胜",
+      "confidence": 0.05,
+      "reason": "马岛戴胜（Upupa marginata）体型略小，冠羽黑斑稀疏、翼斑较模糊；图中个体翼斑对比强烈、冠羽黑斑密集，不符；不确定点：若为幼鸟或亚成体可能混淆，但图中羽毛完整、色彩饱和，应为成鸟，故可能性极低。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "大斑凤头鹃",
+      "confidence": 0.03,
+      "reason": "虽有冠羽与长喙，但该种喙粗壮、上喙具钩、翼无黑白横斑、体色以灰褐为主，且具明显眼纹；图中喙细直无钩、翼具清晰黑白横斑、无眼纹，形态差异显著；不确定点：仅因‘有冠’而列入，实为误判风险极高。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "普通夜鹰",
+      "confidence": 0.01,
+      "reason": "夜鹰无冠羽、喙短宽具须、翼斑为条纹非横斑、嘴裂极大；图中完全不符；不确定点：仅因栖息于地面而短暂联想，属无效候选，纯为覆盖性列举。",
+      "in_knowledge_base": true
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸟类站立于砾石地，具橙褐色可竖立冠羽（尖端黑底白斑）、细长下弯灰黑喙、浅棕头颈、黑白横斑翅与尾、白腹及灰褐腿。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

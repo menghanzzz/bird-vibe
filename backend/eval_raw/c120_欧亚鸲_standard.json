@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "欧亚鸲",
+      "confidence": 0.98,
+      "reason": "体型小型（约12–14 cm），喙短而尖、黑褐色；眼周暗褐，眉纹浅灰白；头顶至后颈灰褐色；喉部及胸腹部为鲜明橙红色，与纯白色下腹形成清晰分界；上背与翅覆羽棕褐色，飞羽暗褐带浅色羽缘；腿细长，肉粉色；栖于带地衣的枝条上，姿态警觉。该组合特征（尤其橙红胸+白腹+灰头+无翼斑）为欧亚鸲（Erithacus rubecula）典型且高度特异，无近似种在外观上完全匹配。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "日本歌鸲",
+      "confidence": 0.15,
+      "reason": "雄性日本歌鸲（Luscinia akahige）亦具橙红胸，但其橙红色通常更偏橘黄、范围较小，且常具明显白色眼圈及更深的灰褐色头侧；本图中眼周无显著白圈，胸腹分界锐利、橙红面积大，更符合欧亚鸲；不确定点：若为雌性或亚成鸟，日本歌鸲胸色较淡，但图中个体胸色饱和度高，可能性极低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "琉球歌鸲",
+      "confidence": 0.08,
+      "reason": "琉球歌鸲（Luscinia komadori）雄鸟胸橙红，但头部灰褐更浅，眉纹更显著，且下体白色区域常延伸至上胸形成‘围裙’状，与图中清晰橙红-白二分结构不符；不确定点：仅凭单张照片难以排除极罕见迷鸟，但羽色细节不支持。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红胸鸲",
+      "confidence": 0.05,
+      "reason": "红胸鸲（Luscinia svecica）雄鸟繁殖羽胸为蓝灰色带橙红斑块，非纯橙红；非繁殖羽或雌鸟胸为淡棕或灰褐，无鲜明橙红；图中胸为均匀鲜亮橙红，与红胸鸲不符；不确定点：若为异常个体或杂交，概率极低，无证据支持。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "北美知更鸟",
+      "confidence": 0.03,
+      "reason": "北美知更鸟（Turdus migratorius）体型显著更大（约25 cm），喙较长，胸为橙红但腹部为浅灰白而非纯白，且具明显深色眼线与灰背；图中鸟体型小、腹纯白、无眼线，形态差异巨大；不确定点：仅因‘红胸’误判可能，实际无相似性。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "小型雀形目鸟类，具黑色短喙、灰褐色头背、鲜明橙红色喉胸、纯白色下腹，翅棕褐无斑，腿肉粉色，栖于覆有地衣的细枝上。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

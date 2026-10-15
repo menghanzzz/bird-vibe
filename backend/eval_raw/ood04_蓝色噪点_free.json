@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无可见鸟类",
+      "confidence": 1.0,
+      "reason": "图像为均匀蓝色噪点纹理，无任何可辨识的生物形态、轮廓、羽毛结构或解剖特征；未观察到体型、羽色、喙、腿等任何鸟类视觉要素。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "图像无效（非真实拍摄）",
+      "confidence": 0.0,
+      "reason": "图像内容为数字噪声/色块，不符合自然场景成像特征；不确定点：无法排除极低分辨率导致细节丢失，但当前像素级分析显示无鸟类存在迹象。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "蓝胸佛法僧",
+      "confidence": 0.0,
+      "reason": "仅因主色调为蓝色而联想；不确定点：无任何形态特征支持该物种识别，实际图像中不存在鸟体轮廓、头部、翅膀等结构。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "普通翠鸟",
+      "confidence": 0.0,
+      "reason": "同上，仅基于‘蓝色’主观关联；不确定点：无喙形、体型比例、胸腹分界、翼斑等关键识别特征，纯属臆测。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "蓝矶鸫雄鸟",
+      "confidence": 0.0,
+      "reason": "同样仅因蓝色联想；不确定点：图像无个体形态、姿态、栖息环境或细节斑纹，完全不具备物种识别基础。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像呈现均匀分布的蓝色颗粒状噪点，无任何可辨识的动物形态或解剖结构。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑卷尾",
+      "confidence": 0.92,
+      "reason": "体型中等偏小，通体乌黑具金属光泽；尾羽极长且末端深分叉（典型‘剪刀尾’），静栖于电线呈侧身姿态；喙粗壮略下弯、黑色；腿短黑；整体轮廓与黑卷尾（Dicrurus macrocercus）高度吻合，该种常见于中国南方开阔地及城镇电线栖息。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰卷尾",
+      "confidence": 0.68,
+      "reason": "外形与黑卷尾相似，但通常体色偏灰褐或暗灰；本图因逆光/白背景导致羽色细节难辨，无法排除灰卷尾（Dicrurus leucophaeus）可能；不确定点：缺乏清晰的头颈色调对比与翼斑细节，难以区分黑/灰卷尾在低对比影像中的差异。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "古铜色卷尾",
+      "confidence": 0.45,
+      "reason": "分布较局限（华南、西南），成鸟具紫铜色金属光泽；本图羽色偏蓝黑，若为古铜色卷尾（Dicrurus aeneus）则需更强暖色调反光；不确定点：图像色偏严重（偏冷蓝调），无法确认真实羽色是否含铜绿/紫红成分；尾形虽符合，但地域与色觉证据薄弱。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "发冠卷尾",
+      "confidence": 0.3,
+      "reason": "头顶具显著冠羽，本图头部轮廓平滑无冠突，基本可排除；仅因同属卷尾科且尾长而列入；不确定点：图像分辨率低，无法100%排除极短冠羽被压平的可能，但概率极低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑喉红臀鹎",
+      "confidence": 0.15,
+      "reason": "通体黑但尾较短、无深分叉，且具明显红臀（本图未见）；本图尾极长且分叉，形态不符；仅因暗色小型鸟误判可能性极低而列入；不确定点：完全缺乏胸腹及尾下覆羽信息，但尾形已强烈否定此选项。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只通体深黑、尾极长且深分叉的中小型鸟类侧栖于钢缆上，喙粗短黑色，腿短黑，背景为过曝亮白天空。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

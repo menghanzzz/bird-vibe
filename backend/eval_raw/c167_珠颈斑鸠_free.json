@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "珠颈斑鸠",
+      "confidence": 0.92,
+      "reason": "体型中等偏小，整体灰褐色；颈部具明显白色斑点组成的领环（珠状斑纹）；上背与翼覆羽有细密黑色斑点；喙短而略下弯、灰黑色；腿暗红褐色；姿态为静立窗台侧身观向右方。这些特征高度吻合珠颈斑鸠（Streptopelia chinensis）的典型外观。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "山斑鸠",
+      "confidence": 0.68,
+      "reason": "体型与羽色接近珠颈斑鸠，但颈部无完整珠状领环；本图因拍摄角度与遮挡，颈部细节模糊，无法完全排除山斑鸠（Streptopelia orientalis）可能。不确定点：颈部斑纹是否为连续珠链尚不清晰；翅上黑斑密度略高于典型山斑鸠。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "欧斑鸠",
+      "confidence": 0.45,
+      "reason": "雄鸟颈侧有黑白相间横斑，雌鸟较暗淡；本图个体颈部斑点呈点状而非横带，且整体色调偏暖褐，与欧斑鸠（Streptopelia turtur）典型特征不符。不确定点：图像分辨率低、光线昏暗，可能掩盖关键横斑结构；分布区重叠性弱（中国东部较少见），故可能性较低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "灰斑鸠",
+      "confidence": 0.32,
+      "reason": "灰斑鸠（Streptopelia decaocto）通体更灰，颈部无珠斑，翼上黑斑稀疏；本图个体翼斑密集、颈部有明显白点，不支持该种。不确定点：若为亚成鸟或个体变异，可能误判；但整体匹配度极低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "粉头斑鸠",
+      "confidence": 0.21,
+      "reason": "粉头斑鸠（Streptopelia roseogrisea）头部粉灰色、无颈斑，分布限于非洲；本图个体头部无粉色调、具颈斑，地理与形态均不支持。不确定点：仅基于模糊轮廓的极低概率误认，纯属备选排除项。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸽形目鸟类静立于窗台，通体灰褐色，颈部具显著白色点状斑纹形成的领环，翼覆羽密布细小黑斑，喙短灰黑，腿暗红褐色。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

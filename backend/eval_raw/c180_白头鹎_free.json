@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "白头鹎",
+      "confidence": 0.92,
+      "reason": "体型中等偏小（约18–20 cm），头顶部至枕部为显著白色，眼先及颊部黑色形成‘眼罩’，喉部灰白，上体橄榄绿，下体浅灰黄；喙短而尖、黑褐色；腿灰黑色；两鸟均栖于细枝上，姿态警觉。该组合特征与白头鹎（Pycnonotus sinensis）高度吻合，尤其典型白头+黑颊对比强烈。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "台湾鹎",
+      "confidence": 0.68,
+      "reason": "外观与白头鹎极相似，但台湾鹎（Pycnonotus taivanus）头部白色区域略少、黑颊更宽且延伸至耳羽后方；本图因分辨率有限，难以确认白色覆盖范围是否达枕部后缘及黑颊边界细节。不确定点：图像模糊导致无法判别枕部白羽是否完整、耳羽黑斑形态及翼斑有无。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红耳鹎",
+      "confidence": 0.45,
+      "reason": "红耳鹎（Pycnonotus jocosus）具显著红色耳羽斑块，但本图中两鸟耳区未见红色，仅见黑色；若为幼鸟或亚成鸟则可能红色未显，但头部整体为白+黑模式，不符合红耳鹎典型成鸟特征。不确定点：图像清晰度不足，无法排除极暗光下红色被误判为黑，且未见其标志性的长冠羽。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "领雀嘴鹎",
+      "confidence": 0.32,
+      "reason": "领雀嘴鹎（Spizixos semitorques）头侧灰色、无明显黑白对比，喉部具黑色领环，喙粗短呈淡灰或肉色；本图中鸟喙较细、黑褐色，头侧为鲜明黑白分区，无领环，故可能性低。不确定点：远距离拍摄可能导致颜色失真，且幼鸟羽色尚未稳定。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "褐头鹪莺",
+      "confidence": 0.21,
+      "reason": "体型明显偏小（约11–12 cm），头褐色无白顶，眉纹淡黄，整体棕灰；本图鸟体型较大、具醒目白头，与鹪莺类差异显著。不确定点：仅凭轮廓易误判，但羽色与比例均不支持此选项，属低概率排除项。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "两只中小型鸣禽栖于光秃细枝上，头顶部纯白色，眼周至颊部为黑色块状斑，喉胸浅灰白，上背橄榄绿，喙短而尖、深色，腿暗灰，姿态静止警觉。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

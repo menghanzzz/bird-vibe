@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "红尾水鸲",
+      "confidence": 0.95,
+      "reason": "体型中小型雀形目鸟类，通体灰蓝色（头、背、胸、腹一致为蓝灰色），尾羽显著橙红色（末端可能略暗），翅上覆羽与飞羽具深色羽轴纹但整体不显斑驳；喙细长、黑色；腿暗色；栖息于浅水中的枯枝上，姿态警觉。该特征组合高度吻合雄性红尾水鸲（Phoenicurus fuliginosus）非繁殖期或亚成雄鸟典型外观；其灰蓝体色与鲜亮红尾是关键鉴别点。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "赭红尾鸲",
+      "confidence": 0.65,
+      "reason": "雄性赭红尾鸲（Phoenicurus ochruros）部分亚种（如指名亚种）在非繁殖期或幼鸟阶段可呈灰蓝色体羽+红褐色尾；但本图尾色更偏橙红而非棕红，且无明显黑色喉部（雄性繁殖期特征缺失），故可能性较低。不确定点：尾羽色调介于红尾水鸲与赭红尾鸲之间，若为雌性赭红尾鸲则体色应更偏褐灰而非蓝灰。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白顶溪鸲",
+      "confidence": 0.45,
+      "reason": "白顶溪鸲（Chaimarrornis leucocephalus）雄鸟具白色头顶与灰背，但本图头部无白色块，全头灰蓝；且其尾色通常为黑或黑带白端，非橙红。不确定点：若为亚成鸟或异常个体，头部白色未发育，但尾色仍不符；整体匹配度低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "灰林䳭",
+      "confidence": 0.3,
+      "reason": "灰林䳭（Saxicola ferreus）雄鸟繁殖期为深灰+黑喉+栗色腰尾，非繁殖期体色较淡，但尾色多为棕栗而非鲜明橙红，且常具明显眉纹与翼斑；本图无眉纹、无翼斑，尾色过亮。不确定点：若为雌鸟或亚成鸟，体色可能趋灰，但尾色与栖息生境（近水枯枝）更倾向水鸲属。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "蓝额红尾鸲",
+      "confidence": 0.25,
+      "reason": "蓝额红尾鸲（Phoenicurus frontalis）雄鸟具亮蓝色额部与冠部，本图头部无此特征；雌鸟为灰褐色，尾色较暗。不确定点：仅因同属红尾鸲属而列入，但关键鉴别特征（额部蓝色/褐色程度、尾色饱和度）均不支持。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中小型雀形目鸟，通体蓝灰色，尾羽橙红色，喙细长黑色，栖于水面枯枝上，背景为绿藻覆盖的静水与落叶。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

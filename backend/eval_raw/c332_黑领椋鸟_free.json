@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.88,
+      "reason": "体型中等，头颈呈浅黄褐色（似‘金冠’），喉部及上胸具明显黑色领环，背部与翅膀为深褐色并带白色斑点或边缘，尾羽末端浅色；喙较粗壮、尖端略下弯、呈灰黑或暗色；腿细长、灰褐色；栖于电线姿态典型。此组合高度匹配黑领椋鸟（Gracupica nigricollis）成鸟特征，尤其头颈浅色与黑领对比鲜明。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰背椋鸟",
+      "confidence": 0.65,
+      "reason": "体型与姿态相似，但灰背椋鸟（Sturnia sinensis）成鸟头颈亦可呈浅棕黄，上胸有黑色块斑（非完整领环），背部灰褐而非深褐；本图因图像模糊，黑领是否完整闭合难辨，故存疑。不确定点：头部羽色偏暖黄可能更倾向黑领椋鸟；黑领若不连续则支持灰背椋鸟。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "丝光椋鸟",
+      "confidence": 0.42,
+      "reason": "丝光椋鸟（Spodiopsar sericeus）雄鸟头颈金属紫绿色，雌鸟灰褐无金顶，与图中浅黄褐色头顶不符；但幼鸟或非繁殖羽个体头部可能呈淡棕黄，且胸侧有黑斑。不确定点：缺乏金属光泽、黑斑形态不清；整体羽色偏暖黄而非灰/紫，可能性较低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "八哥",
+      "confidence": 0.31,
+      "reason": "八哥（Acridotheres cristatellus）通体乌黑、具鲜黄色眼周裸皮与喙基，头后有短冠羽，与图中浅色头、无裸皮、无冠羽明显不符。不确定点：图像极模糊可能导致误判，但基本羽色格局差异大，仅作远亲参考。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "家八哥",
+      "confidence": 0.24,
+      "reason": "家八哥（Acridotheres tristis）具显著黄色眼先裸皮与喙基，头颈黑亮，胸具大型白色翼斑（静止时可见），与图中无裸皮、头颈浅色、翅斑不清晰矛盾。不确定点：图像分辨率过低，无法排除极端角度遮蔽眼区，但概率极低。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "中",
+  "feature_description": "一只中等体型鸟类栖于电线，头颈呈浅黄褐色，喉胸有黑色块状斑纹，背翅深褐带浅色斑点，喙较粗壮暗色，腿灰褐，姿态侧身静止。",
+  "is_rare": false,
+  "uncertainty_explanation": "图像分辨率低、细节模糊，关键鉴别特征（如黑领是否完整闭合、翅斑具体形态、头部羽色精确色调）无法确认，导致与灰背椋鸟难以完全区分。",
+  "recognizer": "qwen"
+}

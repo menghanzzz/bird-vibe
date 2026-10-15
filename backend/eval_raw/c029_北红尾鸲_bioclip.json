@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "红尾鸲",
+      "confidence": 0.92,
+      "reason": "小型雀形目鸟类，体型纤细；头顶灰白色，眼周及颊部黑色形成明显‘眼罩’；喉部及上胸橙红色，下胸至腹部转为浅灰白；背羽暗灰褐色；翼上具两道淡色翼斑（隐约可见）；喙短而尖、黑褐色；腿细弱、暗灰色；栖于金属栅栏横杆上，姿态警觉。整体羽色与雄性红尾鸲（Phoenicurus phoenicurus）典型繁殖羽高度吻合。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "赭红尾鸲",
+      "confidence": 0.78,
+      "reason": "羽色相似：雄鸟亦具灰头、黑颊、橙红胸腹；但赭红尾鸲（Phoenicurus ochruros）通常喉部更偏橘黄，胸部橙红较浅，且尾羽基部常显深褐而非纯红（图中尾部被遮挡不可见）。不确定点：尾羽颜色缺失关键判别依据；头部灰白程度略偏浅，可能为亚种或个体变异。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "北红尾鸲",
+      "confidence": 0.65,
+      "reason": "雄性北红尾鸲（Phoenicurus auroreus）亦有灰头、黑颊、橙红胸特征，但其橙红色区域通常延伸至腹部甚至尾下覆羽，且背部多呈栗褐色而非灰褐；本图中背部偏灰，胸腹橙红止于中部，更倾向红尾鸲。不确定点：背景模糊导致背部色调判断受限；未见典型‘白翼斑’（北红尾鸲常见），但图像分辨率不足难以确认。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "欧亚鸲",
+      "confidence": 0.42,
+      "reason": "欧亚鸲（Erithacus rubecula）雄鸟具橙红色胸腹与灰头，但其头部无黑颊纹，眼周为浅灰或棕灰，无‘眼罩’结构；喙更细长、略下弯；本图中明显存在黑色颊纹，故可能性低。不确定点：图像锐度有限，黑颊是否为阴影存疑；但整体轮廓与比例仍不符欧亚鸲典型特征。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "岩鸲",
+      "confidence": 0.31,
+      "reason": "岩鸲（Monticola saxatilis）雄鸟上体蓝灰、下体橙红，但头部无黑颊，喉部橙红常与胸部连贯，且体型略大、喙粗壮；本图鸟体型较小、颊部黑纹显著，不符合。不确定点：远距离拍摄致比例误判风险；但关键面部模式差异显著，仅作极低概率备选。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只小型雀形目鸟栖于青绿色金属栅栏横杆上，具灰白色头顶、醒目黑色颊纹、橙红色喉胸、灰褐色背部及暗色细腿，喙短直呈黑褐色。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen_fallback"
+}

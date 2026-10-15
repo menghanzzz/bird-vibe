@@ -1,22 +1,22 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useBirdStore } from '@/store/useBirdStore';
 
-export default function BirdMap() {
-  const [mounted, setMounted] = useState(false);
-  const birdRecords = useBirdStore((state) => state.birdRecords);
+// BirdMap 只通过 dynamic(ssr:false) 在客户端渲染；
+// 用 useSyncExternalStore 获取“已挂载”状态，避免 effect 内同步 setState 触发级联渲染
+const subscribe = () => () => {};
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+export default function BirdMap() {
+  const birdRecords = useBirdStore((state) => state.birdRecords);
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
 
   // 过滤出真正带有经纬度记录的小鸟
   const mapPins = Object.entries(birdRecords).filter(
-    ([name, record]) => record.lat && record.lng
+    ([, record]) => record.lat && record.lng
   );
 
   // 设定默认中心点 (新加坡)

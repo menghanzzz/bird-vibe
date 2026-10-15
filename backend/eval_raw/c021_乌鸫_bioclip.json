@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "乌鸫",
+      "confidence": 0.92,
+      "reason": "体型中等（约28–30 cm），通体纯黑，喙长而尖、呈深灰黑色，腿暗色；站立于草地，姿态警觉；符合乌鸫雄鸟典型外观；中国城市绿地常见留鸟。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "八哥",
+      "confidence": 0.68,
+      "reason": "体型与乌鸫相近，通体黑，但八哥通常具明显黄色眼圈及尾下覆羽白色斑块；本图因角度与分辨率限制，眼周细节不清、尾部被草遮挡，无法确认关键鉴别特征；不确定点：未见黄色眼圈或白色尾下覆羽，亦未见翼上白斑。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰椋鸟",
+      "confidence": 0.45,
+      "reason": "成年灰椋鸟头颈灰白、体背灰褐，与图中纯黑不符；但幼鸟或亚成鸟可能偏暗，且在特定光线下显深色；不确定点：图中个体全身无明显灰白过渡色，更倾向纯黑，故可能性低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "秃鼻乌鸦",
+      "confidence": 0.32,
+      "reason": "体型较大（>40 cm），喙粗壮带明显鼻孔裸露区（‘秃鼻’特征）；图中鸟喙较细长，无可见裸鼻区，且体型相对较小；不确定点：图像分辨率低，无法排除远距离观察导致的体型误判。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "小嘴乌鸦",
+      "confidence": 0.21,
+      "reason": "体型中等偏大（约45 cm），通体黑，喙较厚实；但图中鸟喙纤细，与小嘴乌鸦典型喙形不符；不确定点：仅凭模糊侧影难以排除幼鸟或个体变异，但整体匹配度极低。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型、通体纯黑色、喙细长呈深灰色、腿暗色的鸟类站立于绿色草地上，周围散落枯叶，前景为一段灰白色木桩。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen_fallback"
+}

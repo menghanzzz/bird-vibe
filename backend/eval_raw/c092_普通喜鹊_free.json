@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "喜鹊",
+      "confidence": 0.96,
+      "reason": "体型中等，头、颈、背及尾上覆羽为纯黑色，具强烈金属光泽；肩部及翅上覆羽为鲜明的蓝绿色金属光泽；胸部白色，与黑色头部形成清晰分界；喙粗壮、尖端略下弯、灰黑色；腿灰黑色；栖于草丛中呈警觉站立姿态。上述特征与Pica pica（喜鹊）典型羽色高度一致，尤其黑白蓝三色分区明确，无其他常见鸦科鸟种具备完全匹配组合。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "欧亚 Magpie（即喜鹊的欧洲亚种，学名仍为Pica pica）",
+      "confidence": 0.88,
+      "reason": "形态与上一候选几乎无法区分，仅地理分布差异；图中未提供足够地理线索（如植被类型、海拔），但羽色模式完全吻合Pica pica物种级特征。因中国广泛分布的是Pica pica sericea（东亚亚种），故优先列为同一物种；此条作为亚种级补充，置信度略降。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "灰喜鹊",
+      "confidence": 0.45,
+      "reason": "灰喜鹊（Cyanopica cyanus）亦有蓝黑白色调，但其头顶至后颈为浅灰色而非纯黑，喉部常带灰白过渡，且蓝色更偏钴蓝、少金属光泽；本图头部全黑、白色胸区边界锐利，明显不符。不确定点：若照片曝光偏暗导致灰色误判为黑色，则可能性上升，但当前图像清晰显示头部纯黑，故排除概率高。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "黑嘴喜鹊（Pica hudsonia，北美种）",
+      "confidence": 0.25,
+      "reason": "北美黑嘴喜鹊羽色近似，但其白色胸带更窄、翼斑更小，且分布限于北美；图中无任何地理支持证据，且亚洲未见该种记录。不确定点：仅凭羽色局部相似性推测，缺乏分布与细节支持，属远缘类比。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红嘴蓝鹊",
+      "confidence": 0.18,
+      "reason": "红嘴蓝鹊（Urocissa erythroryncha）具长尾、蓝黑羽色，但喙为鲜红色、眼周裸皮明显、胸部灰白渐变而非纯白块，且体型更大、尾更长；图中喙色深、无红喙特征，胸白区大而干净，不符。不确定点：若幼鸟或异常个体喙色未显红，仍难解释纯白胸区与短尾形态。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中型鸟类立于草丛中，头颈背黑亮，肩翅蓝绿金属光泽，胸腹纯白，喙粗壮灰黑，腿暗色，姿态警觉。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

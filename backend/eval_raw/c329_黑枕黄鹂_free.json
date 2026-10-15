@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑枕黄鹂",
+      "confidence": 0.92,
+      "reason": "体型中等，通体鲜黄色，头部具显著黑色贯眼纹及枕部黑斑（形成‘黑枕’特征），翼上覆羽及飞羽黑色并具明显黄色翼斑，喙长而尖、呈粉红橙色，脚灰黑色；栖于枝头，姿态警觉。上述特征与黑枕黄鹂（Oriolus chinensis）高度吻合。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "金黄鹂",
+      "confidence": 0.68,
+      "reason": "羽色亦为鲜黄配黑翅，但金黄鹂（Oriolus oriolus）雄鸟枕部黑斑通常更宽且延伸至后颈，眼先黑色更连贯；本图因树叶遮挡，枕部黑斑边界不清，无法完全排除。不确定点：枕部黑斑形态细节被遮蔽，难以区分与黑枕黄鹂的细微差异。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "绿背黄鹂",
+      "confidence": 0.45,
+      "reason": "部分亚种或雌鸟可能具黄体黑翅，但绿背黄鹂（Oriolus xanthornus）雄鸟背部为橄榄绿而非纯黄，且眼周黑纹较窄；本图背部显纯黄，可能性较低。不确定点：图像分辨率有限，背部是否隐含绿色调无法确认；若为雌鸟则黄绿色调可能混淆。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白尾黄鹂",
+      "confidence": 0.32,
+      "reason": "分布偏南亚，雄鸟尾羽白色明显，本图尾部被枝叶遮挡，仅见部分黄色尾羽，无白尾证据；且其黑色翼斑比例通常更高。不确定点：尾部不可见，无法验证白尾特征；羽色整体相似性造成低概率误判。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑头黄鹂",
+      "confidence": 0.21,
+      "reason": "黑头黄鹂（Oriolus xanthornus 的旧称或地方名混淆）实为同物异名，现多归入绿背黄鹂；另有指 O. melanocephalus（黑头黄鹂），分布于非洲，羽色虽类似但喙色偏灰黑、无橙色调。不确定点：地理分布不符（图中背景似东亚城市绿化带），喙色偏橙红不支持非洲种；极可能为误列。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸣禽栖于树枝，通体鲜黄色，头侧及枕部有醒目黑色块斑，翅膀黑色具黄色斑块，喙细长呈粉橙色，眼周黑色纹路清晰。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

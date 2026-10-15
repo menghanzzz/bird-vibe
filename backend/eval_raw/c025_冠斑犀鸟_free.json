@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "冠斑犀鸟",
+      "confidence": 0.95,
+      "reason": "大型犀鸟，通体黑色，具显著白色大喙（上喙基部具盔突），眼周裸皮白色，喉部及胸部有白色羽缘形成环带状斑纹；尾羽长而黑，末端具白色横斑；栖于枯枝上，姿态典型。符合冠斑犀鸟（Anthracoceros coronatus）成年雄鸟特征：黑色体羽、白色巨喙带盔突、眼周白裸皮、喉部白环。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白喉犀鸟",
+      "confidence": 0.78,
+      "reason": "体型与羽色相似，亦为黑身白喙，但白喉犀鸟（Anorrhinus austeni）喉部纯白块更大更完整，且盔突较矮平；本图喉部为白羽缘形成的环带而非整块白斑，喙盔更隆起，故可能性较低。不确定点：图像分辨率限制下难以精确判断喉部白区形态与盔突细节。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "棕颈犀鸟",
+      "confidence": 0.62,
+      "reason": "分布区部分重叠，雄鸟亦黑身白喙，但棕颈犀鸟（Aceros nipalensis）颈部具明显棕褐色羽毛，且喙盔较小、呈淡黄色调；图中颈部无棕色调，喙色偏白灰，故匹配度低。不确定点：光照可能导致颈部颜色失真；无法确认喙盔颜色细微差异。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "双角犀鸟",
+      "confidence": 0.45,
+      "reason": "体型更大，雄鸟喙基部具两个显著角状突起（‘双角’），而图中喙仅单个盔突，无第二角；且双角犀鸟胸腹部常具白色纵纹，图中未见。不确定点：幼鸟或雌鸟可能盔突不发达，但整体比例与姿态不符典型双角犀鸟。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "凤头犀鸟",
+      "confidence": 0.3,
+      "reason": "分布偏南亚，雄鸟具极发达的盔突与头冠状羽簇，图中头部无明显羽冠，盔突形态亦较平缓；且凤头犀鸟（Buceros bicornis）体型通常更大，喙更厚重。不确定点：远距离拍摄可能掩盖头冠细节；但现有特征与该种典型描述差异显著。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只大型黑色鸟类栖于枯枝上，具巨大白色喙（上喙基部有明显盔突）、眼周白色裸皮、喉部环绕白色羽缘形成的环带状斑纹，尾羽末端具白色横斑。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

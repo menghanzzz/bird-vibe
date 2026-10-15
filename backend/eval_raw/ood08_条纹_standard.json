@@ -1,0 +1,16 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像中未显示任何鸟类；仅呈现为蓝灰色与浅灰白色相间的垂直条纹图案，无生物形态特征。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像由等宽的蓝灰色与浅灰白色垂直条纹交替构成，无任何可识别的动物或自然物体轮廓。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

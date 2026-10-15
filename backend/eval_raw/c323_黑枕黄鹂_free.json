@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑枕黄鹂",
+      "confidence": 0.92,
+      "reason": "体型中等，通体鲜黄色，头部具显著黑色贯眼纹及枕部黑斑（形成‘黑枕’特征），喙细长、尖端略下弯、呈粉红灰色，翼和尾羽黑色，腿灰褐色；栖于树枝上，姿态警觉。此组合高度匹配黑枕黄鹂（Oriolus chinensis）成年雄鸟典型羽色与形态。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "金黄鹂",
+      "confidence": 0.68,
+      "reason": "整体亮黄色，头侧有黑色斑块，但金黄鹂（Oriolus auratus）枕部黑斑通常更宽、延伸至后颈，且分布于非洲；本图背景为热带亚洲样貌（枝叶形态），地理不符。不确定点：缺乏清晰的枕部黑斑边界与地理信息，难以完全排除亚种或误判。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "绿背黄鹂",
+      "confidence": 0.55,
+      "reason": "黄腹+黑翅，但绿背黄鹂（Oriolus xanthornus）背部呈橄榄绿而非纯黄，且头部黑色区域常更大（覆盖整个头顶）；图中背部未见明显绿色调，仅凭侧面难确认。不确定点：图像分辨率有限，背部颜色易受光照影响误判；若为幼鸟或非繁殖羽则更难区分。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白尾黄鹂",
+      "confidence": 0.42,
+      "reason": "部分亚种（如Oriolus leucopterus）具黄体黑翅，但尾部应为白色，图中尾羽被遮挡无法确认；且该种分布限于东南亚局部，较罕见。不确定点：尾羽不可见，头部黑纹形态不完全吻合（白尾黄鹂枕部黑斑常不连续）。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "菲律宾黄鹂",
+      "confidence": 0.31,
+      "reason": "Oriolus steerii 羽色近似，但分布局限于菲律宾，且雄鸟枕部黑斑更窄、眼先黑纹较弱；图中黑纹明显贯穿眼区至枕部，更倾向黑枕黄鹂。不确定点：无地理定位依据，且亚种间差异细微，仅凭单张照片难以支持此鉴定。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸣禽栖于枯枝上，通体鲜黄色，头侧至枕部具醒目黑色贯眼纹与黑斑，喙细长浅色，翼与尾呈黑色，腿灰褐。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

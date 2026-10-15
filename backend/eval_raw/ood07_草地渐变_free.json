@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无可见鸟类",
+      "confidence": 1.0,
+      "reason": "图像为纯绿色渐变背景，未呈现任何鸟类的形态、轮廓、羽毛、喙、眼或肢体等可识别特征；不存在任何生物体影像。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "图像无效",
+      "confidence": 0.0,
+      "reason": "图像中无任何动物或物体可辨识；不确定点：该图可能为占位符、错误上传或纯色背景，无法进行鸟类识别。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "未识别物种",
+      "confidence": 0.0,
+      "reason": "缺乏任何视觉信息支持物种判断；不确定点：无像素级细节可供分析，所有候选均属推测。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "人工合成背景",
+      "confidence": 0.0,
+      "reason": "图像仅含平滑绿色渐变，无纹理、阴影或自然光照线索；不确定点：无法排除后期处理或生成式AI产物，但与鸟类无关。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "误传图像",
+      "confidence": 0.0,
+      "reason": "未观察到任何鸟类解剖结构；不确定点：原始文件可能损坏或被替换，当前内容不具备识别基础。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像为从深绿到浅绿的垂直平滑渐变色块，无任何生物或物体轮廓、纹理或细节。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

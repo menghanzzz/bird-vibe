@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑头鸥",
+      "confidence": 0.92,
+      "reason": "中等体型鸥类；头部具明显深灰色至近黑色的‘帽状’斑块（覆盖头顶及后颈，前额白色），与纯白喉胸形成清晰分界；喙中等长度、红色基部带黑尖；眼周有细窄黑眼线；上体浅灰，下体纯白；姿态为伏卧于草岸；符合黑头鸥（Chroicocephalus ridibundus）非繁殖羽特征。背景为水体+岸边碎石草地，符合其常见栖息地。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "棕头鸥",
+      "confidence": 0.68,
+      "reason": "头部具深褐色‘帽’，但棕头鸥（Chroicocephalus brunnicephalus）的帽色偏棕褐而非灰黑，且通常帽缘更模糊、前额过渡更渐变；本图帽色偏冷灰黑，前额白区清晰锐利，更倾向黑头鸥；不确定点：若拍摄光线偏冷或个体变异，可能误判帽色；另棕头鸥在中国多见于高原湖泊，低海拔沿海较少见，地理上可能性较低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红嘴鸥",
+      "confidence": 0.45,
+      "reason": "红嘴鸥（Chroicocephalus ridibundus）曾被归入Larus属，现与黑头鸥同属Chroicocephalus；但红嘴鸥在非繁殖期头部为浅灰褐色‘烟熏帽’，无清晰黑帽边界，且喙全红无黑尖；本图喙具明显黑尖、帽色深而对比强，不符合典型红嘴鸥非繁殖羽；不确定点：极个别亚成鸟或异常个体可能呈现较深帽色，但概率极低。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "地中海鸥",
+      "confidence": 0.32,
+      "reason": "地中海鸥（Ichthyaetus melanocephalus）非繁殖羽具深灰帽，但帽色更深近黑、覆盖眼区更广，且喙为全红（无黑尖），腿红；本图喙有黑尖、腿不可见但姿态显示可能为暗色腿（黑头鸥腿暗红至黑），不符；不确定点：仅凭头部局部易混淆，但整体比例与喙色差异显著，可能性小。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "小鸥",
+      "confidence": 0.18,
+      "reason": "小鸥（Hydrocoloeus minutus）体型明显更小（本图鸟体型中等，翼长可观），非繁殖羽帽色浅灰、不连贯，喙短而全黑或暗红基部极小；本图喙较长、红基明显、帽完整深色，不符；不确定点：若为幼鸟或图像压缩失真导致体型误判，但羽色与喙形仍不支持。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸥类伏卧于草岸，头部具清晰深灰至近黑色帽状斑块（前额白色），喙中等长、红色基部带黑色尖端，眼周有细黑线，上体浅灰，下体纯白。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑卷尾",
+      "confidence": 0.92,
+      "reason": "体型中等偏小，通体纯黑具金属光泽，尾羽极长且末端深分叉呈剪刀状（典型特征），喙细长微下弯、黑色，腿短黑；四鸟并排栖于细线，姿态挺直，尾下垂；符合黑卷尾（Dicrurus macrocercus）野外常见栖息行为与形态。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰卷尾",
+      "confidence": 0.68,
+      "reason": "体型与姿态相似，但灰卷尾成鸟为暗灰褐色而非纯黑；本图因光照与分辨率限制，羽色偏暗难排除灰卷尾亚成鸟或远距离观察导致的色差误判；不确定点：无法确认是否具灰褐色调或喉部浅色斑，尾叉深度略逊于典型黑卷尾。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白腹卷尾",
+      "confidence": 0.45,
+      "reason": "该种雄鸟上体黑、下体白，尾极长分叉；图中鸟整体显暗色，未见明显白色腹部，但远距拍摄可能掩盖胸腹对比；不确定点：完全无法辨识腹部颜色及胁部是否具白边，尾形虽似但缺乏关键鉴别特征支持。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "发冠卷尾",
+      "confidence": 0.32,
+      "reason": "体型较大，头后具显著冠羽簇，尾更长且分叉深；图中鸟头部轮廓平滑无冠羽突起，不符合典型发冠卷尾（Dicrurus hottentottus）特征；不确定点：极远距离可能导致冠羽不可见，但四鸟均无任何头饰迹象，可能性低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "乌鸫",
+      "confidence": 0.21,
+      "reason": "通体黑，但体型较粗壮、尾短圆、喙粗直、腿较长；图中鸟尾极长分叉、体型纤细，明显不符；不确定点：仅凭轮廓易误判，但尾形与比例差异显著，基本可排除。",
+      "in_knowledge_base": true
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "四只中等体型、通体深色、尾极长且深分叉的鸟并排栖于细线上，喙细长微下弯，姿态挺直，背景为均匀灰白天空。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

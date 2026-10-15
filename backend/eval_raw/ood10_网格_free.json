@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无鸟类可见",
+      "confidence": 1.0,
+      "reason": "图像为纯白色背景加黑色网格线，未呈现任何鸟类形态、羽毛、喙、眼或肢体结构；无任何生物特征可识别。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "图像中无动物",
+      "confidence": 0.0,
+      "reason": "图像内容仅为规则网格，无任何动物轮廓或细节；此为冗余候选，仅作占位。不确定点：图像可能为误传或裁剪错误，但当前帧确无鸟。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "空白图像",
+      "confidence": 0.0,
+      "reason": "未观察到任何实体对象；所有视觉元素均为人工绘制的线条与色块。不确定点：用户可能上传了错误文件。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "非生物图像",
+      "confidence": 0.0,
+      "reason": "图像缺乏生命体征相关特征（如不对称性、纹理、光影变化），仅含几何图形。不确定点：是否为隐喻或抽象图示？但按常规识别任务，无鸟可辨。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无效输入",
+      "confidence": 0.0,
+      "reason": "不符合鸟类识别前提；无任何像素构成鸟类解剖结构。不确定点：是否应跳过此图？但任务要求强制输出5候选。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像为8行8列的黑白网格，由黑色细线分割出64个均等浅灰方格，无任何鸟类形态或生物特征。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

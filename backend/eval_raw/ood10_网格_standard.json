@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像中未呈现任何鸟类个体；仅显示一个由黑色细线构成的6行8列空白网格，无生物形态、羽色、喙、腿等可识别特征。无法进行物种推断。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "同上；图像为空白表格结构，无任何动物影像。不确定点：图像可能为占位符或误传，非真实观鸟记录。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "无视觉信息支持任何鸟类存在；所有‘候选’均为无效推断。不确定点：用户可能上传了错误文件。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像内容仅为几何网格，无生物学特征可提取。无法满足物种识别基本前提。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "重复确认：图中无鸟。任何具体鸟种提名均属虚构，违背严谨科学原则。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像为纯白色背景上的6×8黑色线条网格，无任何动物或自然物体影像。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

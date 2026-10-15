@@ -1,0 +1,44 @@
+{
+  "top5_candidates": [
+    {
+      "name": "白领翡翠",
+      "confidence": 0.2567,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "黄鹡鸰",
+      "confidence": 0.2269,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "灰喜鹊",
+      "confidence": 0.158,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "绿头鸭",
+      "confidence": 0.1092,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "夜鹭",
+      "confidence": 0.0663,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    }
+  ],
+  "certainty_level": "中",
+  "feature_description": "",
+  "is_rare": false,
+  "uncertainty_explanation": "BioCLIP 置信度 0.26 不高，建议结合实拍复核",
+  "recognizer": "bioclip"
+}

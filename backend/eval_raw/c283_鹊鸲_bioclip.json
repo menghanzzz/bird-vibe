@@ -1,0 +1,44 @@
+{
+  "top5_candidates": [
+    {
+      "name": "鹊鸲",
+      "confidence": 0.9958,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "普通喜鹊",
+      "confidence": 0.0041,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "家燕",
+      "confidence": 0.0001,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "戴胜",
+      "confidence": 0.0,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "红尾水鸲",
+      "confidence": 0.0,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "bioclip"
+}

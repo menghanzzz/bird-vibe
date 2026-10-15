@@ -1,0 +1,44 @@
+{
+  "top5_candidates": [
+    {
+      "name": "戴胜",
+      "confidence": 0.2906,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.1961,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "爪哇八哥",
+      "confidence": 0.1592,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "红原鸡",
+      "confidence": 0.1198,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    },
+    {
+      "name": "鹊鸲",
+      "confidence": 0.0892,
+      "reason": "BioCLIP 视觉相似度匹配",
+      "in_knowledge_base": true,
+      "image_url": null
+    }
+  ],
+  "certainty_level": "中",
+  "feature_description": "",
+  "is_rare": false,
+  "uncertainty_explanation": "BioCLIP 置信度 0.29 不高，建议结合实拍复核",
+  "recognizer": "bioclip_tuned"
+}

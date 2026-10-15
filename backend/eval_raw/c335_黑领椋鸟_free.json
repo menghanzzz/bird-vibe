@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.92,
+      "reason": "体型中等，头顶部及眼周为鲜明的淡黄色（非纯白），喉部及上胸为黑色形成清晰‘领环’，下胸至腹部白色，翅上具明显白色翼斑（可见于收拢翼面），喙粗壮、灰黑色，腿灰褐色；栖息于光秃树枝上，姿态警觉。该特征组合高度匹配黑领椋鸟（Gracupica nigricollis）成鸟典型外观。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白领八哥",
+      "confidence": 0.68,
+      "reason": "头部黄白色、喉黑、胸白，与黑领椋鸟相似；但白领八哥（Acridotheres albocinctus）通常头侧及后颈有更宽的白色带，且翼斑较小或不显著；图中翼斑较明显，且头顶部偏黄而非白，故可能性较低。不确定点：照片分辨率有限，无法确认颈环是否为完整‘白领’还是局部黄化；亦无法排除亚成鸟羽色变异。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "丝光椋鸟",
+      "confidence": 0.45,
+      "reason": "丝光椋鸟（Spodiopsar sericeus）雄鸟头颈金属紫绿色，雌鸟灰褐，均无黄色头冠；图中明显具黄色头顶，故极可能排除。但若为异常个体或杂交种，则不能完全否定。不确定点：黄色头冠在丝光椋鸟中绝无记录，此候选仅为极端情况备选，实际可能性很低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "家八哥",
+      "confidence": 0.32,
+      "reason": "家八哥（Acridotheres tristis）全身深褐近黑，仅翼斑和尾下覆羽白色，无黄色头部或黑色领环；图中特征明显不符。不确定点：若为严重褪色个体或拍摄色偏导致误判，但整体形态差异过大，此候选仅为形式性列入。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "金冠树八哥",
+      "confidence": 0.25,
+      "reason": "金冠树八哥（Ampeliceps coronatus）具显著金黄色冠羽，但体羽深褐，无黑白分明的领环与胸腹对比；图中虽有黄色头区，但未见蓬松冠羽结构，且胸腹黑白分明，不符合。不确定点：仅凭头部局部黄色易混淆，但体型比例与羽色分区差异显著，可能性极低。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸟类栖于枯枝上，头顶及眼周呈淡黄色，喉部至胸部上段为黑色块状斑，下胸及腹部白色，翅膀收拢时可见大块白色翼斑，喙粗短灰黑，腿灰褐。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "红腹锦鸡",
+      "confidence": 0.95,
+      "reason": "雄性个体：头具金黄色丝状羽冠，喉部橙红色，上背及肩羽金属蓝绿色，下背至腰为鲜红色，尾羽极长、中央尾羽黄褐色带黑色横斑与眼状斑；腿橙黄色；喙灰褐色；站立于雪地-泥地交界处，姿态警觉。特征与红腹锦鸡（Chrysolophus pictus）雄鸟高度吻合。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白腹锦鸡",
+      "confidence": 0.25,
+      "reason": "雄性白腹锦鸡胸腹部白色，而图中胸腹为鲜红色，明显不符；但因尾羽长度与部分金属色相似，暂列次位。不确定点：若图像色偏严重或个体异常，可能误判；但红腹特征更明确，此候选可能性极低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "金鸡",
+      "confidence": 0.18,
+      "reason": "‘金鸡’是红腹锦鸡的俗称，并非独立物种，此处为同物异名混淆风险；严格按物种级要求应排除，但因民间常用，暂列以警示。不确定点：用户可能误将俗名当作学名，实际仍指向红腹锦鸡。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "绿雉",
+      "confidence": 0.12,
+      "reason": "雄性绿雉（Phasianus versicolor）具金属绿羽、红脸、白颈环，但无金黄色冠羽，尾较短且无显著眼斑，与图中特征差异大。不确定点：仅因同属雉科且色彩艳丽被粗略联想，证据薄弱。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白冠长尾雉",
+      "confidence": 0.08,
+      "reason": "雄性具极长尾羽与黑白相间图案，头有白色冠羽，体羽以黑、白、棕为主，无大面积红色与金冠，与图中鲜艳红腹+金冠严重不符。不确定点：仅因‘长尾’特征被误联，实为最不可能项。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只体型中等的雄性雉类，头具金黄色丝状冠羽，喉橙红，上背蓝绿金属色，下背至腹部鲜红色，尾极长呈黄褐带黑斑，腿橙黄，站立于覆薄雪的泥地上。",
+  "is_rare": true,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

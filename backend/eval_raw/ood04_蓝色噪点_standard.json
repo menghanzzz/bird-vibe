@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像中未观察到任何鸟类形态特征；画面为均匀蓝色噪点纹理，无轮廓、羽色、喙、腿等可识别生物结构。不确定点：图像可能为损坏、纯色背景或信号干扰，非真实鸟类照片。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "同上；无任何视觉证据支持存在鸟类个体。不确定点：无法排除极端低分辨率或全屏遮挡情形，但当前像素级信息不足以支撑任何物种推断。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像无目标对象；所有‘候选’均为逻辑空集。不确定点：若为隐喻或测试题，则需额外上下文，但按自然科学观察原则，必须基于可见证据。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "未检出任何鸟类解剖特征；蓝色背景无纹理变化指示生物存在。不确定点：拍摄设备故障或传输错误导致图像丢失，非生物学观测结果。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "零可观测特征；无法进行物种识别。不确定点：严格来说，‘无鸟’不是物种，但按题目要求需填5项，故重复强调证据缺失。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像呈现均匀蓝色颗粒状噪声，无清晰轮廓、形态结构或生物特征。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

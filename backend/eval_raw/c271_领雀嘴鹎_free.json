@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黑头鹎",
+      "confidence": 0.92,
+      "reason": "鸟体中等大小，头部及喉部为鲜明黑色，与橄榄绿至黄绿色的上体形成强烈对比；胸部呈浅灰绿色，无明显斑纹；喙短而略厚、呈深灰色，脚暗灰褐色；栖于枝叶间，姿态警觉。该特征组合高度吻合黑头鹎（Pycnonotus atriceps），尤其在华南及东南亚常见，羽色稳定且无亚种混淆关键点。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白喉冠鹎",
+      "confidence": 0.68,
+      "reason": "体型与姿态相似，但白喉冠鹎具显著白色喉部及冠羽（图中未清晰显示冠羽，喉部似被阴影或角度遮蔽而显暗）；若此鸟为幼鸟或非繁殖羽，喉部可能偏灰；不确定点：图像分辨率有限，无法确认喉部是否真为纯黑而非灰黑，亦无法判断是否存在微弱冠羽痕迹；故可能性次之。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "绿翅短脚鹎",
+      "confidence": 0.55,
+      "reason": "上体橄榄绿、下体较浅，但典型绿翅短脚鹎（Hypsipetes mcclellandii）头侧及喉部通常为灰白或浅灰，非纯黑；本图头部深黑，与该种不符；不确定点：若为亚成鸟或个体变异，头部可能加深，但缺乏翼斑（绿翅短脚鹎翼上应有明显绿色翼斑）佐证，支持度较低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "灰短脚鹎",
+      "confidence": 0.42,
+      "reason": "灰短脚鹎（Hypsipetes leucocephalus）通常头灰白、颈侧灰，无黑头特征；本图头部纯黑，差异显著；不确定点：极罕见黑化个体或误判光照导致头部过暗，但概率极低；仅因同属鹎科且栖息环境相似列入备选。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "台湾鹎",
+      "confidence": 0.31,
+      "reason": "台湾鹎（Pycnonotus taivanus）雄鸟具黑头，但分布限于台湾，且喉部常带白色边缘，胸侧偏灰；本图背景为模糊山林，无地理信息；不确定点：无法排除引种或误传个体，但缺乏地域支持，且羽色细节（如胸侧过渡）不匹配，可能性最低。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸟类栖于绿叶枝头，头部及喉部呈鲜明黑色，上体为橄榄绿色，胸部浅灰绿，喙短厚呈深灰色，腿暗灰褐色，姿态直立警觉。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

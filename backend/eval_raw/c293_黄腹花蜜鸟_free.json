@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "黄喉鹎",
+      "confidence": 0.92,
+      "reason": "小型鸣禽，体型纤细；头及上背黑色，喉部亮黄色块清晰，胸腹部为鲜黄色，与黑色头部形成强烈对比；翼暗褐、尾黑；喙短而尖、灰黑色；腿灰褐色；栖于光秃细枝上，姿态警觉。该组合特征（黑头+黄喉+黄胸）高度吻合黄喉鹎（Pycnonotus xanthorrhous），尤其在无冠羽、无白色眼圈等细节上排除了白头鹎等近似种。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑头鹎",
+      "confidence": 0.68,
+      "reason": "黑头鹎（Pycnonotus atriceps）亦具黑头黄胸特征，但典型个体喉部黄色较窄或呈带状，胸腹黄中带橄榄调，且多见于东南亚；本图喉部黄色面积大、饱和度高，更倾向黄喉鹎。不确定点：若拍摄角度导致喉部显宽，或个体变异，则可能误判；缺乏地理信息支持。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑冠黄鹎",
+      "confidence": 0.55,
+      "reason": "黑冠黄鹎（Rubigula melanictera）有黑冠与黄体，但冠羽蓬松明显，且喉部通常为纯黄无黑斑边界；本图头部轮廓平滑、无冠羽隆起，且喉与头界线锐利，不符。不确定点：幼鸟或亚成鸟冠羽未发育完全时可能混淆；但整体比例与姿态更偏鹎科典型种。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "金翅雀",
+      "confidence": 0.38,
+      "reason": "雄性金翅雀（Chloris sinica）繁殖期有黑头、黄胸，但翼上有显著金黄色翼斑，且喙粗短呈圆锥形（食谷鸟特征），本图喙细长、翼无亮斑，排除可能性较大。不确定点：若为非繁殖羽或雌鸟，黄胸变淡，但黑头仍存；然而本图喉部明黄块与鹎类一致，与雀科差异明显。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑枕黄鹂",
+      "confidence": 0.25,
+      "reason": "黑枕黄鹂（Oriolus chinensis）成年雄鸟具全黑头枕与鲜黄体，但体型更大、喙粗长下弯、翼长且飞行姿态明显不同；本图鸟体型小、喙直短、栖枝姿态紧凑，不符合。不确定点：幼鸟或亚成鸟羽色斑驳，但无记录显示其喉部有如此清晰黄块；极低概率的误认。",
+      "in_knowledge_base": true
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只小型鸣禽栖于枯枝上，具鲜明黑头、亮黄色喉部与胸部，翼尾暗色，喙短直灰黑，腿灰褐。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

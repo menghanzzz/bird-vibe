@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无鸟类可见",
+      "confidence": 1.0,
+      "reason": "图像为纯白色背景加黑色网格线，未呈现任何鸟类的形态、轮廓、羽毛、喙、眼或足部等生物学特征；无任何动物影像。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无有效候选",
+      "confidence": 0.0,
+      "reason": "图像中不存在可识别的生物对象；所有其他物种假设均缺乏视觉依据。不确定点：图像内容为空白网格，无法支持任何物种推断。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "图像误传",
+      "confidence": 0.0,
+      "reason": "可能用户上传了错误文件（如占位图/网格模板），导致无实际鸟类影像；无任何可分析特征。不确定点：无法确认是否应有鸟但未显示。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "人工图案误判",
+      "confidence": 0.0,
+      "reason": "网格线为规则几何结构，与鸟类解剖特征无关；无颜色、纹理或形态线索支持鸟类识别。不确定点：无真实生物体存在。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "未知鸟类（无法识别）",
+      "confidence": 0.0,
+      "reason": "因图像中无任何鸟类影像，该选项仅为形式填充；实际无法进行物种判断。不确定点：图像内容为空，不具备识别基础。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像仅包含均匀浅灰底色与黑色正交网格线，无任何动物形态或生物特征。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen_fallback"
+}

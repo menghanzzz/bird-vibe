@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "灰喜鹊",
+      "confidence": 0.92,
+      "reason": "体型中等，头黑色，颈侧及喉部浅灰白，上背及翅蓝灰色，尾长且呈深蓝灰色，喙黑色、较细长微下弯，腿黑；栖于人工结构物上，姿态警觉。该组合特征高度吻合灰喜鹊（Cyanopica cyanus），尤其头黑-喉白-蓝翅-长尾的典型配色与比例一致。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白喉鹊鸦",
+      "confidence": 0.68,
+      "reason": "头黑、喉白、体灰蓝、尾长，与灰喜鹊相似；但白喉鹊鸦（Platylophus galericulatus）分布限于东南亚，国内极罕见。不确定点：本图无冠羽细节（白喉鹊鸦具显著羽冠），且未见其特有的粗壮喙与更蓬松的颈部羽毛；背景为疑似城市环境，更支持灰喜鹊。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红嘴蓝鹊",
+      "confidence": 0.45,
+      "reason": "体型较大，蓝灰色羽、长尾，但红嘴蓝鹊（Urocissa erythroryncha）喙明显红色、头侧及喉部偏灰褐而非纯白，且眼周裸皮明显；图中喙为黑色、喉部洁白清晰，不符。不确定点：若照片曝光导致喙色失真或角度遮挡，则不能完全排除，但概率低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑头奇鹛",
+      "confidence": 0.32,
+      "reason": "头黑、喉白、体灰，但奇鹛类体型较小、尾短、喙粗短呈锥形，且多栖灌丛；图中鸟尾显著长、喙细长、姿态挺拔，不符合。不确定点：仅凭头部颜色易误判，但整体形态差异大，入选仅为谨慎覆盖近似色型。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "暗灰鹃鵙",
+      "confidence": 0.25,
+      "reason": "雄性暗灰鹃鵙（Coracina melaschistos）头黑、胸灰白、翅灰，但其喙粗厚呈钩状、无长尾、翼斑不显；图中尾长、翅色偏蓝、喙细直，明显不符。不确定点：仅因‘头黑+喉白’粗略相似而列入，实际可能性极低。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸟类，头黑色，喉及前胸白色，上体与翅呈蓝灰色，尾长且深蓝灰，喙黑色细长微下弯，站立于金属构件顶端。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "领雀嘴鹎",
+      "confidence": 0.92,
+      "reason": "体型中等偏小，头灰黑色（具明显深色冠羽），喉部白色形成清晰‘领环’，上胸黄绿色，下体鲜黄，翅暗褐带黄缘，尾黄绿色；喙短而厚、呈灰黑或深灰色，脚灰褐色；栖于枝头，姿态警觉。该组合特征高度匹配Pycnonotus zeylanicus（领雀嘴鹎），尤其头部灰黑+白色喉环+黄绿体色为典型识别点。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白头鹎",
+      "confidence": 0.68,
+      "reason": "若头部灰黑实为光照导致误判（实际应为白头），则可能为白头鹎（Pycnonotus sinensis）；但图中头顶明显深灰近黑，无白色冠羽，且喉部有清晰白色环带而非纯白头+灰背结构，故可能性较低。不确定点：图像分辨率有限，无法100%排除幼鸟或亚种变异导致的头部颜色偏差。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰短脚鹎",
+      "confidence": 0.55,
+      "reason": "灰短脚鹎（Hypsipetes leucocephalus）部分亚种（如华南亚种）成鸟头灰黑、喉白、胸黄绿，与图中相似；但典型个体头侧及颈侧更灰，胸腹黄绿色较淡，且常具明显眼圈；图中未见清晰眼圈，且腹部更鲜黄，匹配度中等。不确定点：缺乏眼周细节与翼斑确认，易与领雀嘴鹎混淆。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "绿翅短脚鹎",
+      "confidence": 0.42,
+      "reason": "该种（Hypsipetes mcclellandii）雄鸟头灰黑、喉白、胸黄绿，但翼上应具显著亮绿色翼斑，图中翅面未见明显绿斑；且其分布偏西南山地，本图背景似城市/庭院环境，生境不符。不确定点：翼部细节模糊，无法确认是否具绿翼斑；体色趋同性高，易误判。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红耳鹎",
+      "confidence": 0.3,
+      "reason": "红耳鹎（Pycnonotus jocosus）幼鸟或非繁殖羽个体头灰褐、喉白、胸黄绿，但典型特征为耳后红色斑块（图中未见），且喙基常具红斑；图中耳区无红，喙色均匀深灰，故可能性低。不确定点：完全缺失耳后红斑证据，且体色偏黄绿而非红耳鹎常见的橄榄绿倾向。",
+      "in_knowledge_base": true
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中小型鸣禽栖于挂满浅黄色浆果的树枝上，头灰黑色具深色冠羽，喉部白色形成明显领环，上胸黄绿色，下体鲜黄色，翅暗褐带黄缘，喙短厚呈灰黑色，脚灰褐。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

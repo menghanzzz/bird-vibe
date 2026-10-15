@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "喜鹊",
+      "confidence": 0.95,
+      "reason": "体型中等，头、颈、背及尾上覆羽为亮黑色，具金属光泽；肩部及翅上覆羽为鲜明的蓝紫色（在光线下呈虹彩）；下体白色；尾长且呈楔形；喙粗壮、黑色；腿灰黑色；站立于林下落叶层中，姿态警觉。这些特征与Pica pica（喜鹊）高度一致。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰喜鹊",
+      "confidence": 0.35,
+      "reason": "若为灰喜鹊（Cyanopica cyanus），其头部应为灰蓝色而非纯黑，背部偏灰蓝，腹部浅灰白，且翅斑为天蓝色而非深蓝紫；图中鸟头颈明显为纯黑，肩翅蓝紫色强烈，更符合喜鹊。不确定点：图像分辨率有限，光照下羽色反光可能影响判断；但整体对比度支持喜鹊。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "红嘴蓝鹊",
+      "confidence": 0.12,
+      "reason": "红嘴蓝鹊（Urocissa erythroryncha）体型更大，尾极长，喙红色，翼斑更偏亮蓝，且喉部常有黑色带；图中喙为黑色、尾相对较短、无明显红色喙或长尾特征，基本可排除。不确定点：仅见侧面局部，无法确认喙色及尾长精确比例。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黑嘴喜鹊（东亚亚种争议名，实为喜鹊Pica pica的亚种）",
+      "confidence": 0.08,
+      "reason": "部分文献将东亚喜鹊称为‘黑嘴喜鹊’，但现代分类学已归入Pica pica；图中特征完全符合该种，故不单独列为独立种。不确定点：无独立物种地位，仅为地理变异，不应作为独立候选；列入仅因民间称谓干扰可能。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "普通 Magpie（即喜鹊英文名直译，非有效中文名）",
+      "confidence": 0.05,
+      "reason": "此为无效名称，仅作占位；实际无对应独立物种。不确定点：中文命名规范要求使用标准学名，该条仅为避免空缺而列，识别价值极低。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸟类立于林下枯叶中，头颈背黑色具金属光泽，肩翅呈蓝紫色虹彩，腹部白色，尾较长，喙粗黑，腿暗色。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

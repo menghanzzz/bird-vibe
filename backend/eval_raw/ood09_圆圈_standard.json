@@ -1,0 +1,16 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无对应鸟类物种",
+      "confidence": 0.0,
+      "reason": "图像中未显示任何鸟类；仅包含若干黑色细线勾勒的圆形与椭圆形轮廓，分布于浅灰背景上，无羽毛、喙、眼、腿等鸟类解剖特征；所有‘候选’均无法成立。不确定点：图像内容为抽象几何图形，非生物摄影。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像由多个黑色细线绘制的空心圆与部分重叠圆构成，无任何可识别为鸟类的形态结构。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

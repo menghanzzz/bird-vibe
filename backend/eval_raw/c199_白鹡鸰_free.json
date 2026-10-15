@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "白鹡鸰",
+      "confidence": 0.95,
+      "reason": "体型中小，灰背白腹，头侧及喉部具明显黑色块斑（‘黑领’），尾长且外侧尾羽白色，喙细长呈黑色，腿细长黑色，站立于沙地；该羽色组合与姿态高度符合白鹡鸰（Motacilla alba）典型特征，尤其黑喉+灰背+白腹+黑腿的组合在东亚常见亚种（如指名亚种或leucopsis亚种）中稳定。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "灰鹡鸰",
+      "confidence": 0.65,
+      "reason": "灰鹡鸰（Motacilla cinerea）亦为灰背白腹，但通常喉部无大块黑斑，而为灰色或浅灰，仅部分雄鸟繁殖期有模糊暗色喉斑；图中喉部黑斑显著且边界清晰，更倾向白鹡鸰；不确定点：若为非繁殖期雄性灰鹡鸰或个体变异，可能误判，但概率较低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "日本鹡鸰",
+      "confidence": 0.45,
+      "reason": "日本鹡鸰（Motacilla grandis）分布限于日本及邻近区域，喉部黑斑较白鹡鸰更宽且延伸至胸侧，背部偏深灰；图中黑斑未明显延至胸部，且背景为沙地（常见于沿海滩涂，白鹡鸰更广布），地理与形态支持度低；不确定点：若为迷鸟或混淆亚种，可能性极小。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黄鹡鸰",
+      "confidence": 0.3,
+      "reason": "黄鹡鸰（Motacilla flava）雄鸟繁殖期具黄色喉胸，非繁殖期虽转灰，但极少出现如此清晰的大块黑喉；图中无任何黄色调，且背色偏灰而非橄榄黄；不确定点：若为异常褪色个体或幼鸟误判，但缺乏支持证据。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "山鹡鸰",
+      "confidence": 0.2,
+      "reason": "山鹡鸰（Motacilla clara）体型略大，背部偏棕灰，喉部黑斑常不完整或呈点状，且多栖于高海拔林缘；图中鸟背色较冷灰、黑喉完整、栖息地为沙地，不符典型生境与羽色；不确定点：仅凭局部图像难以完全排除罕见个体，但综合特征匹配度极低。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中小型鸣禽立于沙地，灰背、白腹、黑喉块斑明显，尾较长且外侧尾羽白色，喙细长黑色，腿细长黑色，姿态警觉。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

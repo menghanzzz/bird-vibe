@@ -2,6 +2,11 @@
 
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Bot, User, Sparkles } from "lucide-react";
+import { API_BASE_URL } from "@/lib/api";
+import {
+  registerChatListener,
+  type RecognizeChatContext,
+} from "@/lib/chatBus";
 
 interface Message {
   id: string;
@@ -9,25 +14,36 @@ interface Message {
   content: string;
 }
 
+// 消息 id 自增序列（替代 Date.now，避免触发 react-hooks/purity 校验）
+let messageIdSeq = 0;
+const nextMessageId = () => `msg-${++messageIdSeq}`;
+
 export default function BirdChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  // 识别结果联动上下文：存在时请求体带 context，头部下方显示小横幅
+  const [chatContext, setChatContext] = useState<RecognizeChatContext | null>(
+    null
+  );
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleSubmit = async (e?: React.FormEvent) => {
-    e?.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (text: string, contextOverride?: RecognizeChatContext) => {
+    const trimmed = text.trim();
+    if (!trimmed || isLoading) return;
+
+    // contextOverride：监听器触发时代 state 还没更新，直接显式带上本次 ctx
+    const activeContext = contextOverride ?? chatContext;
 
     const userMsg: Message = {
-      id: Date.now().toString(),
+      id: nextMessageId(),
       role: "user",
-      content: input.trim(),
+      content: trimmed,
     };
 
     const newMessages = [...messages, userMsg];
@@ -36,26 +52,29 @@ export default function BirdChat() {
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/api/v1/chat", {
+      const res = await fetch(`${API_BASE_URL}/api/v1/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: newMessages.map((m) => ({ role: m.role, content: m.content })) }),
+        body: JSON.stringify({
+          messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
+          ...(activeContext ? { context: activeContext } : {}),
+        }),
       });
 
       if (!res.ok) throw new Error("请求失败");
 
       const data = await res.json();
       const assistantMsg: Message = {
-        id: (Date.now() + 1).toString(),
+        id: nextMessageId(),
         role: "assistant",
         content: data.content || "抱歉，我暂时无法回答这个问题。",
       };
       setMessages((prev) => [...prev, assistantMsg]);
-    } catch (err) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
-          id: (Date.now() + 1).toString(),
+          id: nextMessageId(),
           role: "assistant",
           content: "⚠️ 连接失败，请确保后端服务已启动（python backend/main.py）",
         },
@@ -65,13 +84,28 @@ export default function BirdChat() {
     }
   };
 
+  // ref 永远指向最新 sendMessage，供模块级监听器调用（规避闭包过期读到旧 state）
+  const sendMessageRef = useRef(sendMessage);
+  useEffect(() => {
+    sendMessageRef.current = sendMessage;
+  });
+
+  // 识别页「问 AI」联动：开窗 + 带上识别结果上下文 + 自动代发一条提问 🐦
+  useEffect(() => {
+    return registerChatListener((ctx) => {
+      setChatContext(ctx);
+      setIsOpen(true);
+      void sendMessageRef.current("帮我看看这次的识别结果", ctx);
+    });
+  }, []);
+
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    await sendMessage(input);
+  };
+
   const handleQuickAsk = (question: string) => {
-    setInput(question);
-    // 延迟一点让 setInput 生效后再提交
-    setTimeout(() => {
-      const fakeEvent = { preventDefault: () => {} } as React.FormEvent;
-      handleSubmit(fakeEvent);
-    }, 50);
+    void sendMessage(question);
   };
 
   return (
@@ -105,6 +139,24 @@ export default function BirdChat() {
             </div>
           </div>
 
+          {/* 识别结果联动小横幅：告诉用户（和 AI）当前在咨询哪组候选 */}
+          {chatContext && (
+            <div className="px-4 py-2 bg-amber-50 border-b border-amber-100 flex items-center gap-2">
+              <p className="flex-1 text-xs font-bold text-amber-700 truncate">
+                🔍 正在咨询识别结果：
+                {chatContext.candidates.map((c) => c.name).join("、")}
+              </p>
+              <button
+                type="button"
+                onClick={() => setChatContext(null)}
+                aria-label="清除识别结果上下文"
+                className="p-1 rounded-full text-amber-400 hover:text-amber-600 hover:bg-amber-100 transition-colors"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
+
           {/* 消息列表 */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
             {messages.length === 0 && (
@@ -114,16 +166,18 @@ export default function BirdChat() {
                 <p className="text-gray-400 text-xs mt-1">可以问我：</p>
                 <div className="mt-3 space-y-2">
                   {[
-                    "八哥和乌鸫怎么区分？",
-                    "新加坡哪里能看到翠鸟？",
-                    "树麻雀有什么特点？",
+                    { label: "八哥和乌鸫怎么区分？", question: "八哥和乌鸫怎么区分？" },
+                    { label: "新加坡哪里能看到翠鸟？", question: "新加坡哪里能看到翠鸟？" },
+                    { label: "树麻雀有什么特点？", question: "树麻雀有什么特点？" },
+                    // 只有文字描述、没拍到照片的兜底入口 📝
+                    { label: "没看到鸟？描述给我听", question: "我想找一种鸟，但只有文字描述" },
                   ].map((q) => (
                     <button
-                      key={q}
-                      onClick={() => handleQuickAsk(q)}
+                      key={q.label}
+                      onClick={() => handleQuickAsk(q.question)}
                       className="block w-full text-left px-3 py-2 text-xs bg-white rounded-lg border border-emerald-100 text-emerald-700 hover:bg-emerald-50 transition-colors"
                     >
-                      {q}
+                      {q.label}
                     </button>
                   ))}
                 </div>

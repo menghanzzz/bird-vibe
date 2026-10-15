@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "普通翠鸟",
+      "confidence": 0.98,
+      "reason": "体型中等偏小（体长约16 cm），头背及后颈呈金属蓝绿色，具明显白色颊斑；喉部纯白，胸腹部为橙棕色，无横斑；喙长而直、黑色，基部略带红褐色；腿短、鲜红色；栖于水边枯桩上，姿态警觉。所有特征与普通翠鸟（Alcedo atthis）典型成鸟高度吻合，尤其白色颊斑+橙胸+蓝背组合具有诊断性。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "蓝耳翠鸟",
+      "confidence": 0.12,
+      "reason": "仅因同属翠鸟科且具蓝背橙腹特征而列入；但蓝耳翠鸟（Alcedo meninting）体型更大（约17–18 cm），头侧具显著蓝色耳羽块（图中无），喉部常带淡蓝灰调而非纯白，且分布限于东南亚热带，中国仅极少数迷鸟记录；图中无耳羽蓝斑、喉纯白，故极不可能。不确定点：未见清晰耳区细节，但整体比例与色彩不支持。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "冠翠鸟",
+      "confidence": 0.07,
+      "reason": "冠翠鸟（Ceyx erithacus）体型更小（约13 cm），头无显著冠羽（图中亦无），但其胸腹部为纯橙红、无白喉，且喙基部黄色明显；图中具清晰白喉、喙全黑，不符。不确定点：幼鸟或亚种变异可能性极低，图像分辨率足以排除。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "小翠鸟",
+      "confidence": 0.04,
+      "reason": "小翠鸟（Alcedo pusilla）分布于澳洲，体型更小（约11 cm），胸侧具深色纵纹，喉部常带淡灰；图中无纵纹、喉纯白、体型相对较大，明显不符。不确定点：仅凭远观可能误判体型，但羽色模式差异显著。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "斑头大翠鸟",
+      "confidence": 0.02,
+      "reason": "斑头大翠鸟（Halcyon chelicuti）属戴胜翠鸟属，体型大（约25 cm），头背棕褐带黑斑，胸腹蓝灰带白点，喙粗壮且基部肉红；图中体型小、头背纯蓝绿、胸橙无斑，完全不符。不确定点：仅因‘翠鸟’名称联想列入，实为错误归类。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等小型鸟类，头背金属蓝绿色、具白色颊斑，喉部纯白，胸腹部橙棕色，喙长直黑色，腿鲜红色，栖于水中枯木桩顶端。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

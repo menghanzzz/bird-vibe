@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "大山雀",
+      "confidence": 0.95,
+      "reason": "体型小型（约14 cm），头黑色具显著白色颊斑，后颈黄绿色，上背黄绿，翅具两道白色翼斑（前一道清晰、后一道较弱），尾羽黑褐带白端，下体鲜黄，胸中央具宽阔黑色纵纹；喙短而尖、灰黑色；脚灰褐色；攀附树干姿态典型。所有特征与大山雀（Parus major）高度吻合，尤其头部黑白对比、黄绿背色与黑胸带组合为诊断性特征。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "绿背山雀",
+      "confidence": 0.35,
+      "reason": "若为绿背山雀（Parus monticolus），应具更鲜明的蓝绿色上背、更窄的黑色胸带、且白色颊斑常被黑色后颈环包围；本图中上背偏黄绿而非蓝绿，胸带宽厚，颊斑孤立无环，故可能性低。不确定点：图像分辨率有限，无法排除幼鸟或亚种变异导致的背色偏黄。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黄腹山雀",
+      "confidence": 0.25,
+      "reason": "黄腹山雀（Pardaliparus venustulus）雄鸟头黑、颊白、上背黄绿、下体鲜黄，但胸带极细或断续，且翅斑通常仅一道明显白带；本图胸带宽厚连续，翅有双翼斑，不符。不确定点：雌鸟或亚成鸟胸带可能稍宽，但双翼斑仍为关键差异。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "远东山雀",
+      "confidence": 0.15,
+      "reason": "远东山雀（Parus minor）外观与大山雀极近，但胸带通常更窄、有时中断，且部分亚种上背偏灰绿；本图胸带宽厚完整，更倾向大山雀。不确定点：东亚地区存在大山雀与远东山雀杂交区，形态过渡个体难以仅凭单图区分；但本图特征更典型于大山雀指名亚种。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "苍背山雀",
+      "confidence": 0.08,
+      "reason": "苍背山雀（Parus cinereus）上背呈灰蓝或灰绿，下体偏白或淡黄，胸带细窄；本图背色鲜黄绿、下体亮黄、胸带宽黑，完全不符。不确定点：仅因同属山雀科列入备选，实际匹配度极低。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只小型鸣禽攀附树干，头黑、颊白、后颈及上背黄绿色，翅具两道白色翼斑，下体鲜黄，胸中央有宽黑纵纹，尾羽黑褐带白端。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

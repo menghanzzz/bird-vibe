@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "欧亚鸲",
+      "confidence": 0.98,
+      "reason": "小型雀形目鸟类（体长约12–14 cm），具典型橙红色喉胸、灰褐色上体与翼、白色下腹；眼周暗色、喙细短呈黑褐色、腿肉粉色；被握于手中，姿态自然；羽色与形态高度吻合欧亚鸲（Erithacus rubecula）成鸟特征，尤其鲜亮橙红胸区与灰背对比鲜明。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "日本歌鸲",
+      "confidence": 0.35,
+      "reason": "雄性日本歌鸲（Larvivora akahige）亦具橙红胸，但通常胸侧及胁部有深色鳞状斑，且头顶偏棕褐、眼先更暗；本图中胸侧无明显鳞斑，喉部橙红过渡平滑，且背景为欧洲常见植被（枯黄芦苇/灌丛），地理分布不符；不确定点：若为雌性或亚成鸟，橙色可能较淡，但整体色调仍偏亮，与典型日本歌鸲差异较大。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红尾歌鸲",
+      "confidence": 0.22,
+      "reason": "雄性红尾歌鸲（Larvivora sibilans）胸橙红、上体灰褐，但具显著白色眉纹与眼圈，尾羽基部常显红棕色；图中无清晰白眉，眼周为暗色而非白环，尾部不可见；不确定点：头部细节模糊，无法确认眉纹存在与否；且该种在中国东北繁殖、迁徙经东亚，极少出现在欧洲野外手持场景。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "锈腹短翅鸫",
+      "confidence": 0.15,
+      "reason": "雄性锈腹短翅鸫（Brachypteryx hyperythra）腹部锈橙色，但上体深蓝灰、喉白、胸带明显灰褐色横带；图中无胸带，喉胸为连续橙红，且体型略小、喙更细；不确定点：若为雌鸟或亚成，羽色可能混淆，但本图个体橙色饱和度高，更似鸲类而非短翅鸫属。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "北红尾鸲（雄性）",
+      "confidence": 0.08,
+      "reason": "雄性北红尾鸲（Phoenicurus auroreus）头灰、胸橙红、背灰褐，但具明显黑色脸罩及白色翼斑，尾羽长且外侧尾羽基部橙红；图中无黑脸罩、无翼斑、尾短而藏于手后；不确定点：仅凭胸色易误判，但整体头颈结构与羽区边界均不支持此鉴定。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只小型鸣禽被手托举，具鲜艳橙红色喉胸部、灰褐色上体与翅膀、白色下腹，喙短而尖、眼黑、腿浅粉，背景为枯黄草丛与疏林。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

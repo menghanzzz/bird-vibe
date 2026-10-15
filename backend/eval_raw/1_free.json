@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "丝光椋鸟",
+      "confidence": 0.92,
+      "reason": "体型中等（约20–23 cm），头及喉部纯白色蓬松，眼周黑色裸皮明显（图中因角度略显暗但可辨），上体灰褐色，翅具显著黑白色块斑（次级飞羽黑、翼缘白），尾黑，喙橙红色、粗壮微下弯，脚橙红色；栖于棕榈叶间，姿态警觉。该特征组合高度匹配丝光椋鸟（Spodiopsar sericeus）成年繁殖羽，尤其头部纯白与灰体对比强烈，区别于其他椋鸟。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "灰椋鸟",
+      "confidence": 0.68,
+      "reason": "灰体、黑翅带白缘、橙红喙脚等特征部分重叠；但灰椋鸟（Spodiopsar cineraceus）头部通常为浅灰或灰白混杂，无纯白蓬松头冠，且喉部常有细密黑点或条纹，本图头部近乎纯白、无杂色，故可能性较低。不确定点：若为亚成鸟或换羽期个体，头部可能偏白，但整体羽色过渡不如丝光椋鸟典型。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白头鹎",
+      "confidence": 0.45,
+      "reason": "头部白色是共同点，但白头鹎（Pycnonotus sinensis）体型较小（17–20 cm），背部橄榄绿而非灰褐，翅无黑白块斑，尾较短，喙细长黑色，脚灰黑；本图喙粗、翅斑显著、体色偏灰，不符。不确定点：若光线导致色偏，可能误判，但翅部黑白色块为关键排除依据。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "黑领椋鸟",
+      "confidence": 0.32,
+      "reason": "黑领椋鸟（Gracupica nigricollis）有黑白分明的颈环，头白但胸腹白、背黑，本图胸部为灰褐、无黑领，且翅斑模式不同（黑领椋鸟翅全黑带白端，非块状）。不确定点：幼鸟或异常个体可能缺失黑领，但概率极低；本图无任何黑领痕迹，基本可排除。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白化/部分白化八哥",
+      "confidence": 0.25,
+      "reason": "八哥（Acridotheres cristatellus）常见，但正常羽色为通体黑亮带金属光泽，仅翼下覆羽白；本图头白、体灰、翅有黑白块，不符合典型八哥；若为白化个体，应全身褪色均匀，而本图黑翅保留完整，故属极低概率。不确定点：罕见色素异常个体可能呈现类似图案，但缺乏文献支持此类稳定表型。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型鸟类，头及喉部纯白色蓬松，上体灰褐色，翅具黑底白缘块状斑，尾黑，喙与脚均为橙红色，栖于棕榈叶丛中。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

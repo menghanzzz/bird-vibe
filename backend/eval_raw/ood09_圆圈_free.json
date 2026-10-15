@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "图像中仅包含若干黑色线条勾勒的圆形与环形图案，分布于浅灰背景上，无任何鸟类形态特征（如喙、眼、翼、足、羽毛纹理等）；未见任何生物结构。不确定点：图像可能为抽象图形或误传，非真实鸟类照片。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "同上；所有圆形均为简单闭合曲线，无解剖学对应结构；无法提取体型、羽色、姿态等识别要素。不确定点：若为隐喻或艺术化表现，仍不符合鸟类识别前提。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "图像无头部、躯干、四肢等基本鸟体轮廓；所有元素均为几何图形，不满足鸟类视觉识别最低要求。不确定点：用户可能上传错误文件。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "未观察到任何与鸟类相关的形态学特征；圆形大小不一但无层次感或透视关系，非真实生物影像。不确定点：无法排除数字生成干扰图的可能性。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无鸟类可识别",
+      "confidence": 0.0,
+      "reason": "整幅图像为纯抽象线稿，无生物迹象；按鸟类识别规范，不能强行拟合物种。不确定点：若此为测试题，则意图是检验是否坚持客观原则。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像由多个黑色细线绘制的空心圆与重叠圆环组成，分布于浅灰色背景上，无任何生物形态特征。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

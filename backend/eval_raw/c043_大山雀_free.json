@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "大山雀",
+      "confidence": 0.95,
+      "reason": "体型小型（约14 cm），头黑色具白色颊斑，上背黄绿色，胸腹部亮黄色，胸中央具宽黑纵纹；喙短而尖、灰黑色；腿灰褐色；正侧身停栖于圆柱形喂食器上。上述特征与大山雀（Parus major）典型羽色高度吻合。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "绿背山雀",
+      "confidence": 0.65,
+      "reason": "若为绿背山雀（Parus monticolus），其上背更偏鲜亮草绿色，胸带较窄且有时断续；但图中鸟胸带宽而连续、头黑颊白对比强烈，更倾向大山雀。不确定点：图像分辨率有限，难以精确判断上背绿色调深浅及胸带是否完全连贯。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "远东山雀",
+      "confidence": 0.45,
+      "reason": "远东山雀（Parus minor）与大山雀极相似，但胸带通常更细、头部黑色区域略小，且分布偏东亚；本图背景似为城市庭院（水泥墙、人工喂食器），在欧亚多地常见大山雀而非远东山雀。不确定点：缺乏地理定位信息，且面部细节模糊，无法排除该种。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "黄腹山雀",
+      "confidence": 0.3,
+      "reason": "黄腹山雀（Pardaliparus venustulus）雄鸟具明显黄色眉纹、上体橄榄绿、胸带细窄或不连贯，且喉部常有黑色斑块；图中鸟无显著眉纹、胸带宽厚连续，不符典型特征。不确定点：幼鸟或雌鸟羽色可能趋同，但整体形态匹配度低。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "蓝山雀",
+      "confidence": 0.2,
+      "reason": "蓝山雀（Cyanistes caeruleus）头顶蓝而非黑，脸颊白但眼周有蓝色环，上体蓝绿色，胸带较窄；图中鸟头顶纯黑、无蓝色成分，明显不符。不确定点：仅因同属山雀科而列入备选，实际特征差异显著。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只小型鸣禽，头黑色具醒目白色颊斑，上背黄绿，胸腹鲜黄并具宽黑纵纹，正停栖于带孔圆柱形喂食器侧面。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

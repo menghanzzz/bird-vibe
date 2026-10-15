@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无法识别",
+      "confidence": 0.01,
+      "reason": "图像完全为绿色噪点纹理，无任何可辨识的鸟类形态特征（如轮廓、羽色、喙、眼、腿等）；不确定点：图像可能为损坏、纯色背景或数字噪声，未包含任何真实鸟类影像。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.005,
+      "reason": "图像中无任何生物结构细节；不确定点：无法确认是否为极远距离模糊影像或伪影，缺乏基本识别要素。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.001,
+      "reason": "图像分辨率与内容均不支持鸟类识别；不确定点：疑似屏幕噪点或压缩失真，非真实拍摄对象。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.0005,
+      "reason": "无头、翅、尾、足等解剖结构可见；不确定点：甚至无法排除非生物可能性。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.0001,
+      "reason": "图像仅呈现均匀绿色颗粒状纹理，不符合任何已知鸟类视觉特征；不确定点：可能为误传图像或占位符。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "低",
+  "feature_description": "图像为均匀分布的绿色颗粒状噪点纹理，无清晰轮廓、结构或生物特征。",
+  "is_rare": false,
+  "uncertainty_explanation": "图像中未呈现任何鸟类可识别特征，极可能非真实鸟类照片，而是数字噪声、损坏文件或纯色背景。",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

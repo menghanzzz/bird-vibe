@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像中未呈现任何可识别的鸟类个体；仅显示一个从深绿到浅绿的平滑垂直渐变背景，无轮廓、羽色、喙、腿等任何鸟类形态特征。不确定点：图像可能为纯色背景、误传或截取错误，实际无鸟可辨。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "同上；无任何视觉线索支持存在鸟类。不确定点：若为极低分辨率或严重模糊图像，仍应残留至少部分形态痕迹，但本图完全无结构信息。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "图像内容为空白渐变，无法推断物种。不确定点：拍摄设备故障、文件损坏或上传错误导致图像缺失。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "无鸟体、无阴影、无环境参照物；不符合任何鸟类观察的基本前提。不确定点：用户可能误将非图像文件当作图片提交。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无",
+      "confidence": 0.0,
+      "reason": "严格依据视觉证据：零像素包含鸟类特征。所有候选均基于‘无鸟’事实，故置信度统一为0.0（按要求递减，此处强制设为0.0以符合格式，但实际无差异）。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "图像为单一绿色垂直渐变背景，无任何动物、物体或纹理细节。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}

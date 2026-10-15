@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "普通翠鸟",
+      "confidence": 0.96,
+      "reason": "体型中等偏小，头颈及背部呈金属蓝绿色，翼覆羽具深蓝斑点，喉部白色块斑清晰，胸腹部为橙棕色，喙长而尖、黑色，腿短、灰褐色；栖于水平枝干上，姿态警觉；特征与普通翠鸟（Alcedo atthis）典型雄性成鸟高度吻合。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "蓝耳翠鸟",
+      "confidence": 0.35,
+      "reason": "头部蓝绿色、胸腹橙棕，但蓝耳翠鸟（Alcedo meninting）通常具更明显的蓝色耳羽斑及更窄的白色喉斑，且分布偏南亚/东南亚；本图未见明显耳后蓝斑，且白色喉斑较宽，与普通翠鸟更一致；不确定点：图像分辨率有限，无法确认耳区细节及翼斑形态差异。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "白胸翡翠",
+      "confidence": 0.22,
+      "reason": "白胸翡翠（Halcyon smyrnensis）胸腹部纯白，仅下腹略带淡棕，与图中大面积橙棕色胸腹不符；喙基部常具红斑，图中喙全黑；不确定点：若为亚成鸟或特殊个体，羽色可能变异，但概率极低。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "斑鱼狗",
+      "confidence": 0.15,
+      "reason": "斑鱼狗（Ceryle rudis）体型更大，头背蓝绿但具显著白色眉纹及黑色贯眼纹，胸带宽黑横斑，腹白；图中无眉纹、无胸带、腹为橙棕，明显不符；不确定点：远距离拍摄可能导致细节误判，但整体轮廓与色彩组合差异显著。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "冠翠鸟",
+      "confidence": 0.08,
+      "reason": "冠翠鸟（Todiramphus chloris）头顶具明显羽冠，头侧蓝绿但喉部多为浅蓝或灰白，胸腹偏白或淡黄，且常见于海岛/热带；图中无羽冠，喉部为明确白色块斑，胸腹橙棕浓郁；不确定点：极罕见迷鸟可能性存在，但缺乏支持特征。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中小型鸟类栖于锈色横枝上，头背及翅呈金属蓝绿色，喉部有显著白色块斑，胸腹部为橙棕色，喙长而尖、黑色，腿短灰褐。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

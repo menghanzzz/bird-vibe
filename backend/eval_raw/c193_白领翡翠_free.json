@@ -1,0 +1,39 @@
+{
+  "top5_candidates": [
+    {
+      "name": "白领翡翠",
+      "confidence": 0.92,
+      "reason": "中等体型翠鸟；头及后颈深蓝，眼先及眉纹白色，形成显著‘白领’特征；上体蓝，下体纯白；喙长而直、黑色，基部略灰；栖于枝头侧身姿态；与白领翡翠（Todiramphus chloris）典型羽色高度吻合。",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "白胸翡翠",
+      "confidence": 0.68,
+      "reason": "蓝背白腹，喙粗壮黑色；但白胸翡翠（Halcyon smyrnensis）通常具明显黑色贯眼纹、胸带棕褐色或淡蓝灰色，且无白色眉纹/眼先；本图眼周为白色，喉胸纯白无杂色，故可能性较低。不确定点：头部白色区域范围是否为个体变异或亚种差异？",
+      "in_knowledge_base": true
+    },
+    {
+      "name": "蓝翡翠",
+      "confidence": 0.55,
+      "reason": "蓝背白腹，喙黑；但蓝翡翠（Halcyon pileata）头顶至后颈全黑，无白色眉纹或眼先，且胸侧常具蓝色纵纹；本图头部具清晰白色眼先与眉纹，不符典型特征。不确定点：是否为幼鸟或罕见白化个体？",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "小翠鸟",
+      "confidence": 0.42,
+      "reason": "体型偏小，蓝背白腹；但小翠鸟（Alcedo atthis）体型明显更小，喙较细短，头侧无白色眉纹，多具橙棕色耳覆羽；本图喙较长、头侧白色区域显著，形态不符。不确定点：是否因焦距导致体型误判？",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "红林翡翠",
+      "confidence": 0.3,
+      "reason": "分布于东南亚红树林，蓝背白腹；但红林翡翠（Halcyon coromanda）具宽黑贯眼纹、胸带淡蓝灰，且眼先非纯白；本图无贯眼纹、眼周纯白，差异明显。不确定点：是否为极罕见的白化型或混种？证据薄弱。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "高",
+  "feature_description": "一只中等体型翠鸟栖于枝头，头后颈深蓝，眼先及眉纹白色形成醒目‘白领’，上体亮蓝，下体纯白，喙长直黑色，姿态侧身朝左。",
+  "is_rare": false,
+  "uncertainty_explanation": "",
+  "recognizer": "qwen"
+}

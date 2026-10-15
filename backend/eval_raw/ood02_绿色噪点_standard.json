@@ -1,0 +1,40 @@
+{
+  "top5_candidates": [
+    {
+      "name": "无法识别",
+      "confidence": 0.01,
+      "reason": "图像完全无清晰可辨的鸟类形态特征；仅呈现均匀绿色噪点纹理，无任何轮廓、羽色、喙、眼或肢等解剖结构可见。不确定点：图像可能为失焦、损坏、纯噪声或非鸟类内容。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.005,
+      "reason": "同上；无任何可提取的生物特征。不确定点：无法排除图像为数字伪影或压缩错误。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.003,
+      "reason": "图像分辨率极低且缺乏对比度，未显示任何鸟类典型特征。不确定点：若为远距离拍摄，应有模糊轮廓，但图中无任何形状暗示。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.002,
+      "reason": "绿色像素随机分布，无结构性图案，不符合任何已知鸟类的视觉表型。不确定点：不能确认是否为伪装植被背景中的隐匿个体，因无遮蔽物边界或阴影线索。",
+      "in_knowledge_base": false
+    },
+    {
+      "name": "无法识别",
+      "confidence": 0.001,
+      "reason": "图像信息量趋近于零；所有识别尝试均属推测而非基于证据。不确定点：日期与地点线索无法弥补视觉缺失，故不支持任何物种推断。",
+      "in_knowledge_base": false
+    }
+  ],
+  "certainty_level": "低",
+  "feature_description": "图像为均匀分布的绿色像素噪点，无任何可辨识的生物形态、轮廓或解剖结构。",
+  "is_rare": false,
+  "uncertainty_explanation": "图像中未呈现任何鸟类视觉特征，无法进行物种识别；最大不确定因素是图像本身无效或非真实鸟类照片。",
+  "is_new_bird": true,
+  "recognizer": "qwen"
+}
